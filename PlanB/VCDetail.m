@@ -30,7 +30,7 @@
 
 -(void) loadSelfComment{
     VariableStore *vs =[VariableStore sharedInstance];
-        NSString *url= [NSString stringWithFormat:@"http://www.planb-on.com/controller/mobile/place.aspx?action=get&member_id=%D&google_id=%@",vs.intLocalId ,_strGoogleId ];
+        NSString *url= [NSString stringWithFormat:@"http://%@/controller/mobile/place.aspx?action=get&member_id=%D&google_id=%@",vs.domain,vs.intLocalId ,_strGoogleId ];
     NSLog(@"localId:%D",vs.intLocalId);
     if(vs.intLocalId==0){
         _txtComment.hidden=YES;
@@ -113,14 +113,34 @@
             for(int i=0;i<arrPhotos.count;i++){
                 
                 //NSLog(@"%@",[[arrPhotos objectAtIndex:i] objectForKey:@"photo_reference"]);
-                NSString *strURL = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=%@&sensor=false&key=%@",[[arrPhotos objectAtIndex:i] objectForKey:@"photo_reference"], [VariableStore sharedInstance].keyGoogleMap] ;
+                NSString *urlImg = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=%@&sensor=false&key=%@",[[arrPhotos objectAtIndex:i] objectForKey:@"photo_reference"], [VariableStore sharedInstance].keyGoogleMap] ;
                 //  NSLog(strURL);
-                NSURL *imgURL=[NSURL URLWithString:strURL];
-                NSData *imgData=[NSData dataWithContentsOfURL:imgURL];
-                UIImage *img=[[UIImage alloc]initWithData:imgData];
-                UIImageView * imgView=[[UIImageView alloc] initWithImage:img];
-                [imgView setFrame:CGRectMake(i*50,0,50,50)];
-                [_usvGallery addSubview:imgView];
+                NSURL * url=[[NSURL alloc] initWithString:urlImg];
+                NSURLRequest * req=[[NSURLRequest alloc] initWithURL:url];
+                [NSURLConnection sendAsynchronousRequest:req queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                    if ([data length] > 0 && connectionError == nil){
+                        NSLog(@"load img complete");
+                        UIImage *img=[[UIImage alloc]initWithData:data];
+                        UIImageView * imgView=[[UIImageView alloc] initWithImage:img];
+                        [imgView setFrame:CGRectMake(i*50,0,50,50)];
+                        [_usvGallery addSubview:imgView];
+                    }else if ([data length] == 0 && connectionError == nil){
+                        //[delegate emptyReply];
+                    /*}else if (error != nil && connectionError.code == ERROR_CODE_TIMEOUT){
+                        //[delegate timedOut];
+                    }else if (connectionError != nil){
+                        //[delegate downloadError:error];
+                    */}
+
+                }];
+                
+                
+                //NSURL *imgURL=[NSURL URLWithString:strURL];
+                //NSData *imgData=[NSData dataWithContentsOfURL:imgURL];
+                //UIImage *img=[[UIImage alloc]initWithData:imgData];
+                //UIImageView * imgView=[[UIImageView alloc] initWithImage:img];
+                //[imgView setFrame:CGRectMake(i*50,0,50,50)];
+                //[_usvGallery addSubview:imgView];
 
             }
             _usvGallery.contentSize=CGSizeMake(50*arrPhotos.count,50);
@@ -137,7 +157,8 @@
        // NSLog(@"%@",lat);
         VCTest *vcTest=(VCTest *)self.sidePanelController.rightPanel;
         [vcTest clearMarker];
-        [vcTest pinMarker:[_strLat floatValue] lng:[_strLng floatValue] name:_strPlaceTitle];
+        [vcTest pinMarker:[_strLat floatValue] lng:[_strLng floatValue] name:_strPlaceTitle snippet:_strGoogleAddress
+         ];
         
         //rating
 
@@ -191,7 +212,7 @@
     CGFloat rating=_rateView.rate;
     VariableStore *vs=[VariableStore sharedInstance];
 
-    NSString *sendVoteURL=[NSString stringWithFormat:@"http://www.planb-on.com/controller/mobile/place.aspx?action=vote&google_id=%@&lat=%@&lng=%@&google_address=%@&google_phone=%@&member_id=%d&rating=%f&google_name=%@&comment=%@",_strGoogleId,_strLat,_strLng,_strGoogleAddress,_strGooglePhone,vs.intLocalId,rating,_strPlaceTitle,_txtComment.text];
+    NSString *sendVoteURL=[NSString stringWithFormat:@"http://%@/controller/mobile/place.aspx?action=vote&google_id=%@&lat=%@&lng=%@&google_address=%@&google_phone=%@&member_id=%d&rating=%f&google_name=%@&comment=%@",vs.domain,_strGoogleId,_strLat,_strLng,_strGoogleAddress,_strGooglePhone,vs.intLocalId,rating,_strPlaceTitle,_txtComment.text];
     NSString *encodedString = [sendVoteURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
     NSLog(@"%@",encodedString);

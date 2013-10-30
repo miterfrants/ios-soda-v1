@@ -10,6 +10,7 @@
 
 @interface VariableStore : NSObject
 
+@property NSString *domain;
 @property NSString *jsonGoods;
 @property NSString *jsonBadges;
 @property NSInteger *intLocalId;

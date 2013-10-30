@@ -41,6 +41,7 @@
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    NSLog(@"jump to list");
     UIButton* btn = (UIButton*)sender;
     VCList *vcList = (VCList *)segue.destinationViewController;
     vcList.category=btn.titleLabel.text;

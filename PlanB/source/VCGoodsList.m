@@ -34,7 +34,7 @@
     if(jsonParsingError==nil){
         //NSLog(@"%d",[[dic_goods objectForKey:@"goods"] count]);
         for( int i=0;i<[[dic_goods objectForKey:@"goods"] count];i++){
-            UILabel *lblTitle= [[UILabel alloc] initWithFrame:CGRectMake(floorf(i/4)*80,(i*80+70), 100, 100)];
+            UILabel *lblTitle= [[UILabel alloc] initWithFrame:CGRectMake(floorf(i/4)*80,(i*80+90), 100, 100)];
             lblTitle.text=[[[dic_goods objectForKey:@"goods"] objectAtIndex:i] objectForKey:@"name"];
             //NSLog(@"%@",lblTitle.text);
             lblTitle.textColor = [UIColor blackColor];
@@ -47,7 +47,7 @@
             NSData *imgData=[NSData dataWithContentsOfURL:imgURL];
             UIImage *img=[[UIImage alloc] initWithData:imgData];
             UIImageView *imgView=[[UIImageView  alloc] initWithImage:img];
-            imgView.frame=CGRectMake(floorf(i/4)*80,(i*80)+50, 60, 60);
+            imgView.frame=CGRectMake(floorf(i/4)*80,(i*80)+70, 60, 60);
             [[self view] addSubview:imgView];
         }
     }else{

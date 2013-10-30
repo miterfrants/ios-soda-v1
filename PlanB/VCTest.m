@@ -75,8 +75,11 @@
                 GMSMarker *marker = [[GMSMarker alloc] init];
                 marker.position = CLLocationCoordinate2DMake([lat floatValue], [lng floatValue]);
                 marker.title = name;
-                marker.snippet = @"My Hometown";
+                NSLog(@"%@",[locationResults objectForKey:@"results"]
+                      );
+                //marker.snippet = [[[locationResults objectForKey:@"results"] objectAtIndex:i] valueForKey:@"formated_address"];
                 marker.map = mapview;
+
             }
 
 
@@ -91,14 +94,16 @@
 
     }
 }
-- (void) pinMarker:(float) lat lng:(float) lng name:(NSString*) name{
+- (void) pinMarker:(float) lat lng:(float) lng name:(NSString*) name snippet:(NSString *) snippet{
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = CLLocationCoordinate2DMake(lat, lng);
     marker.title = name;
+    marker.snippet=snippet;
     [mapview animateToLocation:marker.position];
     marker.map=mapview;
     [[VariableStore sharedInstance].arrMarker  addObject:marker];
 }
+
 - (void) clearMarker{
     NSMutableArray *arrMarker=(NSMutableArray *)[VariableStore sharedInstance].arrMarker;
     for(int i=0;i<arrMarker.count;i++){
@@ -153,14 +158,15 @@
     NSLog(@"You tapped at %f,%f", coordinate.latitude, coordinate.longitude);
 }
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker{
-    /*
+    //marker.position.latitude
     if ([[UIApplication sharedApplication] canOpenURL:
          [NSURL URLWithString:@"comgooglemaps://"]]) {
+        NSString *url =[NSString stringWithFormat:@"comgooglemaps://?saddr=&daddr=%@&directionsmode=walking",marker.snippet];        
         [[UIApplication sharedApplication] openURL:
-         [NSURL URLWithString:@"comgooglemaps://?center=40.765819,-73.975866&zoom=14&views=traffic"]];
+         [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
     } else {
         NSLog(@"Can't use comgooglemaps://");
-    }*/
+    }
     
 }
 -(void)handleLongPressGesture:(UIGestureRecognizer*)sender {

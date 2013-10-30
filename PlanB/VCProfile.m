@@ -41,19 +41,21 @@
     _btnGoods.hidden=YES;
     _btnBadge.hidden=YES;
      _imgViewProfile=[[UIImageView alloc]init];
-    _lblUserFullName=[[UILabel alloc]initWithFrame:CGRectMake(140, 150, 100, 50)];
+    _lblUserFullName=[[UILabel alloc]initWithFrame:CGRectMake(0, 93, 100, 100)];
+    [_lblUserFullName setTextAlignment:NSTextAlignmentCenter];
+
     [_imgViewProfile setBackgroundColor:[UIColor clearColor]];
     _btnFBLogin = [UIButton buttonWithType:UIButtonTypeCustom];
     _btnGoogleLogin = [UIButton buttonWithType:UIButtonTypeCustom];
     _btnLogout =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     
-    [_btnLogout setFrame:CGRectMake(0,0,imgFBLogin.size.width,imgFBLogin.size.height)];
+    [_btnLogout setFrame:CGRectMake(0,70,imgFBLogin.size.width,imgFBLogin.size.height)];
     _btnLogout.titleLabel.text=@"Logout";
     
     _btnLogout.hidden=YES;
-    [_btnFBLogin setFrame:CGRectMake(0,0,imgFBLogin.size.width,imgFBLogin.size.height)];
+    [_btnFBLogin setFrame:CGRectMake(0,30,imgFBLogin.size.width-20,imgFBLogin.size.height-20)];
     [_btnFBLogin setBackgroundImage:imgFBLogin forState:UIControlStateNormal];
-    [_btnGoogleLogin setFrame:CGRectMake(0,imgFBLogin.size.height,imgFBLogin.size.width,imgFBLogin  .size.height)];
+    [_btnGoogleLogin setFrame:CGRectMake(0,imgFBLogin.size.height+20,imgFBLogin.size.width-20,imgFBLogin.size.height-20)];
     [_btnGoogleLogin setBackgroundImage:imgGoogleLogin forState:UIControlStateNormal];
     
     [self.view addSubview:_btnFBLogin];
@@ -97,6 +99,7 @@
 -(IBAction) handleBtnFBClick:(id)sender{
     AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     // this button's job is to flip-flop the session from open to closed
+    
     if (appDelegate.fb_session.isOpen) {
         // if a user logs out explicitly, we delete any cached token information, and next
         // time they run the applicaiton they will be presented with log in UX again; most
@@ -139,7 +142,7 @@
     GPPSignIn *_googleSignIn = [GPPSignIn sharedInstance];
     _googleSignIn.shouldFetchGoogleUserEmail=YES;
     // You previously set kClientId in the "Initialize the Google+ client" step
-    NSString *kClientId=@"235322884744-9flab6uaoebo7l6m4ulaphka04n70ci6.apps.googleusercontent.com";
+    NSString *kClientId=@"155217882778-17s2ii21k728qrojqdt9lggcm3aaqnfa.apps.googleusercontent.com";
     _googleSignIn.clientID = kClientId;
     _googleSignIn.scopes = [NSArray arrayWithObjects:
                             kGTLAuthScopePlusLogin, // defined in GTLPlusConstants.h
@@ -160,17 +163,18 @@
              if (!error) {
                 //NSLog(@"%@",user);
 
-                    NSInteger local_id= [[Util stringWithUrl:[NSString stringWithFormat:@"http://www.planb-on.com/controller/mobile/member.aspx?action=get_local_id&source=1&outer_id=%@",user.id]] intValue];
+                    NSInteger local_id= [[Util stringWithUrl:[NSString stringWithFormat:@"http://%@/controller/mobile/member.aspx?action=get_local_id&source=1&outer_id=%@",[VariableStore sharedInstance].domain,user.id]] intValue];
                      VariableStore *vs=[VariableStore sharedInstance];
                  vs.intLocalId=local_id;
                  [self updateView];
                  
                  [self generateGoods:local_id source:1 token:appDelegate.fb_session.accessTokenData.accessToken];
-                 NSURL *imgURL=[NSURL URLWithString: [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=square" ,user.id]];
+                 //NSURL *imgURL=[NSURL URLWithString: [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=square" ,user.id]];
+                 NSURL *imgURL=[NSURL URLWithString: [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?width=100&height=100" ,user.id]];
                 NSData *imgData=[NSData dataWithContentsOfURL:imgURL];
                  UIImage * imgProfile=[UIImage imageWithData:imgData];
                  [_imgViewProfile setImage:imgProfile];
-                 [_imgViewProfile setFrame:CGRectMake(30,200,imgProfile.size.width,imgProfile.size.height)];
+                 [_imgViewProfile setFrame:CGRectMake(0,30,imgProfile.size.width,imgProfile.size.height)];
                  [_lblUserFullName setText:user.name];
 
                  
@@ -259,7 +263,7 @@
                         NSData *imgData=[NSData dataWithContentsOfURL:imgURL];
                         UIImage * imgProfile=[UIImage imageWithData:imgData];
                         [_imgViewProfile setImage:imgProfile];
-                        [_imgViewProfile setFrame:CGRectMake(140,200,imgProfile.size.width,imgProfile.size.height)];
+                        [_imgViewProfile setFrame:CGRectMake(0,0,imgProfile.size.width,imgProfile.size.height)];
                         NSString *description = [NSString stringWithFormat:
                                                  @"%@\n%@", person.displayName,
                                                  person.aboutMe];
@@ -275,10 +279,11 @@
 -(void)generateGoods:( NSInteger *) local_id
               source:(NSInteger *) source
                token:(NSString *) token{
-    NSString *url=[NSString stringWithFormat:@"http://www.planb-on.com/controller/mobile/member.aspx?action=get_goods&id=%d&source=%d&token=%@",local_id,source,token];
+    VariableStore *vs=[VariableStore sharedInstance];
+    NSString *url=[NSString stringWithFormat:@"http://%@/controller/mobile/member.aspx?action=get_goods&id=%D&source=%d&token=%@",vs.domain,local_id,source,token];
     NSString *strGoods=[Util stringWithUrl:url];
     
-    VariableStore *vs=[VariableStore sharedInstance];
+
     vs.jsonGoods=strGoods;
 }
 

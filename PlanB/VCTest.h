@@ -12,6 +12,6 @@
 @interface VCTest : UIViewController<GMSMapViewDelegate>
 @property (nonatomic,strong) GMSMapView *mapview;
 @property int mapStatus;
--(void) pinMarker:(float) lat lng:(float) lng name:(NSString*) name;
+-(void) pinMarker:(float) lat lng:(float) lng name:(NSString*) name snippet:(NSString *) snippet;
 -(void) clearMarker;
 @end

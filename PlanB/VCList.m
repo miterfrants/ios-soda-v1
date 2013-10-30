@@ -74,7 +74,7 @@
         NSMutableString * nearbySearchURL=[NSMutableString string];
 
     self.navigationController.topViewController.title=_category;
-        [nearbySearchURL appendFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=500&types=%@&sensor=true&key=%@",_locationManager.location.coordinate.latitude,_locationManager.location.coordinate.longitude,[_category lowercaseString],[VariableStore sharedInstance].keyGoogleMap];
+        [nearbySearchURL appendFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=500&keyword=%@&sensor=true&key=%@",_locationManager.location.coordinate.latitude,_locationManager.location.coordinate.longitude,[[_category lowercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[VariableStore sharedInstance].keyGoogleMap];
     
         //NSLog(@"longitude %f",_locationManager.location.coordinate.longitude);
         //NSLog(@"latitude %f",_locationManager.location.coordinate.latitude);
@@ -107,7 +107,7 @@
                 NSString *lng=[[[[[locationResults objectForKey:@"results"] objectAtIndex:i] objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lng"];
 
                 VCTest *vcTest=(VCTest *)self.sidePanelController.rightPanel;
-                [vcTest pinMarker:[lat floatValue] lng:[lng floatValue] name:name];
+                [vcTest pinMarker:[lat floatValue] lng:[lng floatValue] name:name snippet:@""];
                 btnList.frame = CGRectMake(5, 40*i+30, 200, 30);
                 [btnList setPlaceName:name];
                 [btnList setReference:reference];

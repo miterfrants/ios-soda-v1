@@ -7,6 +7,7 @@
 //
 
 #import "Util.h"
+#import <Foundation/Foundation.h>
 
 @implementation Util
 + (NSString *)stringWithUrl:(NSURL *)url
@@ -29,4 +30,5 @@ NSMutableURLRequest *urlRequest= [[NSMutableURLRequest alloc] initWithURL:[NSURL
     // Construct a String around the Data from the response
     return [[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
 }
+
 @end

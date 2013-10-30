@@ -6,8 +6,9 @@
 //  Copyright (c) 2013年 Po-Hsiang Hunag. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+
 
 @interface Util : NSObject
-+ (NSString *)stringWithUrl:(NSURL *)url;
++ (NSString *)stringWithUrl:(NSURL *)url ;
++ (NSString *)stringAsyncWithUrl:(NSURL *)url ;
 @end

@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnATM;
 @property (weak, nonatomic) IBOutlet UIButton *btnGas;
 @property (weak, nonatomic) IBOutlet UIButton *btnTest;
+@property (weak, nonatomic) IBOutlet UIButton *btnPark;
+@property (weak, nonatomic) IBOutlet UIButton *btnCS;
 
 
 @end
