@@ -169,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54C2080517CD714B006E1A44 /* Foundation.framework in Frameworks */,
 				54C4C12217FDA5A7006BEAED /* Security.framework in Frameworks */,
 				54C4C12017FDA4C7006BEAED /* GoogleOpenSource.framework in Frameworks */,
 				54C4C11E17FDA477006BEAED /* GooglePlus.framework in Frameworks */,
@@ -187,7 +188,6 @@
 				5453C10717DE097800B811BC /* CoreData.framework in Frameworks */,
 				5453C10517DE097100B811BC /* AVFoundation.framework in Frameworks */,
 				54C2080317CD714B006E1A44 /* UIKit.framework in Frameworks */,
-				54C2080517CD714B006E1A44 /* Foundation.framework in Frameworks */,
 				54C2080717CD714B006E1A44 /* CoreGraphics.framework in Frameworks */,
 				5453C10117DE08C000B811BC /* GoogleMaps.framework in Frameworks */,
 			);
@@ -206,15 +206,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		54073BD017F174BE0092F741 /* resource */ = {
+		54073BD017F174BE0092F741 /* rec */ = {
 			isa = PBXGroup;
 			children = (
-				54073BD117F174BF0092F741 /* images */,
+				54073BD117F174BF0092F741 /* img */,
 			);
+			name = rec;
 			path = resource;
 			sourceTree = "<group>";
 		};
-		54073BD117F174BF0092F741 /* images */ = {
+		54073BD117F174BF0092F741 /* img */ = {
 			isa = PBXGroup;
 			children = (
 				542EF61D1818229D00C43336 /* pin.png */,
@@ -227,10 +228,11 @@
 				54A4031A180AD9EA00491BEB /* StarFullLarge.png */,
 				54A4031B180AD9EA00491BEB /* StarFullLarge@2x.png */,
 			);
+			name = img;
 			path = images;
 			sourceTree = "<group>";
 		};
-		5453BF2517DD922800B811BC /* source */ = {
+		5453BF2517DD922800B811BC /* src */ = {
 			isa = PBXGroup;
 			children = (
 				54A40311180AD20900491BEB /* DYRateView.h */,
@@ -251,6 +253,7 @@
 				54D7DC15180462D300A40618 /* VariableStore.h */,
 				54D7DC16180462D300A40618 /* VariableStore.m */,
 			);
+			name = src;
 			path = source;
 			sourceTree = "<group>";
 		};
@@ -258,7 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				5453C11A17DE19D700B811BC /* crt1.o */,
-				54C2080817CD714B006E1A44 /* PlanB */,
+				54C2080817CD714B006E1A44 /* Soda */,
 				54C2082617CD714B006E1A44 /* PlanBTests */,
 				54C2080117CD714B006E1A44 /* Frameworks */,
 				54C2080017CD714B006E1A44 /* Products */,
@@ -305,13 +308,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		54C2080817CD714B006E1A44 /* PlanB */ = {
+		54C2080817CD714B006E1A44 /* Soda */ = {
 			isa = PBXGroup;
 			children = (
 				54C4C11B17F35509006BEAED /* google-login.png */,
 				54073BD217F174BF0092F741 /* fb-login.png */,
-				54073BD017F174BE0092F741 /* resource */,
-				5453BF2517DD922800B811BC /* source */,
+				54073BD017F174BE0092F741 /* rec */,
+				5453BF2517DD922800B811BC /* src */,
 				54C2081117CD714B006E1A44 /* AppDelegate.h */,
 				54C2081217CD714B006E1A44 /* AppDelegate.m */,
 				54C2080917CD714B006E1A44 /* Supporting Files */,
@@ -329,6 +332,7 @@
 				54CA2A8017F08C4600F1DC5F /* VCProfile.h */,
 				54CA2A8117F08C4600F1DC5F /* VCProfile.m */,
 			);
+			name = Soda;
 			path = PlanB;
 			sourceTree = "<group>";
 		};
@@ -412,6 +416,14 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Po-Hsiang Hunag";
+				TargetAttributes = {
+					54C207FE17CD714B006E1A44 = {
+						DevelopmentTeam = WFDMZHCR6C;
+					};
+					54C2081E17CD714B006E1A44 = {
+						TestTargetID = 54C207FE17CD714B006E1A44;
+					};
+				};
 			};
 			buildConfigurationList = 54C207FA17CD714B006E1A44 /* Build configuration list for PBXProject "PlanB" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -613,6 +625,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Framework\"",
@@ -627,8 +641,9 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = planb;
+				PROVISIONING_PROFILE = "";
 				SEPARATE_STRIP = NO;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -637,6 +652,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Framework\"",
@@ -651,8 +668,9 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = planb;
+				PROVISIONING_PROFILE = "";
 				SEPARATE_STRIP = NO;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -660,7 +678,7 @@
 		54C2083517CD714B006E1A44 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PlanB.app/PlanB";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/planb.app/planb";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -678,7 +696,7 @@
 		54C2083617CD714B006E1A44 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PlanB.app/PlanB";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/planb.app/planb";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
