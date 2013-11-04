@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "VCTest.h"
+#import "VCMap.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import <GooglePlus/GooglePlus.h>
 #import <FacebookSDK/FacebookSDK.h>
@@ -37,11 +37,9 @@ static NSString * const kClientId = @"235322884744.apps.googleusercontent.com";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
     [GMSServices provideAPIKey:@"AIzaSyBtb7I2tk-7hP6KWKU4wC4tNoFzM4pCcI0"];
     [VariableStore sharedInstance].keyGoogleMap=@"AIzaSyBtb7I2tk-7hP6KWKU4wC4tNoFzM4pCcI0";
-    [VariableStore sharedInstance].domain=@"36.224.8.14";
-    
+    [VariableStore sharedInstance].domain=@"36.224.23.197";
     return YES;
 }
 - (void)applicationWillResignActive:(UIApplication *)application

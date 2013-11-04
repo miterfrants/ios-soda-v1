@@ -10,7 +10,8 @@
 #import <Foundation/Foundation.h>
 
 @implementation Util
-+ (NSString *)stringWithUrl:(NSURL *)url
+typedef void (^ completionBlock)(NSURLResponse *response, NSData *data, NSError *connectionError);
++ (NSString *)stringWithUrl:(NSString *)url
 {
  
    /* NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url
@@ -29,6 +30,10 @@ NSMutableURLRequest *urlRequest= [[NSMutableURLRequest alloc] initWithURL:[NSURL
     NSLog(@"%@",error);
     // Construct a String around the Data from the response
     return [[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+}
++ (void)stringAsyncWithUrl:(NSURL *)url completion:(void(^)(NSURLResponse *response, NSData *data, NSError *connectionError)) completion queue:(NSOperationQueue *) queue {
+    NSURLRequest *req= [[NSURLRequest alloc] initWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:req queue:queue completionHandler:completion];
 }
 
 @end

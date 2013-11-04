@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UIViewController+JASidePanel.h"
-
+#import "PopupView.h"
 @interface VCCenter : UIViewController
 @property (weak, nonatomic) IBOutlet UIButton *btnFood;
 @property (weak, nonatomic) IBOutlet UIButton *btnTouristAttraction;

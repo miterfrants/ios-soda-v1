@@ -276,14 +276,13 @@
         NSLog(@"Not Auth");
     }
 }
--(void)generateGoods:( NSInteger *) local_id
-              source:(NSInteger *) source
+-(void)generateGoods:(NSInteger) local_id
+              source:(NSInteger) source
                token:(NSString *) token{
     VariableStore *vs=[VariableStore sharedInstance];
-    NSString *url=[NSString stringWithFormat:@"http://%@/controller/mobile/member.aspx?action=get_goods&id=%D&source=%d&token=%@",vs.domain,local_id,source,token];
-    NSString *strGoods=[Util stringWithUrl:url];
-    
-
+    NSString *strURL=[NSString stringWithFormat:@"http://%@/controller/mobile/member.aspx?action=get_goods&id=%D&source=%d&token=%@&111",vs.domain,local_id,source,token];
+    NSURL *urlJsonGoods=[[NSURL alloc] initWithString:strURL];
+    NSString *strGoods=[Util stringWithUrl:urlJsonGoods];
     vs.jsonGoods=strGoods;
 }
 

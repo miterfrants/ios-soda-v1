@@ -6,16 +6,16 @@
 //  Copyright (c) 2013年 Po-Hsiang Hunag. All rights reserved.
 //
 
-#import "VCTest.h"
+#import "VCMap.h"
 #import "VariableStore.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import <objC/runtime.h>
 #import <CoreLocation/CoreLocation.h>
-@interface VCTest ()
+@interface VCMap ()
 
 @end
 
-@implementation VCTest{
+@implementation VCMap{
     //GMSMapView *mapview;
 }
 @synthesize mapview;
@@ -154,7 +154,6 @@
     //NSLog(@"test");
 }
 - (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
-
     NSLog(@"You tapped at %f,%f", coordinate.latitude, coordinate.longitude);
 }
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker{
@@ -168,17 +167,5 @@
         NSLog(@"Can't use comgooglemaps://");
     }
     
-}
--(void)handleLongPressGesture:(UIGestureRecognizer*)sender {
-    // This is important if you only want to receive one tap and hold event
-    NSLog(@"A");
-    if (sender.state == UIGestureRecognizerStateEnded)
-    {
-
-    }
-    else
-    {
-
-    }
 }
 @end

@@ -14,7 +14,7 @@
 #import "VariableStore.h"
 #import "VCDetail.h"
 #import "UIPlaceButton.h"
-#import "VCTest.h"
+#import "VCMap.h"
 #import "VCList.h"
 @interface VCList ()
 @property (weak, nonatomic) IBOutlet UILabel *lblCount;
@@ -92,8 +92,8 @@
         //NSLog(@"%@",locationResults);
         if([locationResults objectForKey:@"status"]!=@"ZERO_RESULTS"){
             _lblCount.text=[NSString stringWithFormat:@"%d",[[locationResults objectForKey:@"results"] count]];
-            VCTest *vcTest=(VCTest *)self.sidePanelController.rightPanel;
-            [vcTest clearMarker];
+            VCMap *vcMap=(VCMap *)self.sidePanelController.rightPanel;
+            [vcMap clearMarker];
             _SVListContainer.contentSize = CGSizeMake(320,[[locationResults objectForKey:@"results"] count]*40+30 );
             for(int i=0;i<[[locationResults objectForKey:@"results"] count];i++){
                 
@@ -106,8 +106,8 @@
                 NSString *lat=[[[[[locationResults objectForKey:@"results"] objectAtIndex:i] objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lat"];
                 NSString *lng=[[[[[locationResults objectForKey:@"results"] objectAtIndex:i] objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lng"];
 
-                VCTest *vcTest=(VCTest *)self.sidePanelController.rightPanel;
-                [vcTest pinMarker:[lat floatValue] lng:[lng floatValue] name:name snippet:@""];
+                VCMap *vcMap=(VCMap *)self.sidePanelController.rightPanel;
+                [vcMap pinMarker:[lat floatValue] lng:[lng floatValue] name:name snippet:@""];
                 btnList.frame = CGRectMake(5, 40*i+30, 200, 30);
                 [btnList setPlaceName:name];
                 [btnList setReference:reference];

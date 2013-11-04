@@ -10,9 +10,9 @@
 #import "VariableStore.h"
 #import "Util.h"
 #import "JASidePanelController.h"
-#import "VCTest.h"
+#import "VCMap.h"
 #import "DYRateView.h"
-
+#import "VCRoot.h"
 @interface VCDetail ()
 
 @end
@@ -117,7 +117,8 @@
                 //  NSLog(strURL);
                 NSURL * url=[[NSURL alloc] initWithString:urlImg];
                 NSURLRequest * req=[[NSURLRequest alloc] initWithURL:url];
-                [NSURLConnection sendAsynchronousRequest:req queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                NSOperationQueue *queue =[[NSOperationQueue alloc] init];
+                [NSURLConnection sendAsynchronousRequest:req queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                     if ([data length] > 0 && connectionError == nil){
                         NSLog(@"load img complete");
                         UIImage *img=[[UIImage alloc]initWithData:data];
@@ -155,9 +156,9 @@
         _strLng=[[[[dicPlaceDetail objectForKey:@"result"] objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lng"];
         //GMSMarker *marker = [[GMSMarker alloc] init];
        // NSLog(@"%@",lat);
-        VCTest *vcTest=(VCTest *)self.sidePanelController.rightPanel;
-        [vcTest clearMarker];
-        [vcTest pinMarker:[_strLat floatValue] lng:[_strLng floatValue] name:_strPlaceTitle snippet:_strGoogleAddress
+        VCMap *vcMap=(VCMap *)self.sidePanelController.rightPanel;
+        [vcMap clearMarker];
+        [vcMap pinMarker:[_strLat floatValue] lng:[_strLng floatValue] name:_strPlaceTitle snippet:_strGoogleAddress
          ];
         
         //rating
@@ -206,7 +207,7 @@
     
 
 }
--(BOOL) sendCommentAndVote:(id) sender{
+-(void) sendCommentAndVote:(id) sender{
     _txtComment.enabled=NO;
     _btnSend.titleLabel.text=@"Sending";
     CGFloat rating=_rateView.rate;
@@ -215,13 +216,24 @@
     NSString *sendVoteURL=[NSString stringWithFormat:@"http://%@/controller/mobile/place.aspx?action=vote&google_id=%@&lat=%@&lng=%@&google_address=%@&google_phone=%@&member_id=%d&rating=%f&google_name=%@&comment=%@",vs.domain,_strGoogleId,_strLat,_strLng,_strGoogleAddress,_strGooglePhone,vs.intLocalId,rating,_strPlaceTitle,_txtComment.text];
     NSString *encodedString = [sendVoteURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-    NSLog(@"%@",encodedString);
-    //NSString *result=[Util stringWithUrl:[NSURL URLWithString:encodedString]];
-    NSString *result=[Util stringWithUrl:encodedString];
 
-    //NSLog(@"A");
-        _txtComment.enabled=YES;
+    NSString *result=[Util stringWithUrl:encodedString];
+    NSData *dataResult=[result dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *jsonParsingError= nil;
+    NSDictionary * dicResult=[NSJSONSerialization JSONObjectWithData:dataResult options:0 error:&jsonParsingError];
+    NSLog(@"%@",[dicResult objectForKey:@"goods_name"]);
+    _txtComment.enabled=YES;
+    NSString *goodsName=[dicResult valueForKey:@"goods_name"];
+    NSString *goodsDesc=[dicResult valueForKey:@"goods_desc"];
+    //NSString *goodsAppearRate = [[dicResult objectForKey:@"goods"] valueForKey:@"rate"];
+    NSString *goodsPic = [[dicResult objectForKey:@"goods"] valueForKey:@"goods_pic"];
+    if (goodsName!=nil){
+        VCRoot *root = (VCRoot *) self.sidePanelController;
+        [root popUp:[NSString stringWithFormat:@"獲得道具:%@", goodsName] msg:goodsDesc type:1 delay:.1];
+    }
+
     NSLog(@"%@",result);
+    
 }
 
 

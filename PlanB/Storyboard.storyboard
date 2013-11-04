@@ -322,10 +322,10 @@
             </objects>
             <point key="canvasLocation" x="-213" y="-667"/>
         </scene>
-        <!--Test-->
+        <!--Map-->
         <scene sceneID="KOi-FB-t33">
             <objects>
-                <viewController storyboardIdentifier="VCRight" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OHr-0f-HiV" customClass="VCTest" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VCRight" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OHr-0f-HiV" customClass="VCMap" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uGG-iD-pOY"/>
                         <viewControllerLayoutGuide type="bottom" id="cCI-LK-TEJ"/>
