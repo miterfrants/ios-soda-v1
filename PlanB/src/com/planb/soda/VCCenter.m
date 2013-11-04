@@ -31,11 +31,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        NSLog(@"aaaa");
+    /*NSLog(@"aaaa");
     AsyncImgView * asyncImageView= [[AsyncImgView alloc] init];
     [self.view addSubview:asyncImageView];
     NSURL *url=[[NSURL alloc] initWithString:@"https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-prn1/v/1208682_576060729117072_641833310_n.jpg?oh=a275a252fdd053115cabd835229cb198&oe=52784C8A&__gda__=1383647659_57a56c1b545133ae6c09c5e9941c488c"];
     [asyncImageView loadImageFromURL:url completion:@selector(handleComplete)];
+     */
 	// Do any additional setup after loading the view.
 }
 -(void)handleComplete{
