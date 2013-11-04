@@ -74,33 +74,38 @@
         NSMutableString * nearbySearchURL=[NSMutableString string];
 
     self.navigationController.topViewController.title=_category;
-        [nearbySearchURL appendFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=500&keyword=%@&sensor=true&key=%@",_locationManager.location.coordinate.latitude,_locationManager.location.coordinate.longitude,[[_category lowercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[VariableStore sharedInstance].keyGoogleMap];
+        [nearbySearchURL appendFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=500&keyword=%@&sensor=true&key=%@&rankby=prominence",_locationManager.location.coordinate.latitude,_locationManager.location.coordinate.longitude,[[_category lowercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[VariableStore sharedInstance].keyGoogleMap];
     
-        //NSLog(@"longitude %f",_locationManager.location.coordinate.longitude);
-        //NSLog(@"latitude %f",_locationManager.location.coordinate.latitude);
-        req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:nearbySearchURL] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
+    //NSLog(@"longitude %f",_locationManager.location.coordinate.longitude);
+    //NSLog(@"latitude %f",_locationManager.location.coordinate.latitude);
+    req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:nearbySearchURL] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
 
-        NSData * response =[NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
-        //NSLog(@"RESPONSE HEADERS: \n%@", [res allHeaderFields]);
-        //NSString * a=[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-        //NSLog(@"%@",a);
-        //NSLog(@"RESPONSE BODY: \n%@",a);
-    NSLog(@"%@",nearbySearchURL);
+    NSData * response =[NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
+
+    //NSLog(@"RESPONSE HEADERS: \n%@", [res allHeaderFields]);
+    //NSString * a=[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+    //NSLog(@"%@",a);
+    //NSLog(@"RESPONSE BODY: \n%@",a);
+    //NSLog(@"%@",nearbySearchURL);
         NSError *jsonParsingError = nil;
     if(response !=nil){
+
         NSDictionary *locationResults = [NSJSONSerialization JSONObjectWithData:response options:0 error:&jsonParsingError];
         //NSLog(@"%@",locationResults);
-        if([locationResults objectForKey:@"status"]!=@"ZERO_RESULTS"){
+        if(![[locationResults objectForKey:@"status"] isEqualToString:@"ZERO_RESULTS"]){
             _lblCount.text=[NSString stringWithFormat:@"%d",[[locationResults objectForKey:@"results"] count]];
+            NSString *nextPageToken=(NSString *) [locationResults valueForKey:@"next_page_token"];
+            NSLog(@"%@",nextPageToken);
+            
             VCMap *vcMap=(VCMap *)self.sidePanelController.rightPanel;
             [vcMap clearMarker];
             _SVListContainer.contentSize = CGSizeMake(320,[[locationResults objectForKey:@"results"] count]*40+30 );
+            NSLog(@"%@",locationResults);
             for(int i=0;i<[[locationResults objectForKey:@"results"] count];i++){
                 
                 NSString *name= [[[locationResults objectForKey:@"results"] objectAtIndex:i] valueForKey:@"name"] ;
                 NSString *reference= [[[locationResults objectForKey:@"results"] objectAtIndex:i] valueForKey:@"reference"];
                 NSString *placeId= [[[locationResults objectForKey:@"results"] objectAtIndex:i] valueForKey:@"id"];
-                
                 //UIPlaceButton *btnList = [UIPlaceButton buttonWithType:UIButtonTypeRoundedRect];
                 UIPlaceButton *btnList=[[UIPlaceButton alloc]init];
                 NSString *lat=[[[[[locationResults objectForKey:@"results"] objectAtIndex:i] objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lat"];
@@ -157,7 +162,7 @@
                     lblDesc.frame = newFrame;
                     lblDesc.text=name;
                     [self.view addSubview:lblDesc];
-*/
+                    */
                 }
                 @catch (NSException *exception) {
                     NSLog(@"HAHA Error:%@", exception.reason);

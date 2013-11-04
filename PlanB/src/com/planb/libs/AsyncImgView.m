@@ -9,6 +9,7 @@
 #import "AsyncImgView.h"
 #import "Util.h"
 #import "VCCenter.h"
+#import "AppDelegate.h"
 // use stringAsyncWithUrl
 
 @implementation AsyncImgView
@@ -24,19 +25,22 @@
 
     return self;
 }
--(void) loadImageFromURL:(NSURL *)url completion:(SEL)completion{
+-(void) loadImageFromURL:(NSURL *)url target:(NSObject *) target completion:(SEL)completion{
     NSOperationQueue *queueImage=[[NSOperationQueue alloc] init];
+    //NSOperationQueue *queueImage=dispatch_get_global_queue(0, 0);
     [Util stringAsyncWithUrl:url completion:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         UIImage *img=[[UIImage alloc] initWithData:data];
         [self setImage:img];
         [self setFrame:CGRectMake(0, 150, 50, 50)];
         [self setBackgroundColor:[UIColor redColor]];
+        [target performSelector:completion];
     } queue:queueImage];
 
 }
 -(void) loadImageHasPreviewThumbnailFromURL:(NSURL *)thumbnailUrl url:(NSURL *)url completion:(SEL)completion{
     
 }
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

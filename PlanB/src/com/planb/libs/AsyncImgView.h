@@ -13,6 +13,6 @@
 @property double height;
 @property double maskWidth;
 @property double maskHeight;
--(void) loadImageFromURL:(NSURL *) url completion:(SEL) completion;
+-(void) loadImageFromURL:(NSURL *) url target:(NSObject *) target completion:(SEL) completion;
 -(void) loadImageHasPreviewThumbnailFromURL:(NSURL *) thumbnailUrl url:(NSURL *) url completion:(SEL) completion;
 @end
