@@ -9,6 +9,6 @@
 
 
 @interface Util : NSObject
-+ (NSString *)stringWithUrl:(NSURL *)url ;
++ (NSString *)stringWithUrl:(NSString *)url ;
 + (void)stringAsyncWithUrl:(NSURL *)url completion:(void(^)(NSURLResponse *response, NSData *data, NSError *connectionError)) completion queue:(NSOperationQueue *) queue;
 @end

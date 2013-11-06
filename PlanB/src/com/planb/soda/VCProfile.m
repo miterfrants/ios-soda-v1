@@ -99,7 +99,9 @@
 -(IBAction) handleBtnFBClick:(id)sender{
     AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     // this button's job is to flip-flop the session from open to closed
-    
+    _btnFBLogin.hidden=YES;
+    _btnGoogleLogin.hidden=YES;
+    _btnLogout.hidden=NO;
     if (appDelegate.fb_session.isOpen) {
         // if a user logs out explicitly, we delete any cached token information, and next
         // time they run the applicaiton they will be presented with log in UX again; most
@@ -141,6 +143,9 @@
     // Do any additional setup after loading the view.
     GPPSignIn *_googleSignIn = [GPPSignIn sharedInstance];
     _googleSignIn.shouldFetchGoogleUserEmail=YES;
+    _btnFBLogin.hidden=YES;
+    _btnGoogleLogin.hidden=YES;
+    _btnLogout.hidden=NO;
     // You previously set kClientId in the "Initialize the Google+ client" step
     NSString *kClientId=@"155217882778-17s2ii21k728qrojqdt9lggcm3aaqnfa.apps.googleusercontent.com";
     _googleSignIn.clientID = kClientId;
@@ -193,7 +198,6 @@
         _btnFBLogin.hidden=YES;
         _btnGoogleLogin.hidden=YES;
         _btnLogout.hidden=NO;
-        _btnGoods.hidden=NO;
         _btnBadge.hidden=NO;
     } else {
         _btnGoods.hidden=YES;
@@ -208,7 +212,6 @@
     
     if([className isEqualToString:@"VCDetail"]){
         VCDetail *vcDetail=(VCDetail *)[[center viewControllers] objectAtIndex:[center viewControllers].count-1];
-        NSLog(@"%D",[VariableStore sharedInstance].intLocalId);
         [vcDetail viewDidLoad];
         //NSLog(@"%@",[[center viewControllers] objectAtIndex:[center viewControllers].count-1]);
         [self.sidePanelController showCenterPanelAnimated:YES];
@@ -280,10 +283,11 @@
               source:(NSInteger) source
                token:(NSString *) token{
     VariableStore *vs=[VariableStore sharedInstance];
-    NSString *strURL=[NSString stringWithFormat:@"http://%@/controller/mobile/member.aspx?action=get_goods&id=%D&source=%d&token=%@&111",vs.domain,local_id,source,token];
-    NSURL *urlJsonGoods=[[NSURL alloc] initWithString:strURL];
-    NSString *strGoods=[Util stringWithUrl:urlJsonGoods];
+    NSString *strURL=[NSString stringWithFormat:@"http://%@/controller/mobile/member.aspx?action=get_goods&id=%D&source=%d&token=%@",vs.domain,local_id,source,token];
+    //NSURL *urlJsonGoods=[[NSURL alloc] initWithString:strURL];
+    NSString *strGoods=[Util stringWithUrl:strURL];
     vs.jsonGoods=strGoods;
+    _btnGoods.hidden=NO;
 }
 
 -(void)goToGoodsList: (id)sender{

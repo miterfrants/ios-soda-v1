@@ -9,6 +9,7 @@
 #import "VCGoodsList.h"
 #import "AppDelegate.h"
 #import "VariableStore.h"
+#import "AsyncImgView.h"
 @interface VCGoodsList ()
 
 @end
@@ -34,21 +35,30 @@
     if(jsonParsingError==nil){
         //NSLog(@"%d",[[dic_goods objectForKey:@"goods"] count]);
         for( int i=0;i<[[dic_goods objectForKey:@"goods"] count];i++){
-            UILabel *lblTitle= [[UILabel alloc] initWithFrame:CGRectMake(floorf(i/4)*80,(i*80+90), 100, 100)];
+            UILabel *lblTitle= [[UILabel alloc] init];
             lblTitle.text=[[[dic_goods objectForKey:@"goods"] objectAtIndex:i] objectForKey:@"name"];
             //NSLog(@"%@",lblTitle.text);
             lblTitle.textColor = [UIColor blackColor];
             lblTitle.font = [UIFont italicSystemFontOfSize:12];
             lblTitle.numberOfLines = 5;
             lblTitle.lineBreakMode = UILineBreakModeWordWrap;
-            [[self view] addSubview:lblTitle];
-            NSLog(@"test%@",[[dic_goods objectForKey:@"goods"] objectAtIndex:i]);
+
+            UILabel *lblNum= [[UILabel alloc] init];
+            lblNum.textColor = [UIColor redColor];
+            lblNum.font = [UIFont italicSystemFontOfSize:12];
+            lblNum.numberOfLines = 5;
+            lblNum.lineBreakMode = UILineBreakModeWordWrap;
+            lblNum.text=[[[dic_goods objectForKey:@"goods"] objectAtIndex:i] objectForKey:@"qty"];
+
             NSURL *imgURL=[NSURL URLWithString:[[[dic_goods objectForKey:@"goods"] objectAtIndex:i] objectForKey:@"pic"]];
-            NSData *imgData=[NSData dataWithContentsOfURL:imgURL];
-            UIImage *img=[[UIImage alloc] initWithData:imgData];
-            UIImageView *imgView=[[UIImageView  alloc] initWithImage:img];
-            imgView.frame=CGRectMake(floorf(i/4)*80,(i*80)+70, 60, 60);
+            AsyncImgView *imgView=[[AsyncImgView  alloc] init];
+            imgView.frame=CGRectMake(i%3*102.25+10,(floorf(i/3)*102.25)+70, 90, 90);
+            [lblTitle setFrame:CGRectMake(imgView.frame.origin.x, imgView.frame.origin.y+imgView.frame.size.height-40, imgView.frame.size.width, imgView.frame.size.height)];
+            [lblNum setFrame:CGRectMake(imgView.frame.origin.x, imgView.frame.origin.y, 10, 20)];
+            [imgView loadImageFromURL:imgURL target:self completion:@selector(completion)];
             [[self view] addSubview:imgView];
+            [[self view] addSubview:lblTitle];
+            [[self view] addSubview:lblNum];
         }
     }else{
         NSLog(@"%@",jsonParsingError);
@@ -58,7 +68,9 @@
 
 	// Do any additional setup after loading the view.
 }
-
+-(void) completion{
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

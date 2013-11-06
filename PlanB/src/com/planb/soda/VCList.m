@@ -16,6 +16,8 @@
 #import "UIPlaceButton.h"
 #import "VCMap.h"
 #import "VCList.h"
+#import "Util.h"
+#import "AsyncImgView.h"
 @interface VCList ()
 @property (weak, nonatomic) IBOutlet UILabel *lblCount;
 @property CLLocationManager *locationManager;
@@ -65,7 +67,7 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)getSelfLocation{
-
+    VariableStore *vs=[VariableStore sharedInstance];
 
         NSHTTPURLResponse   * res;
         NSError * err;
@@ -87,20 +89,23 @@
     //NSLog(@"%@",a);
     //NSLog(@"RESPONSE BODY: \n%@",a);
     //NSLog(@"%@",nearbySearchURL);
-        NSError *jsonParsingError = nil;
-    if(response !=nil){
+    NSError *jsonParsingError = nil;
 
+    if(response !=nil){
         NSDictionary *locationResults = [NSJSONSerialization JSONObjectWithData:response options:0 error:&jsonParsingError];
         //NSLog(@"%@",locationResults);
+        
+        float contentHeight=[[locationResults objectForKey:@"results"] count]*[vs.listHeight floatValue]+15;
+        [_SVListContainer setContentSize:CGSizeMake([vs.listWidth floatValue], contentHeight)];
         if(![[locationResults objectForKey:@"status"] isEqualToString:@"ZERO_RESULTS"]){
             _lblCount.text=[NSString stringWithFormat:@"%d",[[locationResults objectForKey:@"results"] count]];
             NSString *nextPageToken=(NSString *) [locationResults valueForKey:@"next_page_token"];
-            NSLog(@"%@",nextPageToken);
+            //NSLog(@"%@",nextPageToken);
             
             VCMap *vcMap=(VCMap *)self.sidePanelController.rightPanel;
             [vcMap clearMarker];
-            _SVListContainer.contentSize = CGSizeMake(320,[[locationResults objectForKey:@"results"] count]*40+30 );
-            NSLog(@"%@",locationResults);
+            //[_SVListContainer setContentSize: CGSizeMake(320,[[locationResults objectForKey:@"results"] count]*40+30 )];
+//            /NSLog(@"%@",locationResults);
             for(int i=0;i<[[locationResults objectForKey:@"results"] count];i++){
                 
                 NSString *name= [[[locationResults objectForKey:@"results"] objectAtIndex:i] valueForKey:@"name"] ;
@@ -110,20 +115,45 @@
                 UIPlaceButton *btnList=[[UIPlaceButton alloc]init];
                 NSString *lat=[[[[[locationResults objectForKey:@"results"] objectAtIndex:i] objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lat"];
                 NSString *lng=[[[[[locationResults objectForKey:@"results"] objectAtIndex:i] objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lng"];
-
+                float rating=[[[[locationResults objectForKey:@"results"] objectAtIndex:i] valueForKey:@"rating"] floatValue];
                 VCMap *vcMap=(VCMap *)self.sidePanelController.rightPanel;
                 [vcMap pinMarker:[lat floatValue] lng:[lng floatValue] name:name snippet:@""];
-                btnList.frame = CGRectMake(5, 40*i+30, 200, 30);
+                btnList.frame = CGRectMake(0, [vs.listHeight floatValue]*i+15,  [vs.listWidth floatValue],[vs.listHeight floatValue]);
+
                 [btnList setPlaceName:name];
                 [btnList setReference:reference];
+                /* view title */
+                UIView *viewTitle=[[UIView alloc] init];
+                [viewTitle setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.8]];
+                [viewTitle setFrame:CGRectMake(0, [vs.listHeight floatValue]-30, [vs.listWidth floatValue], 30)];
+                CALayer *bottomBorder = [CALayer layer];
+                bottomBorder.borderColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1].CGColor;
+                bottomBorder.borderWidth = 0.5;
+                bottomBorder.frame = CGRectMake(-1, -0.5, btnList.frame.size.width+2 ,btnList.frame.size.height);
+                [btnList.layer addSublayer:bottomBorder];
+
+                
+                
+                UILabel *lblDesc =[[UILabel alloc]init];
+                lblDesc.textColor = [UIColor blackColor];
+                lblDesc.font = [UIFont fontWithName:@"Arial Black" size:14];
+                lblDesc.numberOfLines = 1;
+                lblDesc.lineBreakMode = NSLineBreakByWordWrapping;
+                lblDesc.text=name;
+                lblDesc.textAlignment=NSTextAlignmentRight;
+                [lblDesc setFrame:CGRectMake([vs.listWidth floatValue]-200-5, 0, 200, 30)];
+                [viewTitle addSubview:lblDesc];
+
+                
+                
                 //btnList.reference=reference;
                 [btnList setPlaceId:placeId];
-                [btnList setTitle:name forState:UIControlStateNormal];
+                //[btnList setTitle:name forState:UIControlStateNormal];
                 [btnList addTarget:self action:@selector(goToOne:) forControlEvents:UIControlEventTouchUpInside];
                 [_SVListContainer addSubview:btnList];
                 [[btnList layer] setBorderWidth:0.1f];
                 [[btnList layer] setBorderColor:[UIColor grayColor].CGColor];
-                [[btnList layer] setBackgroundColor:[UIColor grayColor].CGColor];
+                [[btnList layer] setBackgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1].CGColor];
                 @try {
                     //NSLog(@"%@",[[[locationResults objectForKey:@"results"] objectAtIndex:i] valueForKey:@"name"] );
                     //NSLog(@"%@",[[[locationResults objectForKey:@"results"] objectAtIndex:i] valueForKey:@"reference"] );
@@ -131,8 +161,12 @@
                     if([[[[locationResults objectForKey:@"results"] objectAtIndex:i] objectForKey:@"photos"] count]>0){
                         NSString *photoRef=[[[[[locationResults objectForKey:@"results"] objectAtIndex:i] objectForKey:@"photos"] objectAtIndex:0] valueForKey:@"photo_reference"];
                         NSString *strURL = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=%@&sensor=false&key=%@",photoRef,[VariableStore sharedInstance].keyGoogleMap] ;
-                        //  NSLog(strURL);
-                        //NSURL *imgURL=[NSURL URLWithString:strURL];
+                        NSURL *imgURL=[NSURL URLWithString:strURL];
+                        AsyncImgView *asyncImgView=[[AsyncImgView alloc] init];
+                        [asyncImgView setFrame:CGRectMake(0, 0, [vs.listWidth floatValue],[vs.listHeight floatValue] )];
+                        [btnList addSubview:asyncImgView];
+                        //NSLog(@"%@",imgURL);
+                        [asyncImgView loadImageFromURL:imgURL target:self completion:nil];
                         //NSData *imgData=[NSData dataWithContentsOfURL:imgURL];
                          //UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:imgData]];
                         //imageView.frame = CGRectMake(0,0, 100, 100);
@@ -170,6 +204,7 @@
                 @finally {
 
                 }
+                [btnList addSubview:viewTitle];
                 /*GMSMarker *marker = [[GMSMarker alloc] init];
                 marker.position = CLLocationCoordinate2DMake([lat floatValue], [lng floatValue]);
                 marker.title = name;

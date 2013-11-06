@@ -65,9 +65,9 @@
         //NSLog(@"RESPONSE BODY: \n%@",a);
         NSError *jsonParsingError = nil;
         NSDictionary *locationResults = [NSJSONSerialization JSONObjectWithData:response options:0 error:&jsonParsingError];
-        NSLog([locationResults objectForKey:@"status"]);
+        //NSLog([locationResults objectForKey:@"status"]);
         if([locationResults objectForKey:@"status"]!=@"ZERO_RESULTS"){
-            NSLog(@"%d",[locationResults count]);
+            //NSLog(@"%d",[locationResults count]);
             for(int i=0;i<[locationResults count];i++){
                 NSString *name= [[[locationResults objectForKey:@"results"] objectAtIndex:i] valueForKey:@"name"] ;
                 NSString *lat= [[[[[locationResults objectForKey:@"results"] objectAtIndex:i] objectForKey:@"geometry"] objectForKey:@"location"] valueForKey:@"lat"];
@@ -75,8 +75,8 @@
                 GMSMarker *marker = [[GMSMarker alloc] init];
                 marker.position = CLLocationCoordinate2DMake([lat floatValue], [lng floatValue]);
                 marker.title = name;
-                NSLog(@"%@",[locationResults objectForKey:@"results"]
-                      );
+                //NSLog(@"%@",[locationResults objectForKey:@"results"]
+                    //);
                 //marker.snippet = [[[locationResults objectForKey:@"results"] objectAtIndex:i] valueForKey:@"formated_address"];
                 marker.map = mapview;
 

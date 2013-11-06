@@ -755,7 +755,7 @@
 		54C2083517CD714B006E1A44 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/planb.app/planb";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/planb.app/soda";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -773,7 +773,7 @@
 		54C2083617CD714B006E1A44 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/planb.app/planb";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/planb.app/soda";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",

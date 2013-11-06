@@ -39,7 +39,10 @@ static NSString * const kClientId = @"235322884744.apps.googleusercontent.com";
 {
     [GMSServices provideAPIKey:@"AIzaSyBtb7I2tk-7hP6KWKU4wC4tNoFzM4pCcI0"];
     [VariableStore sharedInstance].keyGoogleMap=@"AIzaSyBtb7I2tk-7hP6KWKU4wC4tNoFzM4pCcI0";
-    [VariableStore sharedInstance].domain=@"36.224.23.197";
+    [VariableStore sharedInstance].domain=@"36.224.30.91";
+    [VariableStore sharedInstance].listWidth=@"320.00";
+    [VariableStore sharedInstance].listHeight=@"160.00";
+
     return YES;
 }
 - (void)applicationWillResignActive:(UIApplication *)application

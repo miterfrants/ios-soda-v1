@@ -16,7 +16,9 @@
 @property NSInteger *intLocalId;
 @property NSString *keyGoogleMap;
 @property NSMutableArray *arrMarker;
-
+@property NSString *listHeight;
+@property NSString *listWidth;
+@property NSOperationQueue *backgroundThreadManagement;
 // message from which our instance is obtained
 + (VariableStore *)sharedInstance;
 @end

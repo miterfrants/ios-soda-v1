@@ -13,6 +13,7 @@
 #import "VCMap.h"
 #import "DYRateView.h"
 #import "VCRoot.h"
+#import "AsyncImgView.h"
 @interface VCDetail ()
 
 @end
@@ -48,10 +49,7 @@
         NSDictionary *strCommentAndVote=(NSString *)[Util stringWithUrl:url];
         
         NSString *result=[NSString stringWithFormat:@"%@",[Util stringWithUrl:url] ];
-
-
         NSData * dataCommentAndVote=[result dataUsingEncoding:NSUTF8StringEncoding];
-        
         NSError *jsonParsingError = nil;
         NSDictionary *dicCommentAndVote = [NSJSONSerialization JSONObjectWithData:dataCommentAndVote options:0 error:&jsonParsingError];
         if (jsonParsingError == nil){
@@ -70,7 +68,7 @@
 {
 
     [super viewDidLoad];
-    _rateView = [[DYRateView alloc] initWithFrame:CGRectMake(200,140, 100, 14)] ;
+    _rateView = [[DYRateView alloc] initWithFrame:CGRectMake(200,150, 100, 14)] ;
     _rateView.alignment = RateViewAlignmentLeft;
     _rateView.editable=YES;
     [self.view addSubview:_rateView];
@@ -94,10 +92,7 @@
         _strGooglePhone =[[dicPlaceDetail objectForKey:@"result"] valueForKey:@"formatted_phone_number"];
         float rating=[[[dicPlaceDetail objectForKey:@"result"] valueForKey:@"rating"] floatValue];
         NSMutableArray *arrPhotos=[[dicPlaceDetail objectForKey:@"result"] objectForKey:@"photos"];
-        DYRateView *topRateView = [[DYRateView alloc] initWithFrame:CGRectMake(20, 0, 100, 14)] ;
-        topRateView.rate = rating;
-        topRateView.alignment = RateViewAlignmentLeft;
-        topRateView.editable=NO;
+
         UILabel *lblTitle = [[UILabel alloc] init];
         UIFont *font = [UIFont fontWithName:@"Helvetica" size:10.0];
         
@@ -106,9 +101,7 @@
         lblTitle.numberOfLines = 50;
         lblTitle.lineBreakMode = NSLineBreakByCharWrapping;
         [lblTitle setFrame:CGRectMake(0, 0, 100, 20)];
-        [topRateView addSubview:lblTitle];
-        
-        [self.navigationItem setTitleView:topRateView];
+
         if(arrPhotos !=nil){
             for(int i=0;i<arrPhotos.count;i++){
                 
@@ -117,23 +110,27 @@
                 //  NSLog(strURL);
                 NSURL * url=[[NSURL alloc] initWithString:urlImg];
                 NSURLRequest * req=[[NSURLRequest alloc] initWithURL:url];
-                NSOperationQueue *queue =[[NSOperationQueue alloc] init];
+                AsyncImgView *asyncImgView=[[AsyncImgView alloc] init];
+                [asyncImgView setFrame:CGRectMake(i*80,0,80,80)];
+                [_usvGallery addSubview:asyncImgView];
+                [asyncImgView loadImageFromURL:url target:self completion:nil];
+                /*NSOperationQueue *queue =[[NSOperationQueue alloc] init];
+
                 [NSURLConnection sendAsynchronousRequest:req queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                     if ([data length] > 0 && connectionError == nil){
-                        NSLog(@"load img complete");
                         UIImage *img=[[UIImage alloc]initWithData:data];
                         UIImageView * imgView=[[UIImageView alloc] initWithImage:img];
                         [imgView setFrame:CGRectMake(i*50,0,50,50)];
                         [_usvGallery addSubview:imgView];
                     }else if ([data length] == 0 && connectionError == nil){
                         //[delegate emptyReply];
-                    /*}else if (error != nil && connectionError.code == ERROR_CODE_TIMEOUT){
+                    }else if (error != nil && connectionError.code == ERROR_CODE_TIMEOUT){
                         //[delegate timedOut];
                     }else if (connectionError != nil){
                         //[delegate downloadError:error];
-                    */}
+                    }
 
-                }];
+                }];*/
                 
                 
                 //NSURL *imgURL=[NSURL URLWithString:strURL];
@@ -214,6 +211,7 @@
     VariableStore *vs=[VariableStore sharedInstance];
 
     NSString *sendVoteURL=[NSString stringWithFormat:@"http://%@/controller/mobile/place.aspx?action=vote&google_id=%@&lat=%@&lng=%@&google_address=%@&google_phone=%@&member_id=%d&rating=%f&google_name=%@&comment=%@",vs.domain,_strGoogleId,_strLat,_strLng,_strGoogleAddress,_strGooglePhone,vs.intLocalId,rating,_strPlaceTitle,_txtComment.text];
+    NSLog(@"%@",sendVoteURL);
     NSString *encodedString = [sendVoteURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
 
@@ -231,9 +229,7 @@
         VCRoot *root = (VCRoot *) self.sidePanelController;
         [root popUp:[NSString stringWithFormat:@"獲得道具:%@", goodsName] msg:goodsDesc type:1 delay:.1];
     }
-
     NSLog(@"%@",result);
-    
 }
 
 
