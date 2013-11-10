@@ -42,7 +42,11 @@ static NSString * const kClientId = @"235322884744.apps.googleusercontent.com";
     [VariableStore sharedInstance].domain=@"36.224.30.91";
     [VariableStore sharedInstance].listWidth=@"320.00";
     [VariableStore sharedInstance].listHeight=@"160.00";
-
+    CLLocationManager * manager=[[CLLocationManager alloc]init];
+    manager.desiredAccuracy = kCLLocationAccuracyBest;
+    manager.distanceFilter = kCLDistanceFilterNone;
+    [manager startUpdatingLocation];
+    [VariableStore sharedInstance].myLocation=manager.location;
     return YES;
 }
 - (void)applicationWillResignActive:(UIApplication *)application

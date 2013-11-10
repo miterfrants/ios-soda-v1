@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <CoreLocation/CoreLocation.h>
 @interface VariableStore : NSObject
 
 @property NSString *domain;
@@ -19,6 +19,7 @@
 @property NSString *listHeight;
 @property NSString *listWidth;
 @property NSOperationQueue *backgroundThreadManagement;
+@property CLLocation *myLocation;
 // message from which our instance is obtained
 + (VariableStore *)sharedInstance;
 @end

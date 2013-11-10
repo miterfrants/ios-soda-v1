@@ -14,6 +14,8 @@
 #import "VariableStore.h"
 #import "Util.h"
 #import "AsyncImgView.h"
+#import "SingleStartView.h"
+
 @interface VCCenter ()
 
 @end

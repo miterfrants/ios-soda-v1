@@ -54,7 +54,6 @@
             self.layer.mask=maskLayer;
             [self setImage:img];
             [self setContentMode:UIViewContentModeScaleAspectFill];
-            NSLog(@"async img load com");
             if(completion != nil ){
                 [target performSelector:completion];
             }

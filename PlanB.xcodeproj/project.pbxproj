@@ -54,6 +54,7 @@
 		5453C11717DE09D400B811BC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C11617DE09D300B811BC /* SystemConfiguration.framework */; };
 		5453C11917DE12BF00B811BC /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C11817DE12BF00B811BC /* libstdc++.dylib */; };
 		5453C11D17DE19E200B811BC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C11C17DE19E200B811BC /* libz.dylib */; };
+		547F9662182FC7800065B51E /* SingleStartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 547F9661182FC7800065B51E /* SingleStartView.m */; };
 		54C2080317CD714B006E1A44 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C2080217CD714B006E1A44 /* UIKit.framework */; };
 		54C2080517CD714B006E1A44 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C2080417CD714B006E1A44 /* Foundation.framework */; };
 		54C2080717CD714B006E1A44 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C2080617CD714B006E1A44 /* CoreGraphics.framework */; };
@@ -149,6 +150,8 @@
 		5453C11817DE12BF00B811BC /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		5453C11A17DE19D700B811BC /* crt1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = crt1.o; path = usr/lib/crt1.o; sourceTree = SDKROOT; };
 		5453C11C17DE19E200B811BC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		547F9660182FC7800065B51E /* SingleStartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleStartView.h; sourceTree = "<group>"; };
+		547F9661182FC7800065B51E /* SingleStartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleStartView.m; sourceTree = "<group>"; };
 		54C207FF17CD714B006E1A44 /* planb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = planb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54C2080217CD714B006E1A44 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		54C2080417CD714B006E1A44 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -254,6 +257,8 @@
 				5423737D1824BD0600A8C656 /* PopupView.m */,
 				542373821826338E00A8C656 /* AsyncImgView.h */,
 				542373831826338E00A8C656 /* AsyncImgView.m */,
+				547F9660182FC7800065B51E /* SingleStartView.h */,
+				547F9661182FC7800065B51E /* SingleStartView.m */,
 			);
 			path = libs;
 			sourceTree = "<group>";
@@ -346,8 +351,8 @@
 				5453C11A17DE19D700B811BC /* crt1.o */,
 				54C2080817CD714B006E1A44 /* Soda */,
 				54C2082617CD714B006E1A44 /* PlanBTests */,
-				54C2080117CD714B006E1A44 /* Frameworks */,
 				54C2080017CD714B006E1A44 /* Products */,
+				54C2080117CD714B006E1A44 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -586,6 +591,7 @@
 				542373841826338E00A8C656 /* AsyncImgView.m in Sources */,
 				5423735B1824BCC000A8C656 /* VCProfile.m in Sources */,
 				542373601824BCC000A8C656 /* JASidePanelController.m in Sources */,
+				547F9662182FC7800065B51E /* SingleStartView.m in Sources */,
 				54C2081317CD714B006E1A44 /* AppDelegate.m in Sources */,
 				5423737E1824BD0600A8C656 /* PopupView.m in Sources */,
 				542373531824BCC000A8C656 /* Util.m in Sources */,
@@ -755,7 +761,7 @@
 		54C2083517CD714B006E1A44 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/planb.app/soda";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/soda.app/soda";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -773,7 +779,7 @@
 		54C2083617CD714B006E1A44 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/planb.app/soda";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/soda.app/soda";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
