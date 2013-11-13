@@ -33,7 +33,6 @@
     return self;
 }
 -(void)setScore:(double)rate{
-    NSLog([NSString stringWithFormat:@"%.2F",rate]);
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
     CGRect maskRect = CGRectMake(0, imgFull.size.height*(1-rate), imgFull.size.width, imgFull.size.height*(rate));
     CGPathRef path = CGPathCreateWithRect(maskRect, NULL);

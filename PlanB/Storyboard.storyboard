@@ -34,153 +34,13 @@
                     <view key="view" contentMode="scaleToFill" id="5SO-1h-d2b">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LgZ-DZ-Y5k">
-                                <rect key="frame" x="43" y="97" width="116" height="116"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="116" id="1dj-ET-iq7"/>
-                                    <constraint firstAttribute="height" constant="116" id="ykd-HB-26V"/>
-                                </constraints>
-                                <state key="normal" title="餐廳">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="RDt-rQ-cAX" kind="push" id="GET-yp-mkm"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCG-eD-H62">
-                                <rect key="frame" x="43" y="216" width="116" height="116"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="116" id="dZq-9s-zId"/>
-                                </constraints>
-                                <state key="normal" title="提款機">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="RDt-rQ-cAX" kind="push" id="zon-HH-krp"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QhI-at-PXZ">
-                                <rect key="frame" x="43" y="329" width="116" height="116"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="116" id="Ot8-1n-HTU"/>
-                                </constraints>
-                                <state key="normal" title="停車場">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="RDt-rQ-cAX" kind="push" id="HeC-gs-buZ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="367" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="db1-6H-pcS">
-                                <rect key="frame" x="163" y="97" width="115" height="116"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="116" id="r57-Dr-ndj"/>
-                                </constraints>
-                                <state key="normal" title="旅遊景點">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="RDt-rQ-cAX" kind="push" id="ccT-xm-nBo"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9oO-aR-FrQ">
-                                <rect key="frame" x="163" y="216" width="115" height="116"/>
-                                <state key="normal" title="加油站">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="RDt-rQ-cAX" kind="push" id="iSS-6N-jA0"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BIv-qO-TF0">
-                                <rect key="frame" x="163" y="328" width="115" height="116"/>
-                                <state key="normal" title="便利商店">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="RDt-rQ-cAX" kind="push" id="XC0-lZ-lXm"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="9oO-aR-FrQ" firstAttribute="top" secondItem="VCG-eD-H62" secondAttribute="top" id="4xs-bo-Mih"/>
-                            <constraint firstItem="9oO-aR-FrQ" firstAttribute="trailing" secondItem="db1-6H-pcS" secondAttribute="trailing" id="8uL-e6-gJb"/>
-                            <constraint firstItem="VCG-eD-H62" firstAttribute="top" secondItem="5SO-1h-d2b" secondAttribute="top" constant="145" id="9kR-dS-HDU"/>
-                            <constraint firstAttribute="bottom" secondItem="QhI-at-PXZ" secondAttribute="bottom" constant="36" id="A65-lZ-EoM"/>
-                            <constraint firstItem="VCG-eD-H62" firstAttribute="leading" secondItem="LgZ-DZ-Y5k" secondAttribute="leading" id="OPn-er-0En"/>
-                            <constraint firstItem="LgZ-DZ-Y5k" firstAttribute="leading" secondItem="5SO-1h-d2b" secondAttribute="leading" constant="43" id="OhL-Eq-1BB"/>
-                            <constraint firstItem="BIv-qO-TF0" firstAttribute="bottom" secondItem="QhI-at-PXZ" secondAttribute="bottom" id="SjH-vh-hw8"/>
-                            <constraint firstItem="9oO-aR-FrQ" firstAttribute="trailing" secondItem="BIv-qO-TF0" secondAttribute="trailing" id="YAP-Ay-bPS"/>
-                            <constraint firstItem="LgZ-DZ-Y5k" firstAttribute="top" secondItem="5SO-1h-d2b" secondAttribute="top" constant="26" id="fKH-hE-gDh"/>
-                            <constraint firstItem="VCG-eD-H62" firstAttribute="trailing" secondItem="LgZ-DZ-Y5k" secondAttribute="trailing" id="gdS-nR-ihX"/>
-                            <constraint firstAttribute="trailing" secondItem="db1-6H-pcS" secondAttribute="trailing" constant="42" id="gkn-MP-CAU"/>
-                            <constraint firstItem="QhI-at-PXZ" firstAttribute="leading" secondItem="VCG-eD-H62" secondAttribute="leading" id="hbo-hu-JEO"/>
-                            <constraint firstItem="QhI-at-PXZ" firstAttribute="trailing" secondItem="VCG-eD-H62" secondAttribute="trailing" id="jf9-Tg-fPh"/>
-                            <constraint firstItem="db1-6H-pcS" firstAttribute="top" secondItem="LgZ-DZ-Y5k" secondAttribute="top" id="lfA-HY-ota"/>
-                            <constraint firstItem="db1-6H-pcS" firstAttribute="leading" secondItem="9oO-aR-FrQ" secondAttribute="leading" id="nym-IQ-TPe"/>
-                            <constraint firstItem="db1-6H-pcS" firstAttribute="bottom" secondItem="LgZ-DZ-Y5k" secondAttribute="bottom" id="sEn-S3-PcF"/>
-                            <constraint firstItem="BIv-qO-TF0" firstAttribute="leading" secondItem="9oO-aR-FrQ" secondAttribute="leading" id="slY-7M-ZBq"/>
-                            <constraint firstItem="BIv-qO-TF0" firstAttribute="top" secondItem="QhI-at-PXZ" secondAttribute="top" id="wiU-1O-NFe"/>
-                            <constraint firstItem="9oO-aR-FrQ" firstAttribute="bottom" secondItem="VCG-eD-H62" secondAttribute="bottom" id="yAn-Ip-GAN"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Soda" id="e8v-pu-nsj"/>
-                    <connections>
-                        <outlet property="btnATM" destination="VCG-eD-H62" id="QH4-wx-o6s"/>
-                        <outlet property="btnCS" destination="BIv-qO-TF0" id="6Cc-cS-dW0"/>
-                        <outlet property="btnFood" destination="LgZ-DZ-Y5k" id="dM7-1m-iMR"/>
-                        <outlet property="btnGas" destination="9oO-aR-FrQ" id="sUg-DI-NbC"/>
-                        <outlet property="btnPark" destination="QhI-at-PXZ" id="aEN-rW-NeU"/>
-                        <outlet property="btnTouristAttraction" destination="db1-6H-pcS" id="1Dw-13-tq0"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1dr-fO-ZdX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="574" y="-656"/>
-        </scene>
-        <!--List-->
-        <scene sceneID="6HM-mQ-Ji1">
-            <objects>
-                <viewController id="RDt-rQ-cAX" customClass="VCList" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jKk-H1-siW"/>
-                        <viewControllerLayoutGuide type="bottom" id="dBE-Yz-GEi"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Lz5-gf-wN4">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mdb-75-UiS">
-                                <rect key="frame" x="20" y="20" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7vY-co-g4G" colorLabel="IBBuiltInLabel-Red">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Mdb-75-UiS" firstAttribute="leading" secondItem="Lz5-gf-wN4" secondAttribute="leading" constant="20" symbolic="YES" id="KAc-Fs-bjZ"/>
-                            <constraint firstItem="7vY-co-g4G" firstAttribute="top" secondItem="Mdb-75-UiS" secondAttribute="bottom" constant="8" symbolic="YES" id="ZRb-BO-4Vd"/>
-                            <constraint firstItem="7vY-co-g4G" firstAttribute="trailing" secondItem="Lz5-gf-wN4" secondAttribute="trailing" id="fBN-dx-Xxe"/>
-                            <constraint firstItem="Mdb-75-UiS" firstAttribute="top" secondItem="Lz5-gf-wN4" secondAttribute="top" constant="20" symbolic="YES" id="kZl-6V-twF"/>
-                            <constraint firstItem="7vY-co-g4G" firstAttribute="leading" secondItem="Lz5-gf-wN4" secondAttribute="leading" id="uvH-a9-uGc"/>
-                            <constraint firstItem="7vY-co-g4G" firstAttribute="bottom" secondItem="Lz5-gf-wN4" secondAttribute="bottom" id="zJu-pD-25Y"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="oKe-Yo-Sm3"/>
-                    <connections>
-                        <outlet property="SVListContainer" destination="7vY-co-g4G" id="gdy-yl-1RA"/>
-                        <outlet property="lblCount" destination="Mdb-75-UiS" id="1gU-YF-kAs"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0tP-p4-a1M" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1019" y="-646"/>
         </scene>
         <!--Detail-->
         <scene sceneID="D6o-Yw-KWI">
@@ -356,7 +216,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="zon-HH-krp"/>
-    </inferredMetricsTieBreakers>
 </document>

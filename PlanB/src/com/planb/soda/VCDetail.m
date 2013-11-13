@@ -31,8 +31,8 @@
 
 -(void) loadSelfComment{
     VariableStore *vs =[VariableStore sharedInstance];
-        NSString *url= [NSString stringWithFormat:@"http://%@/controller/mobile/place.aspx?action=get&member_id=%D&google_id=%@",vs.domain,vs.intLocalId ,_strGoogleId ];
-    NSLog(@"localId:%D",vs.intLocalId);
+    int localId=vs.intLocalId;
+        NSString *url= [NSString stringWithFormat:@"http://%@/controller/mobile/place.aspx?action=get&member_id=%D&google_id=%@",vs.domain, localId,_strGoogleId ];
     if(vs.intLocalId==0){
         _txtComment.hidden=YES;
         _btnSend.hidden=YES;
@@ -46,7 +46,7 @@
         _rateView.hidden=NO;
         _btnLogin.hidden=YES;
         _btnPin.hidden=NO;
-        NSDictionary *strCommentAndVote=(NSString *)[Util stringWithUrl:url];
+        //NSDictionary *strCommentAndVote=(NSDictionary *)[Util stringWithUrl:url];
         
         NSString *result=[NSString stringWithFormat:@"%@",[Util stringWithUrl:url] ];
         NSData * dataCommentAndVote=[result dataUsingEncoding:NSUTF8StringEncoding];
@@ -90,7 +90,7 @@
     if(jsonParsingError == nil){
         //NSLog(@"%@",dicPlaceDetail);
         _strGooglePhone =[[dicPlaceDetail objectForKey:@"result"] valueForKey:@"formatted_phone_number"];
-        float rating=[[[dicPlaceDetail objectForKey:@"result"] valueForKey:@"rating"] floatValue];
+        //float rating=[[[dicPlaceDetail objectForKey:@"result"] valueForKey:@"rating"] floatValue];
         NSMutableArray *arrPhotos=[[dicPlaceDetail objectForKey:@"result"] objectForKey:@"photos"];
 
         UILabel *lblTitle = [[UILabel alloc] init];
@@ -109,7 +109,7 @@
                 NSString *urlImg = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=%@&sensor=false&key=%@",[[arrPhotos objectAtIndex:i] objectForKey:@"photo_reference"], [VariableStore sharedInstance].keyGoogleMap] ;
                 //  NSLog(strURL);
                 NSURL * url=[[NSURL alloc] initWithString:urlImg];
-                NSURLRequest * req=[[NSURLRequest alloc] initWithURL:url];
+                //NSURLRequest * req=[[NSURLRequest alloc] initWithURL:url];
                 AsyncImgView *asyncImgView=[[AsyncImgView alloc] init];
                 [asyncImgView setFrame:CGRectMake(i*80,0,80,80)];
                 [_usvGallery addSubview:asyncImgView];
@@ -209,9 +209,9 @@
     _btnSend.titleLabel.text=@"Sending";
     CGFloat rating=_rateView.rate;
     VariableStore *vs=[VariableStore sharedInstance];
-
-    NSString *sendVoteURL=[NSString stringWithFormat:@"http://%@/controller/mobile/place.aspx?action=vote&google_id=%@&lat=%@&lng=%@&google_address=%@&google_phone=%@&member_id=%d&rating=%f&google_name=%@&comment=%@",vs.domain,_strGoogleId,_strLat,_strLng,_strGoogleAddress,_strGooglePhone,vs.intLocalId,rating,_strPlaceTitle,_txtComment.text];
-    NSLog(@"%@",sendVoteURL);
+    int localId=vs.intLocalId;
+    NSString *sendVoteURL=[NSString stringWithFormat:@"http://%@/controller/mobile/place.aspx?action=vote&google_id=%@&lat=%@&lng=%@&google_address=%@&google_phone=%@&member_id=%d&rating=%f&google_name=%@&comment=%@",vs.domain,_strGoogleId,_strLat,_strLng,_strGoogleAddress,_strGooglePhone,localId,rating,_strPlaceTitle,_txtComment.text];
+    //NSLog(@"%@",sendVoteURL);
     NSString *encodedString = [sendVoteURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
 
@@ -219,17 +219,17 @@
     NSData *dataResult=[result dataUsingEncoding:NSUTF8StringEncoding];
     NSError *jsonParsingError= nil;
     NSDictionary * dicResult=[NSJSONSerialization JSONObjectWithData:dataResult options:0 error:&jsonParsingError];
-    NSLog(@"%@",[dicResult objectForKey:@"goods_name"]);
+    //NSLog(@"%@",[dicResult objectForKey:@"goods_name"]);
     _txtComment.enabled=YES;
     NSString *goodsName=[dicResult valueForKey:@"goods_name"];
     NSString *goodsDesc=[dicResult valueForKey:@"goods_desc"];
     //NSString *goodsAppearRate = [[dicResult objectForKey:@"goods"] valueForKey:@"rate"];
-    NSString *goodsPic = [[dicResult objectForKey:@"goods"] valueForKey:@"goods_pic"];
+    //NSString *goodsPic = (NSString *)[[dicResult objectForKey:@"goods"] valueForKey:@"goods_pic"];
     if (goodsName!=nil){
         VCRoot *root = (VCRoot *) self.sidePanelController;
         [root popUp:[NSString stringWithFormat:@"獲得道具:%@", goodsName] msg:goodsDesc type:1 delay:.1];
     }
-    NSLog(@"%@",result);
+    //NSLog(@"%@",result);
 }
 
 

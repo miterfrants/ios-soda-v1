@@ -20,5 +20,4 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnBadge;
 @property UILabel* lblUserFullName;
 //@property (weak, nonatomic)GPPSignIn* googleSignIn;
--(IBAction) handleLogin:(id) sender;
 @end

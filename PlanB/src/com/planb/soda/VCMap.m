@@ -8,9 +8,11 @@
 
 #import "VCMap.h"
 #import "VariableStore.h"
+#import "VCList.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import <objC/runtime.h>
 #import <CoreLocation/CoreLocation.h>
+#import "JASidePanelController.h"
 @interface VCMap ()
 
 @end
@@ -41,59 +43,8 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
--(void)getSelfLocation{
 
-    CLLocation *location = mapview.myLocation;
-    if (location) {
-        [mapview animateToLocation:location.coordinate];
-        NSHTTPURLResponse   * res;
-        NSError * err;
-        NSMutableURLRequest * req;
-        //req =[[[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://www.planb-on.com/controller/member.aspx?action=get"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60]];
-        NSMutableString * nearbySearchURL=[NSMutableString string];
-        
-        [nearbySearchURL appendFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=500&types=food&sensor=true&key=AIzaSyCyb6ma56NFUYCQ898XD321qF74JGfkCI4",location.coordinate.latitude,location.coordinate.longitude];
-
-        
-        req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:nearbySearchURL] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
-        
-        NSData * response =[NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
-        //NSLog(@"RESPONSE HEADERS: \n%@", [res allHeaderFields]);
-        NSString * a=[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-        //NSLog(@"RESPONSE BODY: \n%@",a);
-        NSError *jsonParsingError = nil;
-        NSDictionary *locationResults = [NSJSONSerialization JSONObjectWithData:response options:0 error:&jsonParsingError];
-        //NSLog([locationResults objectForKey:@"status"]);
-        if([locationResults objectForKey:@"status"]!=@"ZERO_RESULTS"){
-            //NSLog(@"%d",[locationResults count]);
-            for(int i=0;i<[locationResults count];i++){
-                NSString *name= [[[locationResults objectForKey:@"results"] objectAtIndex:i] valueForKey:@"name"] ;
-                NSString *lat= [[[[[locationResults objectForKey:@"results"] objectAtIndex:i] objectForKey:@"geometry"] objectForKey:@"location"] valueForKey:@"lat"];
-                NSString *lng= [[[[[locationResults objectForKey:@"results"] objectAtIndex:i] objectForKey:@"geometry"] objectForKey:@"location"] valueForKey:@"lng"] ;
-                GMSMarker *marker = [[GMSMarker alloc] init];
-                marker.position = CLLocationCoordinate2DMake([lat floatValue], [lng floatValue]);
-                marker.title = name;
-                //NSLog(@"%@",[locationResults objectForKey:@"results"]
-                    //);
-                //marker.snippet = [[[locationResults objectForKey:@"results"] objectAtIndex:i] valueForKey:@"formated_address"];
-                marker.map = mapview;
-
-            }
-
-
-            /*NSString *stringLatitude = [[[[[locationResults objectForKey:@"results"] objectAtIndex:1] objectForKey:@"geometry"] objectForKey:@"location"] valueForKey:@"lat"];
-            NSString *stringLongitude = [[[[[locationResults objectForKey:@"results"] objectAtIndex:1] objectForKey:@"geometry"] objectForKey:@"location"] valueForKey:@"lng"];
-            NSLog(stringLatitude);
-            NSLog(stringLongitude);*/
-            
-            
-        }
- 
-
-    }
-}
 - (void) pinMarker:(float) lat lng:(float) lng name:(NSString*) name snippet:(NSString *) snippet{
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = CLLocationCoordinate2DMake(lat, lng);
@@ -113,6 +64,17 @@
     [mapview clear];
 }
 
+-(void) takeMeThere:(id *) sender{
+    if ([[UIApplication sharedApplication] canOpenURL:
+         [NSURL URLWithString:@"comgooglemaps://"]] && mapview.selectedMarker != nil) {
+        NSString *url =[NSString stringWithFormat:@"comgooglemaps://?saddr=&daddr=%@&directionsmode=walking",self.mapview.selectedMarker.snippet];
+        [[UIApplication sharedApplication] openURL:
+         [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    } else {
+        NSLog(@"Can't use comgooglemaps://");
+    }
+}
+
 - (void)loadView {
     // Create a GMSCameraPosition that tells the map to display the
     // coordinate -33.86,151.20 at zoom level 6.
@@ -125,47 +87,69 @@
     self.view = mapview;
     mapview.accessibilityElementsHidden=NO;
     mapview.delegate=self;
-    //mapview.settings.myLocationButton = YES;
-    //mapview.myLocationEnabled = YES;
-    //CLLocation *myLocation = mapview.myLocation;
-    //NSLog(@"%f %f",myLocation.coordinate.latitude, myLocation.coordinate.longitude);
-    UIButton * button=[UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame=CGRectMake(0,410,300,50);
-    [button setBackgroundColor:[UIColor redColor]];
-    button.titleLabel.text=@"test";
-    button.titleLabel.textColor=[UIColor blackColor];
-    [button setTitle:@"Get My Location" forState:UIControlStateNormal];
-    [button addTarget:self  action:@selector(getSelfLocation) forControlEvents:UIControlEventTouchUpInside];
-    [mapview addSubview:button];
-    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
-    [mapview addGestureRecognizer:longPressGesture];
-    //mapview.mapType = kGMSTypeSatellite;
-//    mapview.indoorEnabled=NO;
-//    mapview.center =;CGFloat y)
-    // Creates a marker in the center of the map.
-    /*GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(-33.86, 151.20);
-    marker.title = @"Sydney";
-    marker.snippet = @"Australia";
-    marker.map = mapview;*/
+
+    _btnTakeMeThere=[UIButton buttonWithType:UIButtonTypeCustom];
+    _btnTakeMeThere.frame=CGRectMake(0,410,300,50);
+    [_btnTakeMeThere setBackgroundColor:[UIColor colorWithRed:0.3 green:0.6 blue:0.8 alpha:1]];
+    _btnTakeMeThere.titleLabel.textColor=[UIColor blackColor];
+    [_btnTakeMeThere setTitle:@"Take Me There" forState:UIControlStateNormal];
+    [_btnTakeMeThere addTarget:self  action:@selector(takeMeThere:) forControlEvents:UIControlEventTouchUpInside];
+    _btnTakeMeThere.hidden=YES;
+    [mapview addSubview:_btnTakeMeThere];
+    
+    _btnNext=[[UIButton alloc]init];
+    _btnNext.frame=CGRectMake(220,30,80,50);
+    _btnNext.titleLabel.textColor=[UIColor blackColor];
+    _btnNext.hidden=NO;
+    [_btnNext setBackgroundColor:[UIColor colorWithRed:0.3 green:0.6 blue:0.8 alpha:1]];
+    [_btnNext setTitle:@"Next" forState:UIControlStateNormal];
+    [_btnNext addTarget:self  action:@selector(nextMarker:) forControlEvents:UIControlEventTouchUpInside];
+    [mapview addSubview:_btnNext];
+
+    _btnPrevious=[[UIButton alloc]init];
+    _btnPrevious.frame=CGRectMake(80,30,80,50);
+    _btnPrevious.titleLabel.textColor=[UIColor blackColor];
+    _btnPrevious.hidden=NO;
+    [_btnPrevious setBackgroundColor:[UIColor colorWithRed:0.3 green:0.6 blue:0.8 alpha:1]];
+    [_btnPrevious setTitle:@"Prev" forState:UIControlStateNormal];
+    [_btnPrevious addTarget:self  action:@selector(prevMarker:) forControlEvents:UIControlEventTouchUpInside];
+    [mapview addSubview:_btnPrevious];
+    
 }
 #pragma mark - GMSMapViewDelegate
 -(void) mapView:(GMSMapView *)mapView didChangeCameraPosition:(GMSCameraPosition *)position {
     //NSLog(@"test");
 }
 - (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
-    NSLog(@"You tapped at %f,%f", coordinate.latitude, coordinate.longitude);
+    //NSLog(@"You tapped at %f,%f", coordinate.latitude, coordinate.longitude);
 }
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker{
-    //marker.position.latitude
-    if ([[UIApplication sharedApplication] canOpenURL:
+    mapView.selectedMarker=marker;
+    _btnTakeMeThere.hidden=NO;
+    /*if ([[UIApplication sharedApplication] canOpenURL:
          [NSURL URLWithString:@"comgooglemaps://"]]) {
         NSString *url =[NSString stringWithFormat:@"comgooglemaps://?saddr=&daddr=%@&directionsmode=walking",marker.snippet];        
         [[UIApplication sharedApplication] openURL:
          [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
     } else {
         NSLog(@"Can't use comgooglemaps://");
+    }*/
+    return YES;
+}
+-(void) nextMarker:(id) sender{
+    UINavigationController * center=(UINavigationController *) self.sidePanelController.centerPanel;
+    for(int i=1; i<=[center viewControllers].count ;i++){
+        NSString *className=NSStringFromClass([[[center viewControllers] objectAtIndex:[center viewControllers].count-i] class]);
+        if([className isEqual:@"VCList"]){
+            VCList * vcList=(VCList *)[[center viewControllers] objectAtIndex:[center viewControllers].count-i];
+            for(int j =0 ; j<vcList.arrButton.count;j++){
+                UIButton * btn=(UIButton *)[vcList.arrButton objectAtIndex:j];
+                //[btn sendActionsForControlEvents:UIControlEventTouchUpInside];
+            }
+        }
     }
+}
+-(void) prevMarker:(id) sender{
     
 }
 @end

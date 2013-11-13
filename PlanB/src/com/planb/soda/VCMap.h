@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <GoogleMaps/GoogleMaps.h>
-
+#import "UIViewController+JASidePanel.h"
 @interface VCMap : UIViewController<GMSMapViewDelegate>
 @property (nonatomic,strong) GMSMapView *mapview;
 @property int mapStatus;
+@property UIButton *btnTakeMeThere;
+@property UIButton *btnNext;
+@property UIButton *btnPrevious;
 -(void) pinMarker:(float) lat lng:(float) lng name:(NSString*) name snippet:(NSString *) snippet;
 -(void) clearMarker;
 @end

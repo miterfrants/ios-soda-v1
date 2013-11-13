@@ -44,8 +44,19 @@
     _locationManager.distanceFilter = kCLDistanceFilterNone;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [_locationManager startUpdatingLocation];
-    [self generateList];
+    _arrButton=[[NSMutableArray alloc]init];
+
+
+    VariableStore * vs=[VariableStore sharedInstance];
+    [self.view setFrame:CGRectMake(0, 0, vs.screenW, vs.screenH)];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+
+    _SVListContainer=[[UIScrollView alloc]init];
+    [self.view addSubview:_SVListContainer];
     [_SVListContainer setScrollEnabled:true];
+    [_SVListContainer setFrame:CGRectMake(0, 0, vs.screenW,vs.screenH)];
+    
+    [self generateList];
 }
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     //NSLog(@"OldLocation %f %f", oldLocation.coordinate.latitude, oldLocation.coordinate.longitude);
@@ -64,7 +75,6 @@
         NSError * err;
         NSMutableURLRequest * req;
         NSMutableString * nearbySearchURL=[NSMutableString string];
-
     self.navigationController.topViewController.title=_category;
         [nearbySearchURL appendFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=500&keyword=%@&sensor=true&key=%@&rankBy=prominence,distance",_locationManager.location.coordinate.latitude,_locationManager.location.coordinate.longitude,[[_category lowercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[VariableStore sharedInstance].keyGoogleMap];
 
@@ -77,9 +87,10 @@
         NSDictionary *locationResults = [NSJSONSerialization JSONObjectWithData:response options:0 error:&jsonParsingError];
         float contentHeight=[[locationResults objectForKey:@"results"] count]*[vs.listHeight floatValue]+15;
         [_SVListContainer setContentSize:CGSizeMake([vs.listWidth floatValue], contentHeight)];
+
         if(![[locationResults objectForKey:@"status"] isEqualToString:@"ZERO_RESULTS"]){
             _lblCount.text=[NSString stringWithFormat:@"%d",[[locationResults objectForKey:@"results"] count]];
-            NSString *nextPageToken=(NSString *) [locationResults valueForKey:@"next_page_token"];
+            //NSString *nextPageToken=(NSString *) [locationResults valueForKey:@"next_page_token"];
             VCMap *vcMap=(VCMap *)self.sidePanelController.rightPanel;
             [vcMap clearMarker];
 
@@ -105,7 +116,7 @@
                 
                 VCMap *vcMap=(VCMap *)self.sidePanelController.rightPanel;
                 [vcMap pinMarker:[lat floatValue] lng:[lng floatValue] name:name snippet:@""];
-                btnList.frame = CGRectMake(0, [vs.listHeight floatValue]*i+15,  [vs.listWidth floatValue],[vs.listHeight floatValue]);
+                btnList.frame = CGRectMake(0, [vs.listHeight floatValue]*i,  [vs.listWidth floatValue],[vs.listHeight floatValue]);
                 [btnList setPlaceName:name];
                 [btnList setReference:reference];
                 /* view title */
@@ -158,6 +169,8 @@
                 [btnList setPlaceId:placeId];
                 [btnList addTarget:self action:@selector(goToOne:) forControlEvents:UIControlEventTouchUpInside];
                 [_SVListContainer addSubview:btnList];
+
+                [_arrButton  addObject:btnList];
                 [[btnList layer] setBorderWidth:0.1f];
                 [[btnList layer] setBorderColor:[UIColor grayColor].CGColor];
                 [[btnList layer] setBackgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1].CGColor];

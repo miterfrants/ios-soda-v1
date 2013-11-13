@@ -12,4 +12,5 @@
 @interface VCList : UIViewController
     @property (strong, nonatomic) IBOutlet UIScrollView *SVListContainer;
     @property NSString *category;
+@property (strong,nonatomic) NSMutableArray *arrButton;
 @end

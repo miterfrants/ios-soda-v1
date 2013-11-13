@@ -38,15 +38,22 @@ static NSString * const kClientId = @"235322884744.apps.googleusercontent.com";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [GMSServices provideAPIKey:@"AIzaSyBtb7I2tk-7hP6KWKU4wC4tNoFzM4pCcI0"];
-    [VariableStore sharedInstance].keyGoogleMap=@"AIzaSyBtb7I2tk-7hP6KWKU4wC4tNoFzM4pCcI0";
-    [VariableStore sharedInstance].domain=@"36.224.30.91";
-    [VariableStore sharedInstance].listWidth=@"320.00";
-    [VariableStore sharedInstance].listHeight=@"160.00";
+    VariableStore *vs =[VariableStore sharedInstance];
+    vs.keyGoogleMap=@"AIzaSyBtb7I2tk-7hP6KWKU4wC4tNoFzM4pCcI0";
+    vs.domain=@"36.224.26.89";
+    vs.listWidth=@"320.00";
+    vs.listHeight=@"160.00";
     CLLocationManager * manager=[[CLLocationManager alloc]init];
     manager.desiredAccuracy = kCLLocationAccuracyBest;
     manager.distanceFilter = kCLDistanceFilterNone;
     [manager startUpdatingLocation];
-    [VariableStore sharedInstance].myLocation=manager.location;
+    vs.myLocation=manager.location;
+    NSString *jsonCate= @"{\"cate\":[{\"name\":\"搜尋\",\"pic\":\"cate-search.png\",\"color\":\"#b7dd6c\"},{\"name\":\"景點\",\"pic\":\"cate-attraction.png\",\"color\":\"#abd156\"},{\"name\":\"餐廳\",\"pic\":\"cate-rest.png\",\"color\":\"#abd156\"},{\"name\":\"咖啡\",\"pic\":\"cate-cafe.png\",\"color\":\"#b4da5f\"},{\"name\":\"ATM\",\"pic\":\"cate-atm.png\",\"color\":\"#bcda78\"},{\"name\":\"旅館\",\"pic\":\"cate-hotel.png\",\"color\":\"#b9dd57\"}]}";
+    NSData * dataCate=[jsonCate dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *jsonParsingError = nil;
+    vs.dicPlaceCate =(NSDictionary *) [NSJSONSerialization JSONObjectWithData:dataCate options:0 error:&jsonParsingError];
+    vs.screenH=self.window.frame.size.height;
+    vs.screenW=self.window.frame.size.width;
     return YES;
 }
 - (void)applicationWillResignActive:(UIApplication *)application

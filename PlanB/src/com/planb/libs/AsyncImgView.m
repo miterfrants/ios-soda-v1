@@ -26,7 +26,7 @@
     return self;
 }
 -(void) loadImageFromURL:(NSURL *)url target:(NSObject *) target completion:(SEL)completion{
-    NSOperationQueue *queueImage=[[NSOperationQueue alloc] init];
+    //NSOperationQueue *queueImage=[[NSOperationQueue alloc] init];
     //NSOperationQueue *queueImage=dispatch_get_global_queue(0, 0);
     /*[Util stringAsyncWithUrl:url completion:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         UIImage *img=[[UIImage alloc] initWithData:data];

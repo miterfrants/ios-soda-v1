@@ -35,7 +35,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIColor * greyColor=[UIColor colorWithRed:.6 green:.6 blue:.6 alpha:1];
     UIImage * imgFBLogin = [UIImage imageNamed:@"fb-login.png"];
     UIImage * imgGoogleLogin =[UIImage imageNamed:@"google-login.png"];
     _btnGoods.hidden=YES;
@@ -267,9 +266,9 @@
                         UIImage * imgProfile=[UIImage imageWithData:imgData];
                         [_imgViewProfile setImage:imgProfile];
                         [_imgViewProfile setFrame:CGRectMake(0,0,imgProfile.size.width,imgProfile.size.height)];
-                        NSString *description = [NSString stringWithFormat:
+                        /*NSString *description = [NSString stringWithFormat:
                                                  @"%@\n%@", person.displayName,
-                                                 person.aboutMe];
+                                                 person.aboutMe];*/
 
                     }
                 }];
@@ -292,7 +291,7 @@
 
 -(void)goToGoodsList: (id)sender{
      VCGoodsList * goodsList= [self.storyboard instantiateViewControllerWithIdentifier:@"VCGoodsList"];
-    UINavigationController * center=self.sidePanelController.centerPanel;
+    UINavigationController * center=(UINavigationController *) self.sidePanelController.centerPanel;
     [center pushViewController:goodsList animated:YES];
         center.topViewController.title=@"Goods";
     [self.sidePanelController showCenterPanelAnimated:YES];

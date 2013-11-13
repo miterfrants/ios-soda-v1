@@ -41,13 +41,13 @@
             lblTitle.textColor = [UIColor blackColor];
             lblTitle.font = [UIFont italicSystemFontOfSize:12];
             lblTitle.numberOfLines = 5;
-            lblTitle.lineBreakMode = UILineBreakModeWordWrap;
+            lblTitle.lineBreakMode = NSLineBreakByWordWrapping;
 
             UILabel *lblNum= [[UILabel alloc] init];
             lblNum.textColor = [UIColor redColor];
             lblNum.font = [UIFont italicSystemFontOfSize:12];
             lblNum.numberOfLines = 5;
-            lblNum.lineBreakMode = UILineBreakModeWordWrap;
+            lblNum.lineBreakMode = NSLineBreakByWordWrapping;
             lblNum.text=[[[dic_goods objectForKey:@"goods"] objectAtIndex:i] objectForKey:@"qty"];
 
             NSURL *imgURL=[NSURL URLWithString:[[[dic_goods objectForKey:@"goods"] objectAtIndex:i] objectForKey:@"pic"]];
@@ -61,7 +61,7 @@
             [[self view] addSubview:lblNum];
         }
     }else{
-        NSLog(@"%@",jsonParsingError);
+        //NSLog(@"%@",jsonParsingError);
         
     }
 

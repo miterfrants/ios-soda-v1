@@ -54,7 +54,17 @@
 		5453C11717DE09D400B811BC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C11617DE09D300B811BC /* SystemConfiguration.framework */; };
 		5453C11917DE12BF00B811BC /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C11817DE12BF00B811BC /* libstdc++.dylib */; };
 		5453C11D17DE19E200B811BC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C11C17DE19E200B811BC /* libz.dylib */; };
+		546E0B071831A8B400E8815D /* PlaceItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 546E0B061831A8B400E8815D /* PlaceItemButton.m */; };
+		546E0B091832F88400E8815D /* icon-search.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 546E0B081832F88400E8815D /* icon-search.jpg */; };
+		546E0B0B1832F8D200E8815D /* icon-rest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 546E0B0A1832F8D200E8815D /* icon-rest.jpg */; };
 		547F9662182FC7800065B51E /* SingleStartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 547F9661182FC7800065B51E /* SingleStartView.m */; };
+		5484FA2F1833B9D40057510D /* PlaceCategoryButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5484FA2E1833B9D40057510D /* PlaceCategoryButton.m */; };
+		5484FA361833BCF60057510D /* cate-atm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA301833BCF60057510D /* cate-atm.png */; };
+		5484FA371833BCF60057510D /* cate-attraction.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA311833BCF60057510D /* cate-attraction.png */; };
+		5484FA381833BCF60057510D /* cate-cafe.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA321833BCF60057510D /* cate-cafe.png */; };
+		5484FA391833BCF60057510D /* cate-hotel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA331833BCF60057510D /* cate-hotel.png */; };
+		5484FA3A1833BCF60057510D /* cate-rest.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA341833BCF60057510D /* cate-rest.png */; };
+		5484FA3B1833BCF60057510D /* cate-search.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA351833BCF60057510D /* cate-search.png */; };
 		54C2080317CD714B006E1A44 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C2080217CD714B006E1A44 /* UIKit.framework */; };
 		54C2080517CD714B006E1A44 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C2080417CD714B006E1A44 /* Foundation.framework */; };
 		54C2080717CD714B006E1A44 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C2080617CD714B006E1A44 /* CoreGraphics.framework */; };
@@ -150,8 +160,20 @@
 		5453C11817DE12BF00B811BC /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		5453C11A17DE19D700B811BC /* crt1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = crt1.o; path = usr/lib/crt1.o; sourceTree = SDKROOT; };
 		5453C11C17DE19E200B811BC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		546E0B051831A8B400E8815D /* PlaceItemButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceItemButton.h; sourceTree = "<group>"; };
+		546E0B061831A8B400E8815D /* PlaceItemButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceItemButton.m; sourceTree = "<group>"; };
+		546E0B081832F88400E8815D /* icon-search.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "icon-search.jpg"; sourceTree = "<group>"; };
+		546E0B0A1832F8D200E8815D /* icon-rest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "icon-rest.jpg"; sourceTree = "<group>"; };
 		547F9660182FC7800065B51E /* SingleStartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleStartView.h; sourceTree = "<group>"; };
 		547F9661182FC7800065B51E /* SingleStartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleStartView.m; sourceTree = "<group>"; };
+		5484FA2D1833B9D40057510D /* PlaceCategoryButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceCategoryButton.h; sourceTree = "<group>"; };
+		5484FA2E1833B9D40057510D /* PlaceCategoryButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceCategoryButton.m; sourceTree = "<group>"; };
+		5484FA301833BCF60057510D /* cate-atm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cate-atm.png"; sourceTree = "<group>"; };
+		5484FA311833BCF60057510D /* cate-attraction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cate-attraction.png"; sourceTree = "<group>"; };
+		5484FA321833BCF60057510D /* cate-cafe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cate-cafe.png"; sourceTree = "<group>"; };
+		5484FA331833BCF60057510D /* cate-hotel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cate-hotel.png"; sourceTree = "<group>"; };
+		5484FA341833BCF60057510D /* cate-rest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cate-rest.png"; sourceTree = "<group>"; };
+		5484FA351833BCF60057510D /* cate-search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cate-search.png"; sourceTree = "<group>"; };
 		54C207FF17CD714B006E1A44 /* planb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = planb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54C2080217CD714B006E1A44 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		54C2080417CD714B006E1A44 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -284,6 +306,10 @@
 				542373461824BCC000A8C656 /* VCRoot.m */,
 				542373471824BCC000A8C656 /* VCMap.h */,
 				542373481824BCC000A8C656 /* VCMap.m */,
+				546E0B051831A8B400E8815D /* PlaceItemButton.h */,
+				546E0B061831A8B400E8815D /* PlaceItemButton.m */,
+				5484FA2D1833B9D40057510D /* PlaceCategoryButton.h */,
+				5484FA2E1833B9D40057510D /* PlaceCategoryButton.m */,
 			);
 			path = soda;
 			sourceTree = "<group>";
@@ -328,6 +354,14 @@
 		542373631824BCCD00A8C656 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				5484FA301833BCF60057510D /* cate-atm.png */,
+				5484FA311833BCF60057510D /* cate-attraction.png */,
+				5484FA321833BCF60057510D /* cate-cafe.png */,
+				5484FA331833BCF60057510D /* cate-hotel.png */,
+				5484FA341833BCF60057510D /* cate-rest.png */,
+				5484FA351833BCF60057510D /* cate-search.png */,
+				546E0B0A1832F8D200E8815D /* icon-rest.jpg */,
+				546E0B081832F88400E8815D /* icon-search.jpg */,
 				542373641824BCCD00A8C656 /* fb-login.png */,
 				542373651824BCCD00A8C656 /* google-login.png */,
 				542373661824BCCD00A8C656 /* pin.png */,
@@ -488,7 +522,7 @@
 		54C207F717CD714B006E1A44 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Po-Hsiang Hunag";
 				TargetAttributes = {
 					54C207FE17CD714B006E1A44 = {
@@ -523,9 +557,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5423737A1824BCCD00A8C656 /* StarFullLarge.png in Resources */,
+				5484FA371833BCF60057510D /* cate-attraction.png in Resources */,
 				54C2080D17CD714B006E1A44 /* InfoPlist.strings in Resources */,
 				54C2081517CD714B006E1A44 /* Default.png in Resources */,
+				5484FA3A1833BCF60057510D /* cate-rest.png in Resources */,
+				5484FA3B1833BCF60057510D /* cate-search.png in Resources */,
 				542373751824BCCD00A8C656 /* StarEmpty@2x.png in Resources */,
+				546E0B091832F88400E8815D /* icon-search.jpg in Resources */,
 				54C2081717CD714B006E1A44 /* Default@2x.png in Resources */,
 				5423737B1824BCCD00A8C656 /* StarFullLarge@2x.png in Resources */,
 				542373701824BCCD00A8C656 /* fb-login.png in Resources */,
@@ -538,9 +576,13 @@
 				54C2081917CD714B006E1A44 /* Default-568h@2x.png in Resources */,
 				54C2083817CD71B7006E1A44 /* Storyboard.storyboard in Resources */,
 				5423730B1822A7E900A8C656 /* Images.xcassets in Resources */,
+				5484FA391833BCF60057510D /* cate-hotel.png in Resources */,
 				542373721824BCCD00A8C656 /* pin.png in Resources */,
+				5484FA381833BCF60057510D /* cate-cafe.png in Resources */,
 				542373781824BCCD00A8C656 /* StarFull.png in Resources */,
+				5484FA361833BCF60057510D /* cate-atm.png in Resources */,
 				5453C10317DE093800B811BC /* GoogleMaps.bundle in Resources */,
+				546E0B0B1832F8D200E8815D /* icon-rest.jpg in Resources */,
 				54073BCF17F16D6C0092F741 /* FBUserSettingsViewResources.bundle in Resources */,
 				542373771824BCCD00A8C656 /* StarEmptyLarge@2x.png in Resources */,
 			);
@@ -577,12 +619,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				546E0B071831A8B400E8815D /* PlaceItemButton.m in Sources */,
 				5423735C1824BCC000A8C656 /* VCRoot.m in Sources */,
 				542373611824BCC000A8C656 /* UIViewController+JASidePanel.m in Sources */,
 				542373571824BCC000A8C656 /* VCCenter.m in Sources */,
 				542373591824BCC000A8C656 /* VCGoodsList.m in Sources */,
 				542373581824BCC000A8C656 /* VCDetail.m in Sources */,
 				542373551824BCC000A8C656 /* UIDefaultTextField.m in Sources */,
+				5484FA2F1833B9D40057510D /* PlaceCategoryButton.m in Sources */,
 				5423735D1824BCC000A8C656 /* VCMap.m in Sources */,
 				5423735A1824BCC000A8C656 /* VCList.m in Sources */,
 				542373561824BCC000A8C656 /* UIPlaceButton.m in Sources */,
@@ -641,7 +685,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = armv7;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -675,7 +718,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = armv7;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -703,7 +745,6 @@
 		54C2083217CD714B006E1A44 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -732,7 +773,6 @@
 		54C2083317CD714B006E1A44 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

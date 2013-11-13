@@ -20,6 +20,9 @@
 @property NSString *listWidth;
 @property NSOperationQueue *backgroundThreadManagement;
 @property CLLocation *myLocation;
+@property NSDictionary *dicPlaceCate;
+@property float screenH;
+@property float screenW;
 // message from which our instance is obtained
 + (VariableStore *)sharedInstance;
 @end
