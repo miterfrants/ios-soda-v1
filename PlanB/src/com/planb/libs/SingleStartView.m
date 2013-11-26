@@ -23,10 +23,10 @@
     self.imgFull=[UIImage imageNamed:@"StarFullLarge@2x.png"];
     [self.imgEmptyView setImage:self.imgEmpty];
     //[self.imgEmptyView setFrame:CGRectMake(0,0,self.imgEmpty.size.width,self.imgEmpty.size.height)];
-    [self.imgEmptyView setFrame:CGRectMake(0,0,27,27)];
+    [self.imgEmptyView setFrame:CGRectMake(0,0,frame.size.width,frame.size.height)];
     [self.imgFullView setImage:self.imgFull];
     //[self.imgFullView setFrame:CGRectMake(0,0,self.imgFull.size.width,self.imgFull.size.height)];
-    [self.imgFullView setFrame:CGRectMake(0,0,27,27)];
+    [self.imgFullView setFrame:CGRectMake(0,0,frame.size.width,frame.size.height)];
     //mask
     [self addSubview:self.imgEmptyView];
     [self addSubview:self.imgFullView];
@@ -34,7 +34,8 @@
 }
 -(void)setScore:(double)rate{
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    CGRect maskRect = CGRectMake(0, imgFull.size.height*(1-rate), imgFull.size.width, imgFull.size.height*(rate));
+    float caculateRate = (rate*rate);
+    CGRect maskRect = CGRectMake(0, self.frame.size.height*(1-caculateRate), self.frame.size.width, self.frame.size.height*(caculateRate));
     CGPathRef path = CGPathCreateWithRect(maskRect, NULL);
     maskLayer.path = path;
     CGPathRelease(path);

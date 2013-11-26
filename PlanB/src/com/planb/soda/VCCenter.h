@@ -9,14 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "UIViewController+JASidePanel.h"
 #import "PopupView.h"
+#import "VariableStore.h"
 @interface VCCenter : UIViewController
-@property (weak, nonatomic) IBOutlet UIButton *btnFood;
-@property (weak, nonatomic) IBOutlet UIButton *btnTouristAttraction;
-@property (weak, nonatomic) IBOutlet UIButton *btnATM;
-@property (weak, nonatomic) IBOutlet UIButton *btnGas;
-@property (weak, nonatomic) IBOutlet UIButton *btnTest;
-@property (weak, nonatomic) IBOutlet UIButton *btnPark;
-@property (weak, nonatomic) IBOutlet UIButton *btnCS;
-
-
+@property BOOL isInitial;
+@property VariableStore * vs;
 @end

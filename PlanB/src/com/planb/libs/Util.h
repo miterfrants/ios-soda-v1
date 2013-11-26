@@ -10,8 +10,10 @@
 #import <CoreLocation/CoreLocation.h>
 @interface Util : NSObject
 + (NSString *)stringWithUrl:(NSString *)url ;
-+ (void)stringAsyncWithUrl:(NSURL *)url completion:(void(^)(NSURLResponse *response, NSData *data, NSError *connectionError)) completion queue:(NSOperationQueue *) queue;
++ (void)stringAsyncWithUrl:(NSString *)url completion:(void(^)(NSURLResponse *response, NSData *data, NSError *connectionError)) completion queue:(NSOperationQueue *) queue;
 +(double) distBetweenTwoLocate:(CLLocation *) source destination:(CLLocation *) destination  ;
 + (UIColor *)colorWithHexString:(NSString *)str;
 + (UIColor *)colorWithHex:(UInt32)col;
++(NSMutableDictionary *) jsonWithUrl:(NSString *)url;
++ (NSString *)getIPAddress ;
 @end

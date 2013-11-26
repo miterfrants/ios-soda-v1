@@ -23,6 +23,8 @@
 @property NSDictionary *dicPlaceCate;
 @property float screenH;
 @property float screenW;
+@property NSDate *appLaunchDate;
+@property NSDate *appExitDate;
 // message from which our instance is obtained
 + (VariableStore *)sharedInstance;
 @end

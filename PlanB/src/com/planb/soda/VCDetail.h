@@ -19,12 +19,12 @@
 @property NSString *strLat;
 @property NSString *strLng;
 @property (strong,nonatomic) DYRateView *rateView;
-@property (weak, nonatomic) IBOutlet UIButton *btnSend;
-@property (weak, nonatomic) IBOutlet UIButton *btnLogin;
-@property (weak, nonatomic) IBOutlet UIButton *btnPin;
-
+@property (strong, nonatomic)  UITextField *txtComment;
+@property (strong, nonatomic) IBOutlet UIButton *btnSend;
+@property (strong, nonatomic) IBOutlet UIButton *btnLogin;
+@property (strong, nonatomic) IBOutlet UIButton *btnPin;
 @property (strong, nonatomic) IBOutlet UIScrollView *usvGallery;
 @property (strong, nonatomic) IBOutlet UIScrollView *usvDetail;
-@property (weak, nonatomic) IBOutlet UITextField *txtComment;
+@property BOOL isInitial;
 
 @end

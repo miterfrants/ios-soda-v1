@@ -35,29 +35,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    _vs= [VariableStore sharedInstance];
 }
 -(void)viewDidAppear:(BOOL) show{
-    UIScrollView *sv=[[UIScrollView alloc] init];
-    VariableStore *vs =[VariableStore sharedInstance];
-    [self.view addSubview:sv];
-    float recWidth=self.view.frame.size.width/2;
-    for(int i =0 ; i<[[vs.dicPlaceCate objectForKey:@"cate"] count]; i++){
-        PlaceCategoryButton * pcButton = [[PlaceCategoryButton alloc]init];
-        NSDictionary *item=[[vs.dicPlaceCate objectForKey:@"cate"] objectAtIndex:i];
-        UIImage *imgIcon = [UIImage imageNamed: [item objectForKey:@"pic"]];
-        UIImageView *imgViewIcon=[[UIImageView alloc] initWithImage:imgIcon];
-        [imgViewIcon setFrame:CGRectMake((recWidth-40)/2, (recWidth-40)/2, 40, 40)];
-        pcButton.keyword=[item objectForKey:@"name"];
-        [pcButton addSubview:imgViewIcon];
-        [pcButton setBackgroundColor:[Util colorWithHexString:[item objectForKey:@"color"]]];
-        [pcButton setFrame:CGRectMake(i%2*recWidth,floor(i/2)* recWidth,recWidth,recWidth)];
-        [pcButton addTarget:self action:@selector(gotoList:) forControlEvents:UIControlEventTouchUpInside];
-        [sv addSubview:pcButton];
+    if(!_isInitial){
+        _isInitial=YES;
+        UIScrollView *sv=[[UIScrollView alloc] init];
+
+        [self.view addSubview:sv];
+        float recWidth=self.view.frame.size.width/2;
+        for(int i =0 ; i<[[_vs.dicPlaceCate objectForKey:@"cate"] count]; i++){
+            PlaceCategoryButton * pcButton = [[PlaceCategoryButton alloc]init];
+            NSDictionary *item=[[_vs.dicPlaceCate objectForKey:@"cate"] objectAtIndex:i];
+            UIImage *imgIcon = [UIImage imageNamed: [item objectForKey:@"pic"]];
+            UIImageView *imgViewIcon=[[UIImageView alloc] initWithImage:imgIcon];
+            [imgViewIcon setFrame:CGRectMake((recWidth-50)/2, (recWidth-50)/2, 50, 50)];
+            pcButton.keyword=[item objectForKey:@"keyword"];
+            pcButton.name=[item objectForKey:@"name"];
+            [pcButton addSubview:imgViewIcon];
+            [pcButton setBackgroundColor:[Util colorWithHexString:[item objectForKey:@"color"]]];
+            [pcButton setFrame:CGRectMake(i%2*recWidth,floor(i/2)* recWidth,recWidth,recWidth)];
+            [pcButton setLblName:[item objectForKey:@"name"]];
+            pcButton.defaultBGName=[item objectForKey:@"bg"];
+            pcButton.type=[item objectForKey:@"type"];
+            [pcButton addTarget:self action:@selector(gotoList:) forControlEvents:UIControlEventTouchUpInside];
+            [sv addSubview:pcButton];
+        }
+        [sv setFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
+        [self.view addSubview:sv];
+        [sv setContentSize:CGSizeMake(self.view.frame.size.width, ceil((float)[[_vs.dicPlaceCate objectForKey:@"cate"] count]/2)*recWidth)];
     }
-    [sv setFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
-    [self.view addSubview:sv];
-    [sv setContentSize:CGSizeMake(self.view.frame.size.width, ceil((float)[[vs.dicPlaceCate objectForKey:@"cate"] count]/2)*recWidth)];
+    
     [super viewDidAppear:show];
 
 }
@@ -71,15 +79,23 @@
 -(void)gotoList:(id)sender{
     PlaceCategoryButton* btn = (PlaceCategoryButton*)sender;
     VCList *vcList = [[VCList alloc]init];
-    vcList.category=btn.keyword;
-
+    vcList.keyword=btn.keyword;
+    vcList.type=btn.type;
+    vcList.cateTitle=btn.name;
+    vcList.defaultBGName=btn.defaultBGName;
+    NSString *url=[NSString stringWithFormat:@"http://%@/controller/mobile/report.aspx?action=add-category-count&cate=%@&creator_ip=%@", _vs.domain,btn.name,[Util getIPAddress] ];
+    [Util stringAsyncWithUrl:url completion:nil queue:_vs.backgroundThreadManagement];
     [self.navigationController pushViewController:vcList animated:YES];
-    VCMap * vcMap=(VCMap *)self.sidePanelController.rightPanel;
-    if(![vcMap isViewLoaded]){
-        vcMap=[[VCMap alloc] init];
-        [vcMap loadView];
-        self.sidePanelController.rightPanel=vcMap;
-    }
+    //NSLog(@"%@",result);
+    //NSLog(@"click category");
+    dispatch_async(dispatch_get_main_queue(),^{
+        VCMap * vcMap=(VCMap *)self.sidePanelController.rightPanel;
+        if(![vcMap isViewLoaded]){
+            vcMap=[[VCMap alloc] init];
+            [vcMap loadView];
+            self.sidePanelController.rightPanel=vcMap;
+        }
+    });
 
 }
 

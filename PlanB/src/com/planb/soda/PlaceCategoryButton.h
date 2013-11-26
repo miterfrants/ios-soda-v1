@@ -10,5 +10,10 @@
 
 @interface PlaceCategoryButton : UIButton
 @property NSString *keyword;
+@property NSString *name;
+@property NSString *defaultBGName;
 @property NSString *pic;
+@property NSString *type;
+@property (strong,nonatomic) UILabel * lblName;
+
 @end

@@ -38,7 +38,6 @@
         _btnSend.hidden=YES;
         _rateView.hidden=YES;
         _btnPin.hidden=YES;
-        
         _btnLogin.hidden=NO;
     }else{
         _txtComment.hidden=NO;
@@ -46,8 +45,6 @@
         _rateView.hidden=NO;
         _btnLogin.hidden=YES;
         _btnPin.hidden=NO;
-        //NSDictionary *strCommentAndVote=(NSDictionary *)[Util stringWithUrl:url];
-        
         NSString *result=[NSString stringWithFormat:@"%@",[Util stringWithUrl:url] ];
         NSData * dataCommentAndVote=[result dataUsingEncoding:NSUTF8StringEncoding];
         NSError *jsonParsingError = nil;
@@ -58,15 +55,46 @@
         }else{
             NSLog(@"testError:%@",jsonParsingError);
         }
-
     }
-
-    //NSLog(@"vote:%D",[dicCommentAndVote objectForKey:@"vote"]);
 }
 
 - (void)viewDidLoad
 {
-
+    //initial
+    VariableStore *vs =[VariableStore sharedInstance];
+    [self.view setFrame:CGRectMake(0, 0, vs.screenW, vs.screenH)];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    if(!_isInitial){
+        UIFont *font = [UIFont fontWithName:@"Helvetica" size:10.0];
+        _txtComment= [[UITextField alloc]init];
+        [_txtComment setFrame:CGRectMake(0,64,100,30)];
+        [self.view addSubview:_txtComment];
+        
+        _btnLogin=[[UIButton alloc]init];
+        [_btnLogin setFrame:CGRectMake(0,64,100,30)];
+        [_btnLogin setTitle:@"如要參與遊戲 請先登入" forState:UIControlStateNormal];
+        //[_btnLogin setTitle:@"如要參與遊戲 請先登入"];
+        //_btnLogin.titleLabel.text=@"如要參與遊戲 請先登入";
+        //_btnLogin.titleLabel.textColor = [UIColor blackColor];
+        //_btnLogin.titleLabel.font =font;
+        //_btnLogin.titleLabel.numberOfLines = 1;
+        //_btnLogin.titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        [_btnLogin.titleLabel setFrame:CGRectMake(0, 0, 100, 30)];
+        [self.view addSubview:_btnLogin];
+        
+        _btnPin=[[UIButton alloc]init];
+        [_btnPin setFrame:CGRectMake(0,64,100,30)];
+        [self.view addSubview:_btnPin];
+        
+        _btnSend=[[UIButton alloc]init];
+        [_btnSend setFrame:CGRectMake(0,64,100,30)];
+        [self.view addSubview:_btnSend];
+        
+        _isInitial=YES;
+    }
+    
+    
     [super viewDidLoad];
     _rateView = [[DYRateView alloc] initWithFrame:CGRectMake(200,150, 100, 14)] ;
     _rateView.alignment = RateViewAlignmentLeft;

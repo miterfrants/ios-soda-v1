@@ -8,9 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "UIViewController+JASidePanel.h"
-
+#import "UIScrollPlaceListView.h"
+#import "VariableStore.h"
 @interface VCList : UIViewController
-    @property (strong, nonatomic) IBOutlet UIScrollView *SVListContainer;
-    @property NSString *category;
-@property (strong,nonatomic) NSMutableArray *arrButton;
+    @property (strong, nonatomic) IBOutlet UIScrollPlaceListView *SVListContainer;
+    @property NSString *type;
+    @property NSString *cateTitle;
+    @property NSString *keyword;
+    @property NSString *defaultBGName;
+    @property (strong,nonatomic) NSMutableArray *arrButton;
+    @property (strong,nonatomic) UIImageView *loadingView;
+    @property (strong,nonatomic) UIRefreshControl *refreshControl;
+    @property BOOL isGenerateList;
+    @property (strong,nonatomic) NSString *nextPageToken;
+    @property int currentCount;
+    @property VariableStore *vs;
+    -(void) generateList:(NSString *)isNext;
 @end

@@ -86,7 +86,7 @@
     self.shouldDelegateAutorotateToVisiblePanel=NO;
     self.panningLimitedToTopViewController=NO;
 
-    [self setLeftPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"VCLeft"]];
+    //[self setLeftPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"VCLeft"]];
     [self setCenterPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"NCCenter"]];
     [self setRightPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"VCRight"]];
 

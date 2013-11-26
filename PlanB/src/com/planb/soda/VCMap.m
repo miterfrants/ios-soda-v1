@@ -56,12 +56,15 @@
 }
 
 - (void) clearMarker{
-    NSMutableArray *arrMarker=(NSMutableArray *)[VariableStore sharedInstance].arrMarker;
-    for(int i=0;i<arrMarker.count;i++){
-        GMSMarker *marker = [[GMSMarker alloc] init];
-        marker.map=nil;
-    }
-    [mapview clear];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSMutableArray *arrMarker=(NSMutableArray *)[VariableStore sharedInstance].arrMarker;
+        for(int i=0;i<arrMarker.count;i++){
+            GMSMarker *marker = [[GMSMarker alloc] init];
+            marker.map=nil;
+        }
+        [mapview clear];
+    });
+    
 }
 
 -(void) takeMeThere:(id *) sender{

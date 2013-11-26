@@ -48,13 +48,11 @@
 		5453C10B17DE098B00B811BC /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C10A17DE098B00B811BC /* CoreText.framework */; };
 		5453C10D17DE099500B811BC /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C10C17DE099500B811BC /* GLKit.framework */; };
 		5453C10F17DE099C00B811BC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C10E17DE099C00B811BC /* ImageIO.framework */; };
-		5453C11117DE09A800B811BC /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C11017DE09A800B811BC /* libc++.dylib */; };
 		5453C11317DE09B600B811BC /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C11217DE09B600B811BC /* libicucore.dylib */; };
 		5453C11517DE09C600B811BC /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C11417DE09C600B811BC /* OpenGLES.framework */; };
 		5453C11717DE09D400B811BC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C11617DE09D300B811BC /* SystemConfiguration.framework */; };
-		5453C11917DE12BF00B811BC /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C11817DE12BF00B811BC /* libstdc++.dylib */; };
 		5453C11D17DE19E200B811BC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C11C17DE19E200B811BC /* libz.dylib */; };
-		546E0B071831A8B400E8815D /* PlaceItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 546E0B061831A8B400E8815D /* PlaceItemButton.m */; };
+		546E0B071831A8B400E8815D /* UIPlaceItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 546E0B061831A8B400E8815D /* UIPlaceItemButton.m */; };
 		546E0B091832F88400E8815D /* icon-search.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 546E0B081832F88400E8815D /* icon-search.jpg */; };
 		546E0B0B1832F8D200E8815D /* icon-rest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 546E0B0A1832F8D200E8815D /* icon-rest.jpg */; };
 		547F9662182FC7800065B51E /* SingleStartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 547F9661182FC7800065B51E /* SingleStartView.m */; };
@@ -65,6 +63,17 @@
 		5484FA391833BCF60057510D /* cate-hotel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA331833BCF60057510D /* cate-hotel.png */; };
 		5484FA3A1833BCF60057510D /* cate-rest.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA341833BCF60057510D /* cate-rest.png */; };
 		5484FA3B1833BCF60057510D /* cate-search.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA351833BCF60057510D /* cate-search.png */; };
+		5484FA3F183E08860057510D /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA3E183E08860057510D /* loading.gif */; };
+		5484FA45183E38340057510D /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA44183E38340057510D /* arrow.png */; };
+		5484FA4B183E599B0057510D /* AnimatedGif.m in Sources */ = {isa = PBXBuildFile; fileRef = 5484FA4A183E599B0057510D /* AnimatedGif.m */; };
+		5484FA4C183FA0840057510D /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C11017DE09A800B811BC /* libc++.dylib */; };
+		5484FA4F183FB9210057510D /* UIScrollPlaceListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5484FA4E183FB9210057510D /* UIScrollPlaceListView.m */; };
+		5484FA52184129810057510D /* UIAsyncLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5484FA51184129810057510D /* UIAsyncLabel.m */; };
+		5484FA5B1844D9520057510D /* tourist-attraction-gray-640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA561844D9520057510D /* tourist-attraction-gray-640x320.png */; };
+		5484FA5C1844D9520057510D /* restaurants-gray-640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA571844D9520057510D /* restaurants-gray-640x320.png */; };
+		5484FA5D1844D9520057510D /* hotel-gray-640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA581844D9520057510D /* hotel-gray-640x320.png */; };
+		5484FA5E1844D9520057510D /* coffee-gray-640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA591844D9520057510D /* coffee-gray-640x320.png */; };
+		5484FA5F1844D9520057510D /* atm-gray-640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA5A1844D9520057510D /* atm-gray-640x320.png */; };
 		54C2080317CD714B006E1A44 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C2080217CD714B006E1A44 /* UIKit.framework */; };
 		54C2080517CD714B006E1A44 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C2080417CD714B006E1A44 /* Foundation.framework */; };
 		54C2080717CD714B006E1A44 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C2080617CD714B006E1A44 /* CoreGraphics.framework */; };
@@ -160,8 +169,8 @@
 		5453C11817DE12BF00B811BC /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		5453C11A17DE19D700B811BC /* crt1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = crt1.o; path = usr/lib/crt1.o; sourceTree = SDKROOT; };
 		5453C11C17DE19E200B811BC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		546E0B051831A8B400E8815D /* PlaceItemButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceItemButton.h; sourceTree = "<group>"; };
-		546E0B061831A8B400E8815D /* PlaceItemButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceItemButton.m; sourceTree = "<group>"; };
+		546E0B051831A8B400E8815D /* UIPlaceItemButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceItemButton.h; sourceTree = "<group>"; };
+		546E0B061831A8B400E8815D /* UIPlaceItemButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceItemButton.m; sourceTree = "<group>"; };
 		546E0B081832F88400E8815D /* icon-search.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "icon-search.jpg"; sourceTree = "<group>"; };
 		546E0B0A1832F8D200E8815D /* icon-rest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "icon-rest.jpg"; sourceTree = "<group>"; };
 		547F9660182FC7800065B51E /* SingleStartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleStartView.h; sourceTree = "<group>"; };
@@ -174,6 +183,19 @@
 		5484FA331833BCF60057510D /* cate-hotel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cate-hotel.png"; sourceTree = "<group>"; };
 		5484FA341833BCF60057510D /* cate-rest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cate-rest.png"; sourceTree = "<group>"; };
 		5484FA351833BCF60057510D /* cate-search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cate-search.png"; sourceTree = "<group>"; };
+		5484FA3E183E08860057510D /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
+		5484FA44183E38340057510D /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		5484FA49183E599B0057510D /* AnimatedGif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedGif.h; sourceTree = "<group>"; };
+		5484FA4A183E599B0057510D /* AnimatedGif.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatedGif.m; sourceTree = "<group>"; };
+		5484FA4D183FB9210057510D /* UIScrollPlaceListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIScrollPlaceListView.h; sourceTree = "<group>"; };
+		5484FA4E183FB9210057510D /* UIScrollPlaceListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIScrollPlaceListView.m; sourceTree = "<group>"; };
+		5484FA50184129810057510D /* UIAsyncLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAsyncLabel.h; sourceTree = "<group>"; };
+		5484FA51184129810057510D /* UIAsyncLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAsyncLabel.m; sourceTree = "<group>"; };
+		5484FA561844D9520057510D /* tourist-attraction-gray-640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tourist-attraction-gray-640x320.png"; sourceTree = "<group>"; };
+		5484FA571844D9520057510D /* restaurants-gray-640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "restaurants-gray-640x320.png"; sourceTree = "<group>"; };
+		5484FA581844D9520057510D /* hotel-gray-640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hotel-gray-640x320.png"; sourceTree = "<group>"; };
+		5484FA591844D9520057510D /* coffee-gray-640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coffee-gray-640x320.png"; sourceTree = "<group>"; };
+		5484FA5A1844D9520057510D /* atm-gray-640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "atm-gray-640x320.png"; sourceTree = "<group>"; };
 		54C207FF17CD714B006E1A44 /* planb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = planb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54C2080217CD714B006E1A44 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		54C2080417CD714B006E1A44 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -204,25 +226,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5484FA4C183FA0840057510D /* libc++.dylib in Frameworks */,
 				54C2080517CD714B006E1A44 /* Foundation.framework in Frameworks */,
 				54C4C12217FDA5A7006BEAED /* Security.framework in Frameworks */,
 				54C4C12017FDA4C7006BEAED /* GoogleOpenSource.framework in Frameworks */,
 				54C4C11E17FDA477006BEAED /* GooglePlus.framework in Frameworks */,
 				54073DE717F182E40092F741 /* FacebookSDK.framework in Frameworks */,
 				5453C11D17DE19E200B811BC /* libz.dylib in Frameworks */,
-				5453C11917DE12BF00B811BC /* libstdc++.dylib in Frameworks */,
 				5453C11717DE09D400B811BC /* SystemConfiguration.framework in Frameworks */,
 				5453BF2D17DD927100B811BC /* QuartzCore.framework in Frameworks */,
 				5453C11517DE09C600B811BC /* OpenGLES.framework in Frameworks */,
 				5453C11317DE09B600B811BC /* libicucore.dylib in Frameworks */,
-				5453C11117DE09A800B811BC /* libc++.dylib in Frameworks */,
+				54C2080317CD714B006E1A44 /* UIKit.framework in Frameworks */,
 				5453C10F17DE099C00B811BC /* ImageIO.framework in Frameworks */,
 				5453C10D17DE099500B811BC /* GLKit.framework in Frameworks */,
 				5453C10B17DE098B00B811BC /* CoreText.framework in Frameworks */,
 				5453C10917DE098200B811BC /* CoreLocation.framework in Frameworks */,
 				5453C10717DE097800B811BC /* CoreData.framework in Frameworks */,
 				5453C10517DE097100B811BC /* AVFoundation.framework in Frameworks */,
-				54C2080317CD714B006E1A44 /* UIKit.framework in Frameworks */,
 				54C2080717CD714B006E1A44 /* CoreGraphics.framework in Frameworks */,
 				5453C10117DE08C000B811BC /* GoogleMaps.framework in Frameworks */,
 			);
@@ -281,6 +302,8 @@
 				542373831826338E00A8C656 /* AsyncImgView.m */,
 				547F9660182FC7800065B51E /* SingleStartView.h */,
 				547F9661182FC7800065B51E /* SingleStartView.m */,
+				5484FA50184129810057510D /* UIAsyncLabel.h */,
+				5484FA51184129810057510D /* UIAsyncLabel.m */,
 			);
 			path = libs;
 			sourceTree = "<group>";
@@ -306,10 +329,12 @@
 				542373461824BCC000A8C656 /* VCRoot.m */,
 				542373471824BCC000A8C656 /* VCMap.h */,
 				542373481824BCC000A8C656 /* VCMap.m */,
-				546E0B051831A8B400E8815D /* PlaceItemButton.h */,
-				546E0B061831A8B400E8815D /* PlaceItemButton.m */,
+				546E0B051831A8B400E8815D /* UIPlaceItemButton.h */,
+				546E0B061831A8B400E8815D /* UIPlaceItemButton.m */,
 				5484FA2D1833B9D40057510D /* PlaceCategoryButton.h */,
 				5484FA2E1833B9D40057510D /* PlaceCategoryButton.m */,
+				5484FA4D183FB9210057510D /* UIScrollPlaceListView.h */,
+				5484FA4E183FB9210057510D /* UIScrollPlaceListView.m */,
 			);
 			path = soda;
 			sourceTree = "<group>";
@@ -317,6 +342,7 @@
 		5423734A1824BCC000A8C656 /* idv */ = {
 			isa = PBXGroup;
 			children = (
+				5484FA48183E599B0057510D /* arturogutierrez */,
 				5423734B1824BCC000A8C656 /* dyang */,
 				5423734E1824BCC000A8C656 /* gotosleep */,
 			);
@@ -354,6 +380,13 @@
 		542373631824BCCD00A8C656 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				5484FA561844D9520057510D /* tourist-attraction-gray-640x320.png */,
+				5484FA571844D9520057510D /* restaurants-gray-640x320.png */,
+				5484FA581844D9520057510D /* hotel-gray-640x320.png */,
+				5484FA591844D9520057510D /* coffee-gray-640x320.png */,
+				5484FA5A1844D9520057510D /* atm-gray-640x320.png */,
+				5484FA44183E38340057510D /* arrow.png */,
+				5484FA3E183E08860057510D /* loading.gif */,
 				5484FA301833BCF60057510D /* cate-atm.png */,
 				5484FA311833BCF60057510D /* cate-attraction.png */,
 				5484FA321833BCF60057510D /* cate-cafe.png */,
@@ -376,6 +409,15 @@
 				5423736F1824BCCD00A8C656 /* StarFullLarge@2x.png */,
 			);
 			path = img;
+			sourceTree = "<group>";
+		};
+		5484FA48183E599B0057510D /* arturogutierrez */ = {
+			isa = PBXGroup;
+			children = (
+				5484FA49183E599B0057510D /* AnimatedGif.h */,
+				5484FA4A183E599B0057510D /* AnimatedGif.m */,
+			);
+			path = arturogutierrez;
 			sourceTree = "<group>";
 		};
 		54C207F617CD714B006E1A44 = {
@@ -565,21 +607,28 @@
 				542373751824BCCD00A8C656 /* StarEmpty@2x.png in Resources */,
 				546E0B091832F88400E8815D /* icon-search.jpg in Resources */,
 				54C2081717CD714B006E1A44 /* Default@2x.png in Resources */,
+				5484FA5F1844D9520057510D /* atm-gray-640x320.png in Resources */,
 				5423737B1824BCCD00A8C656 /* StarFullLarge@2x.png in Resources */,
 				542373701824BCCD00A8C656 /* fb-login.png in Resources */,
 				542373711824BCCD00A8C656 /* google-login.png in Resources */,
 				542373741824BCCD00A8C656 /* StarEmpty.png in Resources */,
+				5484FA45183E38340057510D /* arrow.png in Resources */,
 				542373731824BCCD00A8C656 /* soda.png in Resources */,
 				5423735E1824BCC000A8C656 /* GPS.gpx in Resources */,
 				542373761824BCCD00A8C656 /* StarEmptyLarge.png in Resources */,
+				5484FA3F183E08860057510D /* loading.gif in Resources */,
 				542373791824BCCD00A8C656 /* StarFull@2x.png in Resources */,
 				54C2081917CD714B006E1A44 /* Default-568h@2x.png in Resources */,
 				54C2083817CD71B7006E1A44 /* Storyboard.storyboard in Resources */,
 				5423730B1822A7E900A8C656 /* Images.xcassets in Resources */,
 				5484FA391833BCF60057510D /* cate-hotel.png in Resources */,
 				542373721824BCCD00A8C656 /* pin.png in Resources */,
+				5484FA5C1844D9520057510D /* restaurants-gray-640x320.png in Resources */,
+				5484FA5D1844D9520057510D /* hotel-gray-640x320.png in Resources */,
+				5484FA5E1844D9520057510D /* coffee-gray-640x320.png in Resources */,
 				5484FA381833BCF60057510D /* cate-cafe.png in Resources */,
 				542373781824BCCD00A8C656 /* StarFull.png in Resources */,
+				5484FA5B1844D9520057510D /* tourist-attraction-gray-640x320.png in Resources */,
 				5484FA361833BCF60057510D /* cate-atm.png in Resources */,
 				5453C10317DE093800B811BC /* GoogleMaps.bundle in Resources */,
 				546E0B0B1832F8D200E8815D /* icon-rest.jpg in Resources */,
@@ -619,7 +668,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				546E0B071831A8B400E8815D /* PlaceItemButton.m in Sources */,
+				546E0B071831A8B400E8815D /* UIPlaceItemButton.m in Sources */,
 				5423735C1824BCC000A8C656 /* VCRoot.m in Sources */,
 				542373611824BCC000A8C656 /* UIViewController+JASidePanel.m in Sources */,
 				542373571824BCC000A8C656 /* VCCenter.m in Sources */,
@@ -628,8 +677,11 @@
 				542373551824BCC000A8C656 /* UIDefaultTextField.m in Sources */,
 				5484FA2F1833B9D40057510D /* PlaceCategoryButton.m in Sources */,
 				5423735D1824BCC000A8C656 /* VCMap.m in Sources */,
+				5484FA4B183E599B0057510D /* AnimatedGif.m in Sources */,
+				5484FA4F183FB9210057510D /* UIScrollPlaceListView.m in Sources */,
 				5423735A1824BCC000A8C656 /* VCList.m in Sources */,
 				542373561824BCC000A8C656 /* UIPlaceButton.m in Sources */,
+				5484FA52184129810057510D /* UIAsyncLabel.m in Sources */,
 				54C2080F17CD714B006E1A44 /* main.m in Sources */,
 				542373541824BCC000A8C656 /* VariableStore.m in Sources */,
 				542373841826338E00A8C656 /* AsyncImgView.m in Sources */,
@@ -706,7 +758,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
@@ -732,7 +784,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "";
@@ -745,6 +797,7 @@
 		54C2083217CD714B006E1A44 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -756,35 +809,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlanB/PlanB-Prefix.pch";
 				INFOPLIST_FILE = "PlanB/PlanB-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
-				PRODUCT_NAME = planb;
-				PROVISIONING_PROFILE = "";
-				SEPARATE_STRIP = NO;
-				TARGETED_DEVICE_FAMILY = 1;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		54C2083317CD714B006E1A44 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../Framework\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PlanB/PlanB-Prefix.pch";
-				INFOPLIST_FILE = "PlanB/PlanB-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -794,6 +819,37 @@
 				PROVISIONING_PROFILE = "";
 				SEPARATE_STRIP = NO;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		54C2083317CD714B006E1A44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Framework\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PlanB/PlanB-Prefix.pch";
+				INFOPLIST_FILE = "PlanB/PlanB-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = planb;
+				PROVISIONING_PROFILE = "";
+				SEPARATE_STRIP = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -1,14 +1,15 @@
 //
-//  PlaceItemButton.m
+//  UIAsyncLabel.m
 //  PlanB
 //
-//  Created by Po-Hsiang Hunag on 2013/11/12.
+//  Created by Po-Hsiang Hunag on 2013/11/24.
 //  Copyright (c) 2013年 Po-Hsiang Hunag. All rights reserved.
 //
 
-#import "PlaceItemButton.h"
+#import "UIAsyncLabel.h"
+#import "Util.h"
+@implementation UIAsyncLabel
 
-@implementation PlaceItemButton
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -16,6 +17,11 @@
         // Initialization code
     }
     return self;
+}
+-(void) asyncTextFromURL:(NSString *)url{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        self.text=[Util stringWithUrl:url];
+    });
 }
 
 /*

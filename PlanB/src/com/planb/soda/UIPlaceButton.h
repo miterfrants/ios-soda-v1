@@ -12,4 +12,6 @@
 @property (nonatomic, retain) NSString *placeName;
 @property (nonatomic, retain) NSString *placeId;
 @property (nonatomic, retain)  NSString *reference;
+@property (nonatomic) double lat;
+@property (nonatomic) double lng;
 @end
