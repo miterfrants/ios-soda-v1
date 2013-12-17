@@ -32,7 +32,7 @@
 }
 */
 -(void)scrollViewDidScroll:(UIScrollView*)scrollView{
-    if(scrollView.contentSize.height-scrollView.contentOffset.y- scrollView.frame.size.height<300){
+    /*if(scrollView.contentSize.height-scrollView.contentOffset.y- scrollView.frame.size.height<300){
         if(!_isBusy){
             _isBusy=YES;
             VCList *vsList= [self viewController];
@@ -40,7 +40,7 @@
             [Util stringAsyncWithUrl:url completion:nil queue:_vs.backgroundThreadManagement];
             [vsList generateList:@"YES"];
         }
-    };
+    };*/
 }
 
 - (VCList*)viewController

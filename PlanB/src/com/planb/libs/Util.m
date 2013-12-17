@@ -14,13 +14,15 @@
 @implementation Util
 const double PI = 3.141592653589793;
 typedef void (^ completionBlock)(NSURLResponse *response, NSData *data, NSError *connectionError);
-+ (NSString *)stringWithUrl:(NSString *)url
+
++ (NSString *)stringWithUrl:(NSMutableString *)url
 {
  
    /* NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url
                                                 cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                             timeoutInterval:30];*/
-NSMutableURLRequest *urlRequest= [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
+    NSMutableURLRequest *urlRequest= [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
+    [urlRequest setValue:@"zh-TW" forHTTPHeaderField:@"Accept-Language"];
     // Fetch the JSON response
     NSData *urlData;
     NSURLResponse *response;
@@ -53,6 +55,7 @@ NSMutableURLRequest *urlRequest= [[NSMutableURLRequest alloc] initWithURL:[NSURL
     if(jsonParsingError==nil){
         return dicResult;
     }else{
+        NSLog(@"%@",jsonParsingError);
         return nil;
     }
 }
@@ -70,16 +73,28 @@ NSMutableURLRequest *urlRequest= [[NSMutableURLRequest alloc] initWithURL:[NSURL
     return r*c;
 }
 + (UIColor *)colorWithHexString:(NSString *)str {
-    const char *cStr = [str cStringUsingEncoding:NSASCIIStringEncoding];
-    long x = strtol(cStr+1, NULL, 16);
-    return [Util colorWithHex:x];
+    NSString *cleanString = [str stringByReplacingOccurrencesOfString:@"#" withString:@""];
+    if([cleanString length] == 3) {
+        cleanString = [NSString stringWithFormat:@"%@%@%@%@%@%@",
+                       [cleanString substringWithRange:NSMakeRange(0, 1)],[cleanString substringWithRange:NSMakeRange(0, 1)],
+                       [cleanString substringWithRange:NSMakeRange(1, 1)],[cleanString substringWithRange:NSMakeRange(1, 1)],
+                       [cleanString substringWithRange:NSMakeRange(2, 1)],[cleanString substringWithRange:NSMakeRange(2, 1)]];
+    }
+    if([cleanString length] == 6) {
+        cleanString = [cleanString stringByAppendingString:@"ff"];
+    }
+    unsigned int baseValue;
+    [[NSScanner scannerWithString:cleanString] scanHexInt:&baseValue];
+    return [UIColor colorWithRed:((baseValue >> 24) & 0xFF)/255.0f green: ((baseValue >> 16) & 0xFF)/255.0f blue:((baseValue >> 8) & 0xFF)/255.0f alpha:((baseValue >> 0) & 0xFF)/255.0f];
+
 }
 + (UIColor *)colorWithHex:(UInt32)col {
-    unsigned char r, g, b;
+    unsigned char r, g, b, a;
     b = col & 0xFF;
     g = (col >> 8) & 0xFF;
     r = (col >> 16) & 0xFF;
-    return [UIColor colorWithRed:(float)r/255.0f green:(float)g/255.0f blue:(float)b/255.0f alpha:1];
+    a = (col >> 24) & 0xFF;
+    return [UIColor colorWithRed:(float)r/255.0f green:(float)g/255.0f blue:(float)b/255.0f alpha:(float)a/255.0f];
 }
 
 

@@ -14,6 +14,7 @@
 @property NSString *defaultBGName;
 @property NSString *pic;
 @property NSString *type;
+@property NSString *otherSource;
 @property (strong,nonatomic) UILabel * lblName;
 
 @end

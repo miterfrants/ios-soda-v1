@@ -14,8 +14,8 @@
 @property NSString *jsonGoods;
 @property NSString *jsonBadges;
 @property NSInteger *intLocalId;
-@property NSString *keyGoogleMap;
-@property NSMutableArray *arrMarker;
+@property NSString *googleWebKey;
+@property (nonatomic,retain) NSMutableArray *arrMarker;
 @property NSString *listHeight;
 @property NSString *listWidth;
 @property NSOperationQueue *backgroundThreadManagement;

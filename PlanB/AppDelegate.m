@@ -39,12 +39,14 @@ static NSString * const kClientId = @"235322884744.apps.googleusercontent.com";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    [GMSServices provideAPIKey:@"AIzaSyBtb7I2tk-7hP6KWKU4wC4tNoFzM4pCcI0"];
+    [GMSServices provideAPIKey:@"AIzaSyBQtD9EG2eOW8hJeC9idwfsD8nIU0ZEWyw"];
     _vs =[VariableStore sharedInstance];
-    _vs.keyGoogleMap=@"AIzaSyBtb7I2tk-7hP6KWKU4wC4tNoFzM4pCcI0";
-    _vs.domain=@"36.224.8.126";
+    //_vs.googleWebKey=@"AIzaSyCmua4N_rbg1YbNkFpGAVEO3hm_biGo3rY";
+    _vs.googleWebKey=@"AIzaSyCYM1UUnXbgP3eD__x2EjIugNOy-vE3McY";
+    _vs.domain=@"36.224.9.100";
     _vs.listWidth=@"320.00";
     _vs.listHeight=@"160.00";
+    _vs.arrMarker = [[NSMutableArray alloc]init];
     _vs.appLaunchDate=[[NSDate alloc] init];
     CLLocationManager * manager=[[CLLocationManager alloc]init];
     manager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -52,17 +54,20 @@ static NSString * const kClientId = @"235322884744.apps.googleusercontent.com";
     [manager startUpdatingLocation];
     _vs.myLocation=manager.location;
     NSString *jsonCate= @"{\"cate\":[\
-        {\"name\":\"小吃\",\"keyword\":\"小吃\",\"type\":\"\",\"pic\":\"cate-search.png\",\"bg\":\"\",\"color\":\"#b7dd6c\"},\
+        {\"name\":\"小吃\",\"keyword\":\"小吃\",\"type\":\"\",\"pic\":\"cate-search.png\",\"bg\":\"\",\"color\":\"#b7dd6cff\"},\
         \
-        {\"name\":\"景點\",\"keyword\":\"旅遊景點\",\"type\":\"\",\"pic\":\"cate-attraction.png\",\"bg\":\"tourist-attraction-gray-640x320\",\"color\":\"#abd156\"},\
+        {\"name\":\"景點\",\"keyword\":\"旅遊景點\",\"type\":\"\",\"pic\":\"cate-attraction.png\",\"bg\":\"tourist-attraction-gray-640x320\",\"color\":\"#abd156ff\"},\
         \
-        {\"name\":\"餐廳\",\"keyword\":\"餐廳\",\"type\":\"\",\"pic\":\"cate-rest.png\",\"bg\":\"restaurants-gray-640x320.png\",\"color\":\"#abd156\"},\
+        {\"name\":\"餐廳\",\"keyword\":\"餐廳\",\"type\":\"\",\"pic\":\"cate-rest.png\",\"bg\":\"restaurants-gray-640x320.png\",\"color\":\"#abd156ff\"},\
         \
-        {\"name\":\"咖啡\",\"keyword\":\"咖啡+茶+簡餐\",\"type\":\"\",\"pic\":\"cate-cafe.png\",\"bg\":\"coffee-gray-640x320.png\",\"color\":\"#b4da5f\"},\
+        {\"name\":\"咖啡\",\"keyword\":\"咖啡+茶+簡餐\",\"type\":\"\",\"pic\":\"cate-cafe.png\",\"bg\":\"coffee-gray-640x320.png\",\"color\":\"#b4da5fff\"},\
         \
-        {\"name\":\"ATM\",\"keyword\":\"提款機|郵局\",\"type\":\"\",\"pic\":\"cate-atm.png\",\"bg\":\"atm-gray-640x320.png\",\"color\":\"#bcda78\"},\
+        {\"name\":\"ATM\",\"keyword\":\"提款機|郵局\",\"type\":\"\",\"pic\":\"cate-atm.png\",\"bg\":\"atm-gray-640x320.png\",\"color\":\"#bcda78ff\",\"other-source\":\"/controller/mobile/place.aspx?action=get-atm\"},\
         \
-        {\"name\":\"旅館\",\"keyword\":\"\",\"type\":\"hotel\",\"pic\":\"cate-hotel.png\",\"bg\":\"hotel-gray-640x320.png\",\"color\":\"#b9dd57\"}]}";
+        {\"name\":\"旅館\",\"keyword\":\"\",\"type\":\"hotel\",\"pic\":\"cate-hotel.png\",\"bg\":\"hotel-gray-640x320.png\",\"color\":\"#b9dd57ff\"},\
+        \
+        {\"name\":\"加油站\",\"keyword\":\"\",\"type\":\"gas\",\"pic\":\"cate-hotel.png\",\"bg\":\"hotel-gray-640x320.png\",\"color\":\"#b9dd57ff\",\"other-source\":\"/controller/mobile/place.aspx?action=get-gas\"}\
+        ]}";
     
     
     NSData * dataCate=[jsonCate dataUsingEncoding:NSUTF8StringEncoding];
@@ -108,7 +113,6 @@ static NSString * const kClientId = @"235322884744.apps.googleusercontent.com";
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *url=[NSString stringWithFormat:@"http://%@/controller/mobile/report.aspx?action=add-app-use-long&creator_ip=%@&launch_date=%@&exit_date=%@", _vs.domain,[Util getIPAddress],[format stringFromDate:_vs.appLaunchDate],[format stringFromDate:_vs.appExitDate]];
-    NSLog(url);
     [Util stringWithUrl:url];
     [self.fb_session close];
 

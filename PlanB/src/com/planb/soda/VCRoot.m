@@ -7,6 +7,7 @@
 //
 
 #import "VCRoot.h"
+#import "VCMap.h"
 #import "AppDelegate.h"
 @interface VCRoot ()
 
@@ -85,11 +86,12 @@
 {
     self.shouldDelegateAutorotateToVisiblePanel=NO;
     self.panningLimitedToTopViewController=NO;
-
     //[self setLeftPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"VCLeft"]];
     [self setCenterPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"NCCenter"]];
-    [self setRightPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"VCRight"]];
-
+    VCMap  *vcRight=[self.storyboard instantiateViewControllerWithIdentifier:@"VCRight"];
+    //[GMSServices provideAPIKey:@"AIzaSyBQtD9EG2eOW8hJeC9idwfsD8nIU0ZEWyw"];
+    [self setRightPanel:vcRight];
+    //[vcRight view];
 }
 
 @end

@@ -109,7 +109,7 @@
     [self loadSelfComment];
     self.navigationController.topViewController.title=_strPlaceTitle;
     //get Place Detail
-    NSString *url= [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/details/json?reference=%@&sensor=true&key=%@", _strReference, [VariableStore sharedInstance].keyGoogleMap ];
+    NSString *url= [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/details/json?reference=%@&sensor=true&key=%@", _strReference, [VariableStore sharedInstance].googleWebKey ];
     [_btnPin setBackgroundImage:[UIImage imageNamed:@"pin.png"] forState:UIControlStateNormal];
     NSData * dataPlaceDetail=[[Util stringWithUrl:url] dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -134,7 +134,7 @@
             for(int i=0;i<arrPhotos.count;i++){
                 
                 //NSLog(@"%@",[[arrPhotos objectAtIndex:i] objectForKey:@"photo_reference"]);
-                NSString *urlImg = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=%@&sensor=false&key=%@",[[arrPhotos objectAtIndex:i] objectForKey:@"photo_reference"], [VariableStore sharedInstance].keyGoogleMap] ;
+                NSString *urlImg = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=%@&sensor=false&key=%@",[[arrPhotos objectAtIndex:i] objectForKey:@"photo_reference"], [VariableStore sharedInstance].googleWebKey] ;
                 //  NSLog(strURL);
                 NSURL * url=[[NSURL alloc] initWithString:urlImg];
                 //NSURLRequest * req=[[NSURLRequest alloc] initWithURL:url];

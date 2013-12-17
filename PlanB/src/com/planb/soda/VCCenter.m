@@ -52,6 +52,7 @@
             [imgViewIcon setFrame:CGRectMake((recWidth-50)/2, (recWidth-50)/2, 50, 50)];
             pcButton.keyword=[item objectForKey:@"keyword"];
             pcButton.name=[item objectForKey:@"name"];
+            pcButton.otherSource=[item objectForKey:@"other-source"];
             [pcButton addSubview:imgViewIcon];
             [pcButton setBackgroundColor:[Util colorWithHexString:[item objectForKey:@"color"]]];
             [pcButton setFrame:CGRectMake(i%2*recWidth,floor(i/2)* recWidth,recWidth,recWidth)];
@@ -83,6 +84,7 @@
     vcList.type=btn.type;
     vcList.cateTitle=btn.name;
     vcList.defaultBGName=btn.defaultBGName;
+    vcList.otherSource=btn.otherSource;
     NSString *url=[NSString stringWithFormat:@"http://%@/controller/mobile/report.aspx?action=add-category-count&cate=%@&creator_ip=%@", _vs.domain,btn.name,[Util getIPAddress] ];
     [Util stringAsyncWithUrl:url completion:nil queue:_vs.backgroundThreadManagement];
     [self.navigationController pushViewController:vcList animated:YES];

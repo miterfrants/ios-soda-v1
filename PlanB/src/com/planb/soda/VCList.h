@@ -18,10 +18,14 @@
     @property NSString *defaultBGName;
     @property (strong,nonatomic) NSMutableArray *arrButton;
     @property (strong,nonatomic) UIImageView *loadingView;
+@property (strong,nonatomic) UILabel * loadingTitle;
     @property (strong,nonatomic) UIRefreshControl *refreshControl;
     @property BOOL isGenerateList;
     @property (strong,nonatomic) NSString *nextPageToken;
     @property int currentCount;
     @property VariableStore *vs;
+@property NSTimer *requestTimoutTimer;
+@property NSString *otherSource;
+@property NSMutableDictionary *dicResult;
     -(void) generateList:(NSString *)isNext;
 @end
