@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "VariableStore.h"
+
 @interface UIScrollPlaceListView : UIScrollView <UIScrollViewDelegate>
 @property BOOL isBusy;
+@property BOOL isShowNext;
+@property BOOL isShowingNextButton;
 @property (strong,nonatomic) VariableStore *vs;
+@property double memoryY;
+-(void) clearPlaceItemButton;
 @end

@@ -37,10 +37,10 @@
         _btnNext.hidden=YES;
         _btnPrevious.hidden=YES;
     }
-
 	// Do any additional setup after loading the view.
 }
-
+-(void)displayLayer:(CALayer *)layer{
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -95,6 +95,7 @@
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:locationManager.location.coordinate.latitude
                                                             longitude:locationManager.location.coordinate.longitude
                                                                  zoom:15];
+
     mapview = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapview.myLocationEnabled = YES;
     self.view = mapview;
@@ -102,31 +103,57 @@
     mapview.delegate=self;
 
     _btnTakeMeThere=[UIButton buttonWithType:UIButtonTypeCustom];
-    _btnTakeMeThere.frame=CGRectMake(0,410,300,50);
-    [_btnTakeMeThere setBackgroundColor:[UIColor colorWithRed:0.3 green:0.6 blue:0.8 alpha:1]];
+    _btnTakeMeThere.frame=CGRectMake(138,410,162,48);
+    //[_btnTakeMeThere setBackgroundColor:[UIColor colorWithRed:0.3 green:0.6 blue:0.8 alpha:1]];
     _btnTakeMeThere.titleLabel.textColor=[UIColor blackColor];
-    [_btnTakeMeThere setTitle:@"Take Me There" forState:UIControlStateNormal];
+    UIImageView *imgViewTakemethere=[[UIImageView alloc] init];
+    [imgViewTakemethere setImage:[UIImage imageNamed:@"Nav-btn.png"]];
+    [imgViewTakemethere setFrame:CGRectMake(0, 0, 162, 48)];
+    UILabel *lblDirection=[[UILabel alloc]init];
+    [imgViewTakemethere  addSubview:lblDirection];
+    [lblDirection setFrame:CGRectMake(26,0, 100, 48)];
+    lblDirection.text=@"導 航";
+    lblDirection.textColor = [UIColor whiteColor];
+    lblDirection.font = [UIFont fontWithName:@"黑體-繁" size:24.f];
+    lblDirection.numberOfLines = 1;
+    lblDirection.lineBreakMode = NSLineBreakByWordWrapping;
+    lblDirection.textAlignment=NSTextAlignmentLeft;
+
+    
+    [_btnTakeMeThere addSubview:imgViewTakemethere];
     [_btnTakeMeThere addTarget:self  action:@selector(takeMeThere:) forControlEvents:UIControlEventTouchUpInside];
     _btnTakeMeThere.hidden=YES;
     [mapview addSubview:_btnTakeMeThere];
     
     _btnNext=[[UIButton alloc]init];
-    _btnNext.frame=CGRectMake(220,30,80,50);
+    _btnNext.frame=CGRectMake(250,30,48,48);
     _btnNext.titleLabel.textColor=[UIColor blackColor];
     _btnNext.hidden=NO;
-    [_btnNext setBackgroundColor:[UIColor colorWithRed:0.3 green:0.6 blue:0.8 alpha:1]];
-    [_btnNext setTitle:@"Next" forState:UIControlStateNormal];
+    //[_btnNext setBackgroundColor:[UIColor colorWithRed:0.3 green:0.6 blue:0.8 alpha:1]];
+    UIImageView *imgViewNext=[[UIImageView alloc] init];
+    [imgViewNext setImage:[UIImage imageNamed:@"next-btn.png"]];
+    [imgViewNext setFrame:CGRectMake(0, 0, 48, 48)];
+    [_btnNext addSubview:imgViewNext];
     [_btnNext addTarget:self  action:@selector(nextMarker:) forControlEvents:UIControlEventTouchUpInside];
     [mapview addSubview:_btnNext];
 
     _btnPrevious=[[UIButton alloc]init];
-    _btnPrevious.frame=CGRectMake(80,30,80,50);
+    _btnPrevious.frame=CGRectMake(80,30,48,48);
     _btnPrevious.titleLabel.textColor=[UIColor blackColor];
     _btnPrevious.hidden=NO;
-    [_btnPrevious setBackgroundColor:[UIColor colorWithRed:0.3 green:0.6 blue:0.8 alpha:1]];
-    [_btnPrevious setTitle:@"Prev" forState:UIControlStateNormal];
+    //[_btnPrevious setBackgroundColor:[UIColor colorWithRed:0.3 green:0.6 blue:0.8 alpha:1]];
+    UIImageView *imgViewPre=[[UIImageView alloc] init];
+    [imgViewPre setImage:[UIImage imageNamed:@"pre-btn.png"]];
+    [imgViewPre setFrame:CGRectMake(0, 0, 48, 48)];
+    [_btnPrevious addSubview:imgViewPre];
     [_btnPrevious addTarget:self  action:@selector(prevMarker:) forControlEvents:UIControlEventTouchUpInside];
     [mapview addSubview:_btnPrevious];
+    
+    
+    for(int i=0;i< _arrMarker.count;i++){
+        GMSMarker * marker=(GMSMarker *) _arrMarker[i];
+        marker.map=mapview;
+    }
     
 }
 #pragma mark - GMSMapViewDelegate

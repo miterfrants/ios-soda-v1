@@ -90,14 +90,14 @@
     [self.navigationController pushViewController:vcList animated:YES];
     //NSLog(@"%@",result);
     //NSLog(@"click category");
-    dispatch_async(dispatch_get_main_queue(),^{
-        VCMap * vcMap=(VCMap *)self.sidePanelController.rightPanel;
-        if(![vcMap isViewLoaded]){
-            vcMap=[[VCMap alloc] init];
-            [vcMap loadView];
-            self.sidePanelController.rightPanel=vcMap;
-        }
-    });
+//    dispatch_async(dispatch_get_main_queue(),^{
+//        VCMap * vcMap=(VCMap *)self.sidePanelController.rightPanel;
+//        if(![vcMap isViewLoaded]){
+//            vcMap=[[VCMap alloc] init];
+//            //[vcMap loadView];
+//            self.sidePanelController.rightPanel=vcMap;
+//        }
+//    });
 
 }
 

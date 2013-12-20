@@ -25,7 +25,11 @@
     @property int currentCount;
     @property VariableStore *vs;
 @property NSTimer *requestTimoutTimer;
+@property NSTimer *nextButtonTimoutTimer;
 @property NSString *otherSource;
 @property NSMutableDictionary *dicResult;
+@property UIButton *btnNextPage;
     -(void) generateList:(NSString *)isNext;
+    -(void) showBtnNextPage;
+    -(void) hideBtnNextPage;
 @end

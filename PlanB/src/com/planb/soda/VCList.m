@@ -52,7 +52,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     _locationManager = [[CLLocationManager alloc] init];
     //_locationManager.delegate=self;
     _locationManager.distanceFilter = kCLDistanceFilterNone;
@@ -81,19 +80,27 @@
     [_SVListContainer setScrollEnabled:true];
     [_SVListContainer setFrame:CGRectMake(0, 64, _vs.screenW,_vs.screenH)];
     [self initialScrollView:false];
-    
+
     
     //next page button
-    UIButton *btnNextPage = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnNextPage setBackgroundColor:[Util colorWithHexString:@"#33b5e5dd"]];
-    btnNextPage.layer.cornerRadius = 20;//half of the width
-    btnNextPage.titleLabel.text=@"More";
-    btnNextPage.titleLabel.textColor=[Util colorWithHexString:@"#ffffffff"];
-    [btnNextPage setFrame:CGRectMake(_vs.screenW-50,74,40,40)];
-    [btnNextPage addTarget:self action:@selector(generateNextList:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btnNextPage];
+    _btnNextPage = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_btnNextPage setBackgroundColor:[Util colorWithHexString:@"#33b5e5dd"]];
+    _btnNextPage.layer.cornerRadius = 20;//half of the width
+    _btnNextPage.layer.borderWidth=3;
+    _btnNextPage.layer.borderColor=[Util colorWithHexString:@"ffffffff"].CGColor;	
+    [_btnNextPage setTitle:@"更多" forState:UIControlStateNormal];
+    _btnNextPage.titleLabel.font =[UIFont fontWithName:@"黑體-繁" size:12];;
+    _btnNextPage.titleLabel.numberOfLines=1;
+    _btnNextPage.titleLabel.lineBreakMode=NSLineBreakByCharWrapping;
+    _btnNextPage.titleLabel.textColor=[Util colorWithHexString:@"#ffffffff"];
+    [_btnNextPage setFrame:CGRectMake(-20,_vs.screenH-20,40,40)];
+    [_btnNextPage addTarget:self action:@selector(generateNextList:) forControlEvents:UIControlEventTouchUpInside];
+    _btnNextPage.hidden=YES;
+
+    [self.view addSubview:_btnNextPage];
 }
 -(void) generateNextList:(UIButton *)sender{
+    [sender removeTarget:self action:@selector(generateNextList:) forControlEvents:UIControlEventTouchUpInside];
     //抓下一頁資料要把現有的scroll view 先清掉 然後再重排
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
@@ -101,13 +108,9 @@
     [UIView setAnimationDuration:0.26];
     [_SVListContainer setAlpha:0];
     [UIView commitAnimations];
-    for(int i =0;i< [[_SVListContainer subviews] count];i++){
-        NSString *className =NSStringFromClass([[[_SVListContainer subviews] objectAtIndex:i] class]);
-        if([className isEqualToString:@"UIPlaceButton"]){
-            [[[_SVListContainer subviews] objectAtIndex:i] removeFromSuperview];
-        }
-    }
-    //[self generateList:@"YES" isReget:NO];
+    NSLog(@"A");
+    [self generateList:@"YES" isReget:NO];
+    [self hideBtnNextPageMain:nil];
 
 }
 -(void) updateList:(UIRefreshControl *)sender{
@@ -116,11 +119,15 @@
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDuration:0.26];
     [_SVListContainer setAlpha:0];
+    _loadingView.alpha=1;
     [UIView commitAnimations];
     [UIView setAnimationDidStopSelector:@selector(animationDidStop)];
     [_refreshControl endRefreshing];
     NSString *url=[NSString stringWithFormat:@"http://%@/controller/mobile/report.aspx?action=add-pull-down&creator_ip=%@&cate=%@", _vs.domain,[Util getIPAddress], self.cateTitle];
     [Util stringAsyncWithUrl:url completion:nil queue:_vs.backgroundThreadManagement];
+    //refresh controller 要把資料刪掉重抓
+    [self generateList:nil isReget:YES];
+
     //_currentCount=0;
     
 }
@@ -129,13 +136,13 @@
     if([context isEqualToString:@"show_scroll_view"]){
         _SVListContainer.isBusy=NO;
     }else{
-        for(int i =0;i< [[_SVListContainer subviews] count];i++){
-            NSString *className =NSStringFromClass([[[_SVListContainer subviews] objectAtIndex:i] class]);
-            if([className isEqualToString:@"UIPlaceButton"]){
-            [[[_SVListContainer subviews] objectAtIndex:i] removeFromSuperview];
-            }
-        }
-        [self initialScrollView: true];
+//        for(int i =0;i< [[_SVListContainer subviews] count];i++){
+//            NSString *className =NSStringFromClass([[[_SVListContainer subviews] objectAtIndex:i] class]);
+//            if([className isEqualToString:@"UIPlaceButton"]){
+//            [[[_SVListContainer subviews] objectAtIndex:i] removeFromSuperview];
+//            }
+//        }
+//        [self initialScrollView: true];
     }
 }
 -(void)initialScrollView:(BOOL) isGenerateList{
@@ -161,23 +168,26 @@
     }
     [_SVListContainer setContentSize:CGSizeMake([vs.listWidth floatValue], contentHeight+49)];
     if(![[dicResult objectForKey:@"status"] isEqualToString:@"ZERO_RESULTS"]){
-        _nextPageToken=(NSString *) [dicResult valueForKey:@"next_page_token"];
+        
+        if(((NSString *) [dicResult valueForKey:@"next_page_token"]).length>0 && ![((NSString *) [dicResult valueForKey:@"next_page_token"]) isEqualToString:_nextPageToken]){
+            _nextPageToken=(NSString *) [dicResult valueForKey:@"next_page_token"];
+            _btnNextPage.hidden=NO;
+            [_btnNextPage addTarget:self action:@selector(generateNextList:) forControlEvents:UIControlEventTouchUpInside];
+            _SVListContainer.isShowNext=YES;
+        }else{
+            _btnNextPage.hidden=YES;
+            _SVListContainer.isShowNext=NO;
+        }
     }else{
         //沒有資料
         //_loadingView.alpha=0;
         _dicResult=[[NSMutableDictionary alloc] init];
-        _loadingTitle.text=@"您所在的位置沒有資料，在3秒後會自動重新抓取資料．";
-        [NSTimer scheduledTimerWithTimeInterval:3
-                                        target:self
-                                       selector:@selector(regetList:)
-                                       userInfo:nil
-                                        repeats:NO];
+        _loadingTitle.text=@"您所在的位置沒有資料．";
         _SVListContainer.alpha=0;
         [vcMap clearMarker];
         return;
     }
     /*remove and move to background thread*/
-    
     CLLocationManager *locationManager = [[CLLocationManager alloc] init];
     //locationManager.delegate = self;//or whatever class you have for managing location
     [locationManager startUpdatingLocation];
@@ -201,7 +211,6 @@
     //排序
     NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"dist" ascending:YES];
     [[dicResult objectForKey:@"results" ] sortUsingDescriptors:[NSArray arrayWithObject:sort]];
-
     for(int i=0;i<[[dicResult objectForKey:@"results"] count];i++){
         //NSLog(@"list 1");
         NSString *name= [[[dicResult objectForKey:@"results"] objectAtIndex:i] valueForKey:@"name"] ;
@@ -214,19 +223,17 @@
 
         //NSLog(@"list 2");
         UIPlaceItemButton *btnList=[[UIPlaceItemButton alloc]initWithFrame:CGRectMake(0, [vs.listHeight floatValue]*i,  [vs.listWidth floatValue],[vs.listHeight floatValue])];
-        
         double dist=[destination distanceFromLocation:locationManager.location]* 0.000621371192*1000;
-
-
         //[btnList asyncGetDistAndAddressAndChangeMarker:[NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/distancematrix/json?origins=%.8F,%.8F&destinations=%.8F,%.8F&mode=walk&language=zh-TW&sensor=false",vs.myLocation.coordinate.latitude,vs.myLocation.coordinate.longitude,destination.coordinate.latitude,destination.coordinate.longitude ] lat:destination.coordinate.latitude lng:destination.coordinate.longitude mapView:vcMap] ;
 
         NSString *stringDist=(NSString *)[[[dicResult objectForKey:@"results"]objectAtIndex:i] valueForKey:@"dist"];
         NSString *address=[((NSArray *) [[[dicResult objectForKey:@"results"]objectAtIndex:i]valueForKey:@"address"] ) componentsJoinedByString:@""];
+
         if (stringDist !=nil){
             dist =[stringDist floatValue];
         }
-        [vcMap pinMarker:[lat floatValue] lng:[lng floatValue] name:name snippet:address];
 
+        [vcMap pinMarker:[lat floatValue] lng:[lng floatValue] name:name snippet:address];
         //set property
         [btnList setPlaceName:name];
         [btnList setReference:reference];
@@ -249,7 +256,6 @@
         bottomBorder.frame = CGRectMake(-1, -0.5, btnList.frame.size.width+2 ,btnList.frame.size.height);
         [btnList.layer addSublayer:bottomBorder];
         
-        
         //[btnList addTarget:self action:@selector(goToOne:) forControlEvents:UIControlEventTouchUpInside];
         [_SVListContainer addSubview:btnList];
         [_arrButton  addObject:btnList];
@@ -266,9 +272,10 @@
             }else{
                 [btnList.asyncImgView setImage:[UIImage imageNamed:_defaultBGName]];
             }
+            
         }
         @catch (NSException *exception) {
-            NSLog(@"HAHA Error:%@", exception.reason);
+            //NSLog(@"HAHA Error:%@", exception.reason);
         }
         @finally {
             
@@ -278,20 +285,47 @@
     //NSLog(@"%@",dicResult);
     //NSLog(@"generate list finish");
 }
+-(void)showBtnNextPage{
+    //顯示 scroll
+    [UIView beginAnimations:@"" context:@"show_next_btn"];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDuration:0.26];
+    _btnNextPage.layer.cornerRadius=24;
+    [_btnNextPage setFrame:CGRectMake(10, _vs.screenH-58, 48, 48)];
+    [UIView commitAnimations];
+}
 
+-(void)hideBtnNextPage{
+        _nextButtonTimoutTimer=[NSTimer scheduledTimerWithTimeInterval:3
+                                                                target:self
+                                                              selector:@selector(hideBtnNextPageMain:)
+                                                              userInfo:nil
+                                                               repeats:NO];
+
+}
+-(void)hideBtnNextPageMain:(id *) sender{
+    [UIView beginAnimations:@"" context:@"hide_next_btn"];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDuration:0.26];
+    [_btnNextPage setFrame:CGRectMake(-20, _vs.screenH-20, 40, 40)];
+    [UIView commitAnimations];
+    _SVListContainer.isShowingNextButton=NO;
+
+}
 
 //other htread
 -(void)generateList:(NSString *) isNext isReget:(BOOL) isReget{
+    [_SVListContainer clearPlaceItemButton];
+    if(isReget){
+        _dicResult=nil;
+    }
     VCMap *vcMap=(VCMap *)self.sidePanelController.rightPanel;
     [vcMap clearMarker];
     vcMap.currIndex=0;
-    //NSLog(@"get json start");
-    //NSHTTPURLResponse   * res;
-    //NSError * err;
-    //NSMutableURLRequest * req;
+
     NSMutableString * nearbySearchURL=[NSMutableString string];
-    //next page but token is empty,
-    //_SVListContainer.isBusy is YES and in the block change to NO.
     _loadingView.alpha=1;
     if(isNext != nil && [isNext boolValue]==YES && (_nextPageToken==nil || _nextPageToken.length==0)){
         return;
@@ -302,17 +336,14 @@
         [nearbySearchURL appendFormat:@"http://%@%@&lat=%f&lng=%f",_vs.domain,_otherSource,_locationManager.location.coordinate.latitude,_locationManager.location.coordinate.longitude];
         //NSLog(@"%@",nearbySearchURL);
         _dicResult=[Util jsonWithUrl:nearbySearchURL];
-        NSLog(@"%@",_dicResult);
     }
 
 
     
     
     //太久的話就在loading 加上一個label
-    //reget 會有 重抓的訊息
-    if(!isReget){
-        [self setLongTimeRequest];
-    }
+    [self setLongTimeRequest];
+
     
     nearbySearchURL=[[NSMutableString alloc] init];
     //抓google 資料
@@ -337,6 +368,7 @@
         [_requestTimoutTimer invalidate];
         _requestTimoutTimer=nil;
         _loadingTitle.text=@"Google Place 資料讀取完成 產生列表中...";
+
         [self generateListMain:_dicResult];
         
         //_currentCount 是拿來算位置的 下一頁要夾上去
@@ -364,7 +396,7 @@
 -(void) setLongTimeRequest{
     dispatch_async(dispatch_get_main_queue(),^{
         _loadingTitle.text=@"正在讀取的資料...";
-        _requestTimoutTimer=[NSTimer scheduledTimerWithTimeInterval:0.8
+        _requestTimoutTimer=[NSTimer scheduledTimerWithTimeInterval:1.8
                                                              target:self
                                                            selector:@selector(loadingTooLong:)
                                                            userInfo:nil
@@ -372,9 +404,7 @@
     });
 }
 
--(void) regetList:(id) sender{
-    [self generateList:nil isReget:YES];
-}
+
 -(void) loadingTooLong: (id) sender{
     _loadingTitle.text=@"現在的網路速度有點慢，請耐心等候．";
 }

@@ -9,7 +9,9 @@
 #import "UIScrollPlaceListView.h"
 #import "VCList.h"
 #import "Util.h"
-@implementation UIScrollPlaceListView
+@implementation UIScrollPlaceListView{
+    VCList *vcList;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -19,7 +21,10 @@
         self.delegate = self;
     }
     _isBusy=NO;
+    _isShowNext=NO;
+    _isShowingNextButton=NO;
     _vs=[VariableStore sharedInstance];
+    _memoryY=0;
     return self;
 }
 
@@ -32,7 +37,22 @@
 }
 */
 -(void)scrollViewDidScroll:(UIScrollView*)scrollView{
-    /*if(scrollView.contentSize.height-scrollView.contentOffset.y- scrollView.frame.size.height<300){
+    
+    if(scrollView.contentOffset.y<0){
+        return;
+    };
+    if(scrollView.contentOffset.y > _memoryY){
+        vcList=[self viewController];
+        [vcList.nextButtonTimoutTimer invalidate];
+        vcList.nextButtonTimoutTimer=nil;
+        [vcList hideBtnNextPage];
+        if( _isShowNext && !_isShowingNextButton){
+            _isShowingNextButton=YES;
+            [vcList showBtnNextPage];
+        }
+    }
+    _memoryY=scrollView.contentOffset.y;
+    /*if(- scrollView.frame.size.height<300){
         if(!_isBusy){
             _isBusy=YES;
             VCList *vsList= [self viewController];
@@ -42,7 +62,15 @@
         }
     };*/
 }
-
+-(void) clearPlaceItemButton{
+    for(int i =0;i< [[self subviews] count];i++){
+        NSString *className =NSStringFromClass([[[self subviews] objectAtIndex:i] class]);
+        if([className isEqualToString:@"UIPlaceButton"]){
+            NSLog(@"A");
+            [[[self subviews] objectAtIndex:i] removeFromSuperview];
+        }
+    }
+}
 - (VCList*)viewController
 {
     for (UIView* next = [self superview]; next; next = next.superview)
