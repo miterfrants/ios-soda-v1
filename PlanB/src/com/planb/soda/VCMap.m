@@ -37,6 +37,7 @@
         _btnNext.hidden=YES;
         _btnPrevious.hidden=YES;
     }
+
 	// Do any additional setup after loading the view.
 }
 -(void)displayLayer:(CALayer *)layer{
@@ -86,6 +87,7 @@
 }
 
 - (void)loadView {
+
     // Create a GMSCameraPosition that tells the map to display the
     // coordinate -33.86,151.20 at zoom level 6.
     //GMSCameraPosition 這個是用來設定 zoom 和 map center 有點像 3d的view port
@@ -101,9 +103,9 @@
     self.view = mapview;
     mapview.accessibilityElementsHidden=NO;
     mapview.delegate=self;
-
+    _vs= [VariableStore sharedInstance];
     _btnTakeMeThere=[UIButton buttonWithType:UIButtonTypeCustom];
-    _btnTakeMeThere.frame=CGRectMake(138,410,162,48);
+    _btnTakeMeThere.frame=CGRectMake(138,_vs.screenH-65,162,48);
     //[_btnTakeMeThere setBackgroundColor:[UIColor colorWithRed:0.3 green:0.6 blue:0.8 alpha:1]];
     _btnTakeMeThere.titleLabel.textColor=[UIColor blackColor];
     UIImageView *imgViewTakemethere=[[UIImageView alloc] init];
@@ -148,12 +150,12 @@
     [_btnPrevious addSubview:imgViewPre];
     [_btnPrevious addTarget:self  action:@selector(prevMarker:) forControlEvents:UIControlEventTouchUpInside];
     [mapview addSubview:_btnPrevious];
-    
-    
+
     for(int i=0;i< _arrMarker.count;i++){
         GMSMarker * marker=(GMSMarker *) _arrMarker[i];
         marker.map=mapview;
     }
+    mapview.padding= UIEdgeInsetsMake(0, 72, 0, 0);
     
 }
 #pragma mark - GMSMapViewDelegate
@@ -182,6 +184,7 @@
                                                         zoom:15]];
     _btnTakeMeThere.hidden=NO;
 }
+
 -(void) prevMarker:(id) sender{
     if((int)_currIndex>0){
         _currIndex = ((int) _currIndex -1);

@@ -67,7 +67,7 @@
     [self.view addSubview:_loadingView];
     _loadingTitle =[[UILabel alloc]init];
     _loadingTitle.textColor = [Util colorWithHexString:@"#999999FF"];
-    _loadingTitle.font = [UIFont fontWithName:@"黑體-繁" size:10];
+    _loadingTitle.font = [UIFont fontWithName:@"黑體-繁" size:13];
     _loadingTitle.numberOfLines = 2;
     _loadingTitle.lineBreakMode = NSLineBreakByWordWrapping;
     _loadingTitle.textAlignment=NSTextAlignmentCenter;
@@ -334,7 +334,6 @@
     /*讀我們自己的資料 這邊不知道要怎麼寫比較好*/
     if([isNext boolValue] ==NO && _otherSource.length>0){
         [nearbySearchURL appendFormat:@"http://%@%@&lat=%f&lng=%f",_vs.domain,_otherSource,_locationManager.location.coordinate.latitude,_locationManager.location.coordinate.longitude];
-        //NSLog(@"%@",nearbySearchURL);
         _dicResult=[Util jsonWithUrl:nearbySearchURL];
     }
 
@@ -352,7 +351,7 @@
     }else{
         [nearbySearchURL appendFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=500&keyword=%@&sensor=false&key=%@&rankBy=prominence&pagetoken=%@&types=%@",_locationManager.location.coordinate.latitude,_locationManager.location.coordinate.longitude,[[_keyword lowercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[VariableStore sharedInstance].googleWebKey,_nextPageToken,[_type stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     }
-    //NSLog(@"%@",nearbySearchURL);
+    NSLog(@"%@",nearbySearchURL);
     if(_dicResult !=nil && _dicResult.count>0){
         NSMutableDictionary* dicTempResult=[Util jsonWithUrl:nearbySearchURL];
         [[_dicResult objectForKey:@"results"] addObjectsFromArray:[dicTempResult objectForKey:@"results"] ];
