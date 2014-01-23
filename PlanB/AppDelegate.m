@@ -64,7 +64,7 @@ static NSString * const kClientId = @"235322884744.apps.googleusercontent.com";
         \
         {\"name\":\"ATM\",\"keyword\":\"提款機|郵局\",\"type\":\"\",\"pic\":\"cate-atm.png\",\"bg\":\"atm-gray-640x320.png\",\"color\":\"#bcda78ff\",\"other-source\":\"/controller/mobile/place.aspx?action=get-atm\"},\
         \
-        {\"name\":\"旅館\",\"keyword\":\"\",\"type\":\"hotel\",\"pic\":\"cate-hotel.png\",\"bg\":\"hotel-gray-640x320.png\",\"color\":\"#b9dd57ff\"},\
+        {\"name\":\"旅館\",\"keyword\":\"hotel\",\"type\":\"\",\"pic\":\"cate-hotel.png\",\"bg\":\"hotel-gray-640x320.png\",\"color\":\"#b9dd57ff\"},\
         \
         {\"name\":\"加油站\",\"keyword\":\"\",\"type\":\"gas\",\"pic\":\"cate-gas.png\",\"bg\":\"hotel-gray-640x320.png\",\"color\":\"#b7dd6cff\",\"other-source\":\"/controller/mobile/place.aspx?action=get-gas\"},\
         \

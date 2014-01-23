@@ -100,17 +100,15 @@
     [self.view addSubview:_btnNextPage];
 }
 -(void) generateNextList:(UIButton *)sender{
+    [self hideBtnNextPageMain:nil];
     [sender removeTarget:self action:@selector(generateNextList:) forControlEvents:UIControlEventTouchUpInside];
     //抓下一頁資料要把現有的scroll view 先清掉 然後再重排
-    [UIView beginAnimations:nil context:nil];
+    [UIView beginAnimations:nil context:@"hide_scroll_view"];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDuration:0.26];
     [_SVListContainer setAlpha:0];
     [UIView commitAnimations];
-    NSLog(@"A");
-    [self generateList:@"YES" isReget:NO];
-    [self hideBtnNextPageMain:nil];
 
 }
 -(void) updateList:(UIRefreshControl *)sender{
@@ -135,6 +133,8 @@
 -(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished    context:(NSString *)context {
     if([context isEqualToString:@"show_scroll_view"]){
         _SVListContainer.isBusy=NO;
+    }else if([context isEqualToString:@"hide_scroll_view"]){
+        [self generateList:@"YES" isReget:NO];
     }else{
 //        for(int i =0;i< [[_SVListContainer subviews] count];i++){
 //            NSString *className =NSStringFromClass([[[_SVListContainer subviews] objectAtIndex:i] class]);
@@ -197,6 +197,7 @@
         NSString *lat=[[[[[dicResult objectForKey:@"results"] objectAtIndex:i] objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lat"];
         NSString *lng=[[[[[dicResult objectForKey:@"results"] objectAtIndex:i] objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lng"];
         NSMutableDictionary *dicDist =[Util jsonWithUrl:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/distancematrix/json?origins=%.8F,%.8F&destinations=%.8F,%.8F&mode=walk&language=zh-TW&sensor=false",vs.myLocation.coordinate.latitude,vs.myLocation.coordinate.longitude,[lat doubleValue],[lng doubleValue]]];
+        //NSLog([NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/distancematrix/json?origins=%.8F,%.8F&destinations=%.8F,%.8F&mode=walk&language=zh-TW&sensor=false",vs.myLocation.coordinate.latitude,vs.myLocation.coordinate.longitude,[lat doubleValue],[lng doubleValue]]);
         if([(NSString * )[dicDist objectForKey:@"status"] isEqualToString:@"OK"]){
             NSString *stringDist=[[[[[[dicDist objectForKey:@"rows"] objectAtIndex:0] objectForKey:@"elements"] objectAtIndex:0] objectForKey:@"distance"] objectForKey:@"value"];
             NSString *address=[dicDist objectForKey:@"destination_addresses"];
@@ -320,6 +321,7 @@
     [_SVListContainer clearPlaceItemButton];
     if(isReget){
         _dicResult=nil;
+        _nextPageToken=nil;
     }
     VCMap *vcMap=(VCMap *)self.sidePanelController.rightPanel;
     [vcMap clearMarker];
@@ -334,6 +336,7 @@
     /*讀我們自己的資料 這邊不知道要怎麼寫比較好*/
     if([isNext boolValue] ==NO && _otherSource.length>0){
         [nearbySearchURL appendFormat:@"http://%@%@&lat=%f&lng=%f",_vs.domain,_otherSource,_locationManager.location.coordinate.latitude,_locationManager.location.coordinate.longitude];
+        //NSLog(nearbySearchURL);
         _dicResult=[Util jsonWithUrl:nearbySearchURL];
     }
 
@@ -351,7 +354,7 @@
     }else{
         [nearbySearchURL appendFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=500&keyword=%@&sensor=false&key=%@&rankBy=prominence&pagetoken=%@&types=%@",_locationManager.location.coordinate.latitude,_locationManager.location.coordinate.longitude,[[_keyword lowercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[VariableStore sharedInstance].googleWebKey,_nextPageToken,[_type stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     }
-    NSLog(@"%@",nearbySearchURL);
+    //NSLog(@"%@",nearbySearchURL);
     if(_dicResult !=nil && _dicResult.count>0){
         NSMutableDictionary* dicTempResult=[Util jsonWithUrl:nearbySearchURL];
         [[_dicResult objectForKey:@"results"] addObjectsFromArray:[dicTempResult objectForKey:@"results"] ];

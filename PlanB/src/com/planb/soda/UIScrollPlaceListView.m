@@ -66,7 +66,7 @@
     for(int i =0;i< [[self subviews] count];i++){
         NSString *className =NSStringFromClass([[[self subviews] objectAtIndex:i] class]);
         if([className isEqualToString:@"UIPlaceButton"]){
-            NSLog(@"A");
+            //NSLog(@"A");
             [[[self subviews] objectAtIndex:i] removeFromSuperview];
         }
     }
