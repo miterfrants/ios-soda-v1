@@ -23,6 +23,8 @@
 #import "AnimatedGif.h"
 #import "UIScrollPlaceListView.h"
 #import "VCRoot.h"
+
+
 @interface VCList ()
 @property (weak, nonatomic) IBOutlet UILabel *lblCount;
 @property CLLocationManager *locationManager;
@@ -53,7 +55,7 @@
 {
     [super viewDidLoad];
     _locationManager = [[CLLocationManager alloc] init];
-    //_locationManager.delegate=self;
+    _locationManager.delegate=self;
     _locationManager.distanceFilter = kCLDistanceFilterNone;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [_locationManager startUpdatingLocation];
@@ -123,9 +125,12 @@
     [_refreshControl endRefreshing];
     NSString *url=[NSString stringWithFormat:@"http://%@/controller/mobile/report.aspx?action=add-pull-down&creator_ip=%@&cate=%@", _vs.domain,[Util getIPAddress], self.cateTitle];
     [Util stringAsyncWithUrl:url completion:nil queue:_vs.backgroundThreadManagement];
+    //這邊要先更新 location
+    _locationManager = [[CLLocationManager alloc] init];
+    [_locationManager startUpdatingLocation];
+
     //refresh controller 要把資料刪掉重抓
     [self generateList:nil isReget:YES];
-
     //_currentCount=0;
     
 }
@@ -345,7 +350,6 @@
     
     //太久的話就在loading 加上一個label
     [self setLongTimeRequest];
-
     
     nearbySearchURL=[[NSMutableString alloc] init];
     //抓google 資料
@@ -354,7 +358,7 @@
     }else{
         [nearbySearchURL appendFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=500&keyword=%@&sensor=false&key=%@&rankBy=prominence&pagetoken=%@&types=%@",_locationManager.location.coordinate.latitude,_locationManager.location.coordinate.longitude,[[_keyword lowercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[VariableStore sharedInstance].googleWebKey,_nextPageToken,[_type stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     }
-    //NSLog(@"%@",nearbySearchURL);
+    NSLog(@"%@",nearbySearchURL);
     if(_dicResult !=nil && _dicResult.count>0){
         NSMutableDictionary* dicTempResult=[Util jsonWithUrl:nearbySearchURL];
         [[_dicResult objectForKey:@"results"] addObjectsFromArray:[dicTempResult objectForKey:@"results"] ];

@@ -37,7 +37,9 @@
         _btnNext.hidden=YES;
         _btnPrevious.hidden=YES;
     }
-
+    if([VariableStore sharedInstance].arrMarker.count>0){
+        [mapview setSelectedMarker:(GMSMarker *) [VariableStore sharedInstance].arrMarker[(int)_currIndex]];
+    }
 	// Do any additional setup after loading the view.
 }
 -(void)displayLayer:(CALayer *)layer{
@@ -156,7 +158,9 @@
         marker.map=mapview;
     }
     mapview.padding= UIEdgeInsetsMake(0, 72, 0, 0);
-    
+    if(_currIndex>=0){
+        [mapview setSelectedMarker:[_arrMarker objectAtIndex:_currIndex]];
+    }
 }
 #pragma mark - GMSMapViewDelegate
 -(void) mapView:(GMSMapView *)mapView didChangeCameraPosition:(GMSCameraPosition *)position {
@@ -164,6 +168,7 @@
 }
 - (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
     //NSLog(@"You tapped at %f,%f", coordinate.latitude, coordinate.longitude);
+    NSLog([NSString stringWithFormat:@"%D", _currIndex]);
     _btnTakeMeThere.hidden=YES;
 }
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker{
@@ -182,6 +187,15 @@
     [mapview setCamera:[GMSCameraPosition cameraWithLatitude:marker.position.latitude
                                                    longitude:marker.position.longitude
                                                         zoom:15]];
+    UINavigationController * center=(UINavigationController *) self.sidePanelController.centerPanel;
+    VCList *vclist= (VCList *) [[center childViewControllers] objectAtIndex:[[center childViewControllers] count]-1];
+    int scrollY=(int) _currIndex*160-64;
+    if(scrollY<0){
+        scrollY=0;
+    }else if(scrollY> [[vclist SVListContainer] contentSize].height- [[vclist SVListContainer] frame].size.height){
+        scrollY=[[vclist SVListContainer] contentSize].height-[[vclist SVListContainer] frame].size.height;
+    }
+    [vclist SVListContainer].contentOffset = CGPointMake(0,scrollY);
     _btnTakeMeThere.hidden=NO;
 }
 
@@ -196,6 +210,14 @@
     [mapview setCamera:[GMSCameraPosition cameraWithLatitude:marker.position.latitude
                                                    longitude:marker.position.longitude
                                                         zoom:15]];
+    UINavigationController * center=(UINavigationController *) self.sidePanelController.centerPanel;
+    VCList *vclist= (VCList *) [[center childViewControllers] objectAtIndex:[[center childViewControllers] count]-1];
+    int scrollY=(int) _currIndex*160-64;
+    if(scrollY<0){
+        scrollY=0;
+    }else if(scrollY> [[vclist SVListContainer] contentSize].height- [[vclist SVListContainer] frame].size.height){
+        scrollY=[[vclist SVListContainer] contentSize].height-[[vclist SVListContainer] frame].size.height;
+    }
     _btnTakeMeThere.hidden=NO;
 }
 @end

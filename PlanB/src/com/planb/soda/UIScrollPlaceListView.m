@@ -7,8 +7,13 @@
 //
 
 #import "UIScrollPlaceListView.h"
+#import "UIViewController+JASidePanel.h"
+#import "JASidePanelController.h"
 #import "VCList.h"
 #import "Util.h"
+#import "VariableStore.h"
+#import "VCMap.h"
+#import <GoogleMaps/GoogleMaps.h>
 @implementation UIScrollPlaceListView{
     VCList *vcList;
 }
@@ -51,17 +56,42 @@
             [vcList showBtnNextPage];
         }
     }
-    _memoryY=scrollView.contentOffset.y;
-    /*if(- scrollView.frame.size.height<300){
-        if(!_isBusy){
-            _isBusy=YES;
-            VCList *vsList= [self viewController];
-            NSString *url=[NSString stringWithFormat:@"http://%@/controller/mobile/report.aspx?action=add-pull-up&creator_ip=%@&cate=%@", _vs.domain,[Util getIPAddress], vsList.cateTitle];
-            [Util stringAsyncWithUrl:url completion:nil queue:_vs.backgroundThreadManagement];
-            [vsList generateList:@"YES"];
-        }
-    };*/
+
+    
 }
+
+-(void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    _memoryY=scrollView.contentOffset.y;
+    VCList * vclist  =(VCList *) [self viewController];
+    VCMap *vcMap= (VCMap *) vclist.sidePanelController.rightPanel;
+    if(scrollView.contentOffset.y<128){
+        vcMap.currIndex=0;
+    }else{
+        vcMap.currIndex=(int) floorf((_memoryY+128)/160);
+    }
+    if((int) vcMap.currIndex>vcMap.arrMarker.count){
+        vcMap.currIndex= vcMap.arrMarker.count-1;
+    }
+    GMSMarker *marker=(GMSMarker *) [vcMap.arrMarker objectAtIndex:vcMap.currIndex];
+    [vcMap.mapview setSelectedMarker:marker];
+}
+
+-(void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    _memoryY=scrollView.contentOffset.y;
+    VCList * vclist  =(VCList *) [self viewController];
+    VCMap *vcMap= (VCMap *) vclist.sidePanelController.rightPanel;
+    if(scrollView.contentOffset.y<128){
+        vcMap.currIndex=0;
+    }else{
+        vcMap.currIndex=(int) floorf((_memoryY+128)/160);
+    }
+    if((int) vcMap.currIndex>vcMap.arrMarker.count){
+        vcMap.currIndex= vcMap.arrMarker.count-1;
+    }
+    GMSMarker *marker=(GMSMarker *) [vcMap.arrMarker objectAtIndex:vcMap.currIndex];
+    [vcMap.mapview setSelectedMarker:marker];
+}
+
 -(void) clearPlaceItemButton{
     for(int i =0;i< [[self subviews] count];i++){
         NSString *className =NSStringFromClass([[[self subviews] objectAtIndex:i] class]);
