@@ -106,9 +106,24 @@
         [[UIApplication sharedApplication] openURL:
          [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
     } else {
-        NSLog(@"Can't use comgooglemaps://");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您的 iPhone 未安裝 Google Map" message:@"" delegate:self cancelButtonTitle:@"關閉" otherButtonTitles:@"安裝Google Map",nil];
+        [alert show];
+    }
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+    }else if (buttonIndex == 1) {
+        //http://itunes.apple.com/google/maps
+        //comappleitunes://?appname=googlemaps
+        NSString *url =[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id585027354?mt=8"];
+        [[UIApplication sharedApplication] openURL:
+         [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+        
     }
 }
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

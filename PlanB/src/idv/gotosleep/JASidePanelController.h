@@ -62,6 +62,9 @@ typedef enum _JASidePanelState {
 // Calling this while the left or right panel is visible causes the center panel to be completely hidden
 - (void)setCenterPanelHidden:(BOOL)centerPanelHidden animated:(BOOL)animated duration:(NSTimeInterval) duration;
 
+//event
+-(void) didOpened;
+
 #pragma mark - Look & Feel
 
 // style
@@ -167,5 +170,8 @@ typedef enum _JASidePanelState {
 @property (nonatomic, strong, readonly) UIView *leftPanelContainer;
 @property (nonatomic, strong, readonly) UIView *rightPanelContainer;
 @property (nonatomic, strong, readonly) UIView *centerPanelContainer;
+
+// Event
+
 
 @end

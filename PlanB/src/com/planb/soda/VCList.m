@@ -104,6 +104,8 @@
 -(void) generateNextList:(UIButton *)sender{
     [self hideBtnNextPageMain:nil];
     [sender removeTarget:self action:@selector(generateNextList:) forControlEvents:UIControlEventTouchUpInside];
+    NSString *url=[NSString stringWithFormat:@"http://%@/controller/mobile/report.aspx?action=add-get-more&creator_ip=%@&cate=%@", _vs.domain,[Util getIPAddress],self.cateTitle];
+    [Util stringAsyncWithUrl:url completion:nil queue:_vs.backgroundThreadManagement];
     //抓下一頁資料要把現有的scroll view 先清掉 然後再重排
     [UIView beginAnimations:nil context:@"hide_scroll_view"];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
@@ -358,7 +360,7 @@
     }else{
         [nearbySearchURL appendFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=500&keyword=%@&sensor=false&key=%@&rankBy=prominence&pagetoken=%@&types=%@",_locationManager.location.coordinate.latitude,_locationManager.location.coordinate.longitude,[[_keyword lowercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[VariableStore sharedInstance].googleWebKey,_nextPageToken,[_type stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     }
-    NSLog(@"%@",nearbySearchURL);
+    //NSLog(@"%@",nearbySearchURL);
     if(_dicResult !=nil && _dicResult.count>0){
         NSMutableDictionary* dicTempResult=[Util jsonWithUrl:nearbySearchURL];
         [[_dicResult objectForKey:@"results"] addObjectsFromArray:[dicTempResult objectForKey:@"results"] ];

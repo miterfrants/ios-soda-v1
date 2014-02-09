@@ -746,6 +746,7 @@ static char ja_kvoContext;
         }
     } completion:^(BOOL finished) {
         if (shouldBounce) {
+            // finish event;
             // make sure correct panel is displayed under the bounce
             if (self.state == JASidePanelCenterVisible) {
                 if (bounceDistance > 0.0f) {
@@ -764,6 +765,7 @@ static char ja_kvoContext;
                     self.centerPanelContainer.frame = _centerPanelRestingFrame;				
                 } completion:completion];
             }];
+            [self didOpened];
         } else if (completion) {
             completion(finished);
         }

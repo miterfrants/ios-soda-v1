@@ -9,6 +9,7 @@
 #import "VCMap.h"
 #import "VariableStore.h"
 #import "VCList.h"
+#import "Util.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import <objC/runtime.h>
 #import <CoreLocation/CoreLocation.h>
@@ -78,18 +79,34 @@
 }
 
 -(void) takeMeThere:(id *) sender{
+    NSString *url=[NSString stringWithFormat:@"http://%@/controller/mobile/report.aspx?action=add-click-direction&creator_ip=%@", _vs.domain,[Util getIPAddress]];
+    [Util stringAsyncWithUrl:url completion:nil queue:_vs.backgroundThreadManagement];
+    
     if ([[UIApplication sharedApplication] canOpenURL:
          [NSURL URLWithString:@"comgooglemaps://"]] && mapview.selectedMarker != nil) {
+        
         NSString *url =[NSString stringWithFormat:@"comgooglemaps://?saddr=&daddr=%@&directionsmode=walking",self.mapview.selectedMarker.snippet];
         [[UIApplication sharedApplication] openURL:
          [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
     } else {
-        NSLog(@"Can't use comgooglemaps://");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您的 iPhone 未安裝 Google Map" message:@"" delegate:self cancelButtonTitle:@"關閉" otherButtonTitles:@"安裝Google Map",nil];
+        [alert show];
+    }
+}
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+    }else if (buttonIndex == 1) {
+        //http://itunes.apple.com/google/maps
+        //comappleitunes://?appname=googlemaps
+        NSString *url =[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id585027354?mt=8"];
+        [[UIApplication sharedApplication] openURL:
+         [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+        
     }
 }
 
 - (void)loadView {
-
+    _vs=[VariableStore sharedInstance];    
     // Create a GMSCameraPosition that tells the map to display the
     // coordinate -33.86,151.20 at zoom level 6.
     //GMSCameraPosition 這個是用來設定 zoom 和 map center 有點像 3d的view port
@@ -126,7 +143,7 @@
     
     [_btnTakeMeThere addSubview:imgViewTakemethere];
     [_btnTakeMeThere addTarget:self  action:@selector(takeMeThere:) forControlEvents:UIControlEventTouchUpInside];
-    _btnTakeMeThere.hidden=YES;
+    //_btnTakeMeThere.hidden=YES;
     [mapview addSubview:_btnTakeMeThere];
     
     _btnNext=[[UIButton alloc]init];
@@ -168,7 +185,7 @@
 }
 - (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
     //NSLog(@"You tapped at %f,%f", coordinate.latitude, coordinate.longitude);
-    NSLog([NSString stringWithFormat:@"%D", _currIndex]);
+    //NSLog([NSString stringWithFormat:@"%D", _currIndex]);
     _btnTakeMeThere.hidden=YES;
 }
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker{
@@ -220,4 +237,5 @@
     }
     _btnTakeMeThere.hidden=NO;
 }
+
 @end

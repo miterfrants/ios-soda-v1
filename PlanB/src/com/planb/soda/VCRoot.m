@@ -9,6 +9,8 @@
 #import "VCRoot.h"
 #import "VCMap.h"
 #import "AppDelegate.h"
+#import "Util.h"
+#import "VCList.h"
 @interface VCRoot ()
 
 @end
@@ -80,18 +82,31 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
+
 -(void) awakeFromNib
 {
     self.shouldDelegateAutorotateToVisiblePanel=NO;
     self.panningLimitedToTopViewController=NO;
-    //[self setLeftPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"VCLeft"]];
     [self setCenterPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"NCCenter"]];
     VCMap  *vcRight=[self.storyboard instantiateViewControllerWithIdentifier:@"VCRight"];
-    //[GMSServices provideAPIKey:@"AIzaSyBQtD9EG2eOW8hJeC9idwfsD8nIU0ZEWyw"];
     [self setRightPanel:vcRight];
-    //[vcRight view];
+}
+
+-(void) didOpened{
+    UINavigationController * center=(UINavigationController *) [self centerPanel];
+    VariableStore *_vs= [VariableStore sharedInstance];
+    for(int i=0;i<[center childViewControllers].count;i++){
+        NSString *className=NSStringFromClass([[[center childViewControllers] objectAtIndex:i] class]);
+        if([className isEqualToString:@"VCList"]){
+            VCList *vclist= (VCList *) [[center childViewControllers] objectAtIndex:[[center childViewControllers] count]-1];
+            NSString *url=[NSString stringWithFormat:@"http://%@/controller/mobile/report.aspx?action=add-slide-to-map&creator_ip=%@&cate=%@", _vs.domain,[Util getIPAddress], vclist.cateTitle];
+            [Util stringAsyncWithUrl:url completion:nil queue:_vs.backgroundThreadManagement];
+            return;
+        }
+    }
+    NSString *url=[NSString stringWithFormat:@"http://%@/controller/mobile/report.aspx?action=add-slide-to-map&creator_ip=%@&cate=Center", _vs.domain,[Util getIPAddress]];
+    [Util stringAsyncWithUrl:url completion:nil queue:_vs.backgroundThreadManagement];
 }
 
 @end
