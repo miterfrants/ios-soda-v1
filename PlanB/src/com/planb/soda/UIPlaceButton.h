@@ -14,4 +14,5 @@
 @property (nonatomic, retain)  NSString *reference;
 @property (nonatomic) double lat;
 @property (nonatomic) double lng;
+@property (nonatomic) int index;
 @end

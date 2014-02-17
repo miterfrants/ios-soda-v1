@@ -48,6 +48,7 @@ static NSString * const kClientId = @"235322884744.apps.googleusercontent.com";
     _vs.listHeight=@"160.00";
     _vs.arrMarker = [[NSMutableArray alloc]init];
     _vs.appLaunchDate=[[NSDate alloc] init];
+    _vs.isChangeMarkerIndex=false;
     CLLocationManager * manager=[[CLLocationManager alloc]init];
     manager.desiredAccuracy = kCLLocationAccuracyBest;
     manager.distanceFilter = kCLDistanceFilterNone;

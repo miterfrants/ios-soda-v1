@@ -61,35 +61,41 @@
 }
 
 -(void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    _memoryY=scrollView.contentOffset.y;
-    VCList * vclist  =(VCList *) [self viewController];
-    VCMap *vcMap= (VCMap *) vclist.sidePanelController.rightPanel;
-    if(scrollView.contentOffset.y<128){
-        vcMap.currIndex=0;
-    }else{
-        vcMap.currIndex=(int) floorf((_memoryY+128)/160);
+    if(_vs.isChangeMarkerIndex){
+        _memoryY=scrollView.contentOffset.y;
+        VCList * vclist  =(VCList *) [self viewController];
+        VCMap *vcMap= (VCMap *) vclist.sidePanelController.rightPanel;
+        if(scrollView.contentOffset.y<128){
+            vcMap.currIndex=0;
+        }else{
+            vcMap.currIndex=(int) floorf((_memoryY+128)/160);
+        }
+        if((int) vcMap.currIndex>vcMap.arrMarker.count){
+            vcMap.currIndex= vcMap.arrMarker.count-1;
+        }
+        GMSMarker *marker=(GMSMarker *) [vcMap.arrMarker objectAtIndex:vcMap.currIndex];
+        [vcMap.mapview setSelectedMarker:marker];
     }
-    if((int) vcMap.currIndex>vcMap.arrMarker.count){
-        vcMap.currIndex= vcMap.arrMarker.count-1;
-    }
-    GMSMarker *marker=(GMSMarker *) [vcMap.arrMarker objectAtIndex:vcMap.currIndex];
-    [vcMap.mapview setSelectedMarker:marker];
+    _vs.isChangeMarkerIndex=true;
 }
 
 -(void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    _memoryY=scrollView.contentOffset.y;
-    VCList * vclist  =(VCList *) [self viewController];
-    VCMap *vcMap= (VCMap *) vclist.sidePanelController.rightPanel;
-    if(scrollView.contentOffset.y<128){
-        vcMap.currIndex=0;
-    }else{
-        vcMap.currIndex=(int) floorf((_memoryY+128)/160);
+    if(_vs.isChangeMarkerIndex){
+        _memoryY=scrollView.contentOffset.y;
+        VCList * vclist  =(VCList *) [self viewController];
+        VCMap *vcMap= (VCMap *) vclist.sidePanelController.rightPanel;
+        if(scrollView.contentOffset.y<128){
+            vcMap.currIndex=0;
+        }else{
+            vcMap.currIndex=(int) floorf((_memoryY+128)/160);
+        }
+        if((int) vcMap.currIndex>vcMap.arrMarker.count){
+            vcMap.currIndex= vcMap.arrMarker.count-1;
+        }
+        GMSMarker *marker=(GMSMarker *) [vcMap.arrMarker objectAtIndex:vcMap.currIndex];
+        [vcMap.mapview setSelectedMarker:marker];
     }
-    if((int) vcMap.currIndex>vcMap.arrMarker.count){
-        vcMap.currIndex= vcMap.arrMarker.count-1;
-    }
-    GMSMarker *marker=(GMSMarker *) [vcMap.arrMarker objectAtIndex:vcMap.currIndex];
-    [vcMap.mapview setSelectedMarker:marker];
+    _vs.isChangeMarkerIndex=true;
 }
 
 -(void) clearPlaceItemButton{

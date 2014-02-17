@@ -212,6 +212,7 @@
     }else if(scrollY> [[vclist SVListContainer] contentSize].height- [[vclist SVListContainer] frame].size.height){
         scrollY=[[vclist SVListContainer] contentSize].height-[[vclist SVListContainer] frame].size.height;
     }
+    _vs.isChangeMarkerIndex=false;
     [vclist SVListContainer].contentOffset = CGPointMake(0,scrollY);
     _btnTakeMeThere.hidden=NO;
 }
@@ -235,6 +236,8 @@
     }else if(scrollY> [[vclist SVListContainer] contentSize].height- [[vclist SVListContainer] frame].size.height){
         scrollY=[[vclist SVListContainer] contentSize].height-[[vclist SVListContainer] frame].size.height;
     }
+    _vs.isChangeMarkerIndex=false;
+    [vclist SVListContainer].contentOffset = CGPointMake(0,scrollY);
     _btnTakeMeThere.hidden=NO;
 }
 

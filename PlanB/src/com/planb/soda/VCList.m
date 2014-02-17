@@ -96,11 +96,33 @@
     _btnNextPage.titleLabel.lineBreakMode=NSLineBreakByCharWrapping;
     _btnNextPage.titleLabel.textColor=[Util colorWithHexString:@"#ffffffff"];
     [_btnNextPage setFrame:CGRectMake(-20,_vs.screenH-20,40,40)];
-    [_btnNextPage addTarget:self action:@selector(generateNextList:) forControlEvents:UIControlEventTouchUpInside];
     _btnNextPage.hidden=YES;
 
     [self.view addSubview:_btnNextPage];
 }
+
+-(void) showMap:(UIPlaceItemButton *)sender{
+    [self.sidePanelController showRightPanelAnimated:true];
+    VCMap *vcMap=(VCMap *) self.sidePanelController.rightPanel;
+    vcMap.currIndex=sender.index;
+    [vcMap.btnTakeMeThere setHidden:NO];
+    GMSMarker *marker=[vcMap.arrMarker objectAtIndex:sender.index];
+    [vcMap.mapview setSelectedMarker:marker];
+    [vcMap.mapview setCamera:[GMSCameraPosition cameraWithLatitude:marker.position.latitude
+                                                   longitude:marker.position.longitude
+                                                        zoom:15]];
+    UINavigationController * center=(UINavigationController *) self.sidePanelController.centerPanel;
+    VCList *vclist= (VCList *) [[center childViewControllers] objectAtIndex:[[center childViewControllers] count]-1];
+    int scrollY=(int) sender.index*160-64;
+    if(scrollY<0){
+        scrollY=0;
+    }else if(scrollY> [[vclist SVListContainer] contentSize].height- [[vclist SVListContainer] frame].size.height){
+        scrollY=[[vclist SVListContainer] contentSize].height-[[vclist SVListContainer] frame].size.height;
+    }
+    [vclist SVListContainer].contentOffset = CGPointMake(0,scrollY);
+
+}
+
 -(void) generateNextList:(UIButton *)sender{
     [self hideBtnNextPageMain:nil];
     [sender removeTarget:self action:@selector(generateNextList:) forControlEvents:UIControlEventTouchUpInside];
@@ -175,7 +197,6 @@
     }
     [_SVListContainer setContentSize:CGSizeMake([vs.listWidth floatValue], contentHeight+49)];
     if(![[dicResult objectForKey:@"status"] isEqualToString:@"ZERO_RESULTS"]){
-        
         if(((NSString *) [dicResult valueForKey:@"next_page_token"]).length>0 && ![((NSString *) [dicResult valueForKey:@"next_page_token"]) isEqualToString:_nextPageToken]){
             _nextPageToken=(NSString *) [dicResult valueForKey:@"next_page_token"];
             _btnNextPage.hidden=NO;
@@ -189,7 +210,7 @@
         //沒有資料
         //_loadingView.alpha=0;
         _dicResult=[[NSMutableDictionary alloc] init];
-        _loadingTitle.text=@"您所在的位置沒有資料．";
+        _loadingTitle.text=@"您	的位置沒有資料．";
         _SVListContainer.alpha=0;
         [vcMap clearMarker];
         return;
@@ -256,6 +277,7 @@
         [btnList setPlaceId:placeId];
         btnList.btnDirection.lat=[lat floatValue];
         btnList.btnDirection.lng=[lng floatValue];
+        btnList.index=i;
         
         /* view title */
         CALayer *bottomBorder = [CALayer layer];
@@ -270,6 +292,7 @@
         [[btnList layer] setBorderWidth:0.1f];
         [[btnList layer] setBorderColor:[UIColor grayColor].CGColor];
         [[btnList layer] setBackgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1].CGColor];
+        [btnList addTarget:self action:@selector(showMap:) forControlEvents:UIControlEventTouchUpInside];
         //NSLog(@"list 4");
         @try {
             if([[[[dicResult objectForKey:@"results"] objectAtIndex:i] objectForKey:@"photos"] count]>0){
