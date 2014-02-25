@@ -61,9 +61,9 @@ static NSString * const kClientId = @"235322884744.apps.googleusercontent.com";
         \
         {\"name\":\"餐廳\",\"keyword\":\"餐廳\",\"type\":\"\",\"pic\":\"cate-rest.png\",\"bg\":\"restaurants-gray-640x320.png\",\"color\":\"#b4da5fff\"},\
         \
-        {\"name\":\"咖啡\",\"keyword\":\"咖啡+茶+簡餐\",\"type\":\"\",\"pic\":\"cate-cafe.png\",\"bg\":\"coffee-gray-640x320.png\",\"color\":\"#abd156ff\"},\
+        {\"name\":\"咖啡\",\"keyword\":\"咖啡|茶|簡餐\",\"type\":\"\",\"pic\":\"cate-cafe.png\",\"bg\":\"coffee-gray-640x320.png\",\"color\":\"#abd156ff\"},\
         \
-        {\"name\":\"ATM\",\"keyword\":\"提款機|郵局\",\"type\":\"\",\"pic\":\"cate-atm.png\",\"bg\":\"atm-gray-640x320.png\",\"color\":\"#bcda78ff\",\"other-source\":\"/controller/mobile/place.aspx?action=get-atm\"},\
+        {\"name\":\"ATM\",\"keyword\":\"銀行|ATM|提款機|郵局\",\"type\":\"\",\"pic\":\"cate-atm.png\",\"bg\":\"atm-gray-640x320.png\",\"color\":\"#bcda78ff\",\"other-source\":\"/controller/mobile/place.aspx?action=get-atm\"},\
         \
         {\"name\":\"旅館\",\"keyword\":\"hotel\",\"type\":\"\",\"pic\":\"cate-hotel.png\",\"bg\":\"hotel-gray-640x320.png\",\"color\":\"#b9dd57ff\"},\
         \

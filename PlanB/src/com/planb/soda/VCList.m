@@ -387,7 +387,7 @@
     }else{
         [nearbySearchURL appendFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=500&keyword=%@&sensor=false&key=%@&rankBy=prominence&pagetoken=%@&types=%@",_locationManager.location.coordinate.latitude,_locationManager.location.coordinate.longitude,[[_keyword lowercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[VariableStore sharedInstance].googleWebKey,_nextPageToken,[_type stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     }
-    //NSLog(@"%@",nearbySearchURL);
+    NSLog(@"%@",nearbySearchURL);
     if(_dicResult !=nil && _dicResult.count>0){
         NSMutableDictionary* dicTempResult=[Util jsonWithUrl:nearbySearchURL];
         [[_dicResult objectForKey:@"results"] addObjectsFromArray:[dicTempResult objectForKey:@"results"] ];
