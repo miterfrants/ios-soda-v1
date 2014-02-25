@@ -65,16 +65,20 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     //讀取條
+    _loadingCon= [[UIView alloc] init];
+    [_loadingCon setFrame:CGRectMake(0, (_vs.screenH-60)/2, _vs.screenW, 60)];
+    [self.view addSubview:_loadingCon];
     _loadingView =[AnimatedGif getAnimationForGifAtUrl:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"loading.gif" ofType:nil]]];
-    [self.view addSubview:_loadingView];
+
     _loadingTitle =[[UILabel alloc]init];
     _loadingTitle.textColor = [Util colorWithHexString:@"#999999FF"];
     _loadingTitle.font = [UIFont fontWithName:@"黑體-繁" size:13];
     _loadingTitle.numberOfLines = 2;
     _loadingTitle.lineBreakMode = NSLineBreakByWordWrapping;
     _loadingTitle.textAlignment=NSTextAlignmentCenter;
-    [_loadingTitle setFrame:CGRectMake(-90, 8, 200, 36)];
-    [_loadingView addSubview:_loadingTitle];
+    [_loadingTitle setFrame:CGRectMake(0, 30, 320, 36)];
+    [_loadingCon addSubview:_loadingView];
+    [_loadingCon addSubview:_loadingTitle];
     
     //scroll view
     _SVListContainer=[[UIScrollPlaceListView alloc]init];
@@ -208,9 +212,9 @@
         }
     }else{
         //沒有資料
-        //_loadingView.alpha=0;
+        _loadingView.alpha=0;
         _dicResult=[[NSMutableDictionary alloc] init];
-        _loadingTitle.text=@"您	的位置沒有資料．";
+        _loadingTitle.text=@"您的位置沒有資料";
         _SVListContainer.alpha=0;
         [vcMap clearMarker];
         return;
