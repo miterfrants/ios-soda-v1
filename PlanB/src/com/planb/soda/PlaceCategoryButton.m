@@ -27,9 +27,12 @@
     _lblName.textColor = [UIColor whiteColor];
     _lblName.font = [UIFont fontWithName:@"黑體-繁" size:16.f];
     _lblName.numberOfLines = 1;
-    _lblName.lineBreakMode = NSLineBreakByWordWrapping;
-    _lblName.textAlignment=NSTextAlignmentCenter;
-
+    
+    //iOS 6,7
+//    _lblName.lineBreakMode = NSLineBreakByWordWrapping;
+//    _lblName.textAlignment=NSTextAlignmentCenter;
+    _lblName.lineBreakMode =UILineBreakModeWordWrap;
+    _lblName.textAlignment=UITextAlignmentCenter;
     _name=name;
 }
 /*

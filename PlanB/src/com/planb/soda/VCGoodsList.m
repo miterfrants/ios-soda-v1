@@ -41,13 +41,18 @@
             lblTitle.textColor = [UIColor blackColor];
             lblTitle.font = [UIFont italicSystemFontOfSize:12];
             lblTitle.numberOfLines = 5;
-            lblTitle.lineBreakMode = NSLineBreakByWordWrapping;
-
+            //iOS 6,7
+            //lblTitle.lineBreakMode = NSLineBreakByWordWrapping;
+            lblTitle.lineBreakMode= UILineBreakModeWordWrap;
+            
             UILabel *lblNum= [[UILabel alloc] init];
             lblNum.textColor = [UIColor redColor];
             lblNum.font = [UIFont italicSystemFontOfSize:12];
             lblNum.numberOfLines = 5;
-            lblNum.lineBreakMode = NSLineBreakByWordWrapping;
+            //iOS 6,7
+            //lblNum.lineBreakMode = NSLineBreakByWordWrapping;
+            lblNum.lineBreakMode=UILineBreakModeWordWrap;
+            
             lblNum.text=[[[dic_goods objectForKey:@"goods"] objectAtIndex:i] objectForKey:@"qty"];
 
             NSURL *imgURL=[NSURL URLWithString:[[[dic_goods objectForKey:@"goods"] objectAtIndex:i] objectForKey:@"pic"]];

@@ -69,12 +69,17 @@
     _viewPopup.lblMessage .textColor = [UIColor blackColor];
     _viewPopup.lblMessage .font = [UIFont italicSystemFontOfSize:12];
     _viewPopup.lblMessage .numberOfLines = 5;
-    _viewPopup.lblMessage .lineBreakMode = NSLineBreakByWordWrapping;
+    //iOS 6,7
+    //_viewPopup.lblMessage .lineBreakMode = NSLineBreakByWordWrapping;
+    _viewPopup.lblMessage .lineBreakMode = UILineBreakModeWordWrap;
+    
     [_viewPopup.lblTitle setFrame:CGRectMake(5, 5, 300,15)];
     _viewPopup.lblTitle .textColor = [UIColor blackColor];
     _viewPopup.lblTitle .font = [UIFont italicSystemFontOfSize:15];
     _viewPopup.lblTitle .numberOfLines = 1;
-    _viewPopup.lblTitle .lineBreakMode = NSLineBreakByWordWrapping;
+    //iOS 6,7
+    //_viewPopup.lblTitle .lineBreakMode = NSLineBreakByWordWrapping;
+    _viewPopup.lblTitle .lineBreakMode = UILineBreakModeWordWrap;
     
 }
 

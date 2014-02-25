@@ -66,7 +66,7 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     if(!_isInitial){
-        UIFont *font = [UIFont fontWithName:@"Helvetica" size:10.0];
+        //UIFont *font = [UIFont fontWithName:@"Helvetica" size:10.0];
         _txtComment= [[UITextField alloc]init];
         [_txtComment setFrame:CGRectMake(0,64,100,30)];
         [self.view addSubview:_txtComment];
@@ -127,7 +127,9 @@
         lblTitle.textColor = [UIColor blackColor];
         lblTitle.font =font;
         lblTitle.numberOfLines = 50;
-        lblTitle.lineBreakMode = NSLineBreakByCharWrapping;
+        //iOS 6,7
+        //lblTitle.lineBreakMode = NSLineBreakByCharWrapping;
+        lblTitle.lineBreakMode = UILineBreakModeWordWrap;
         [lblTitle setFrame:CGRectMake(0, 0, 100, 20)];
 
         if(arrPhotos !=nil){
@@ -214,7 +216,9 @@
         lblComment.textColor = [UIColor whiteColor];
         lblComment.font =font;
         lblComment.numberOfLines = 50;
-        lblComment.lineBreakMode = NSLineBreakByCharWrapping;
+        //iOS 6,7
+        //lblComment.lineBreakMode = NSLineBreakByCharWrapping;
+        lblComment.lineBreakMode =UILineBreakModeWordWrap;
         
         NSString *comment=[NSString stringWithFormat:@"%@:%@", [[dic objectAtIndex:i] valueForKey:@"author_name"], [[dic objectAtIndex:i] valueForKey:@"text"]];
         lblComment.text=comment;
