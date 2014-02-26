@@ -31,6 +31,10 @@
     return self;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.screenName = @"iPhone Map Screen";
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];

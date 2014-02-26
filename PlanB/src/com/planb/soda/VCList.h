@@ -10,7 +10,9 @@
 #import "UIViewController+JASidePanel.h"
 #import "UIScrollPlaceListView.h"
 #import "VariableStore.h"
-@interface VCList : UIViewController<CLLocationManagerDelegate>
+#import "GAITrackedViewController.h"
+
+@interface VCList : GAITrackedViewController<CLLocationManagerDelegate>
     @property (strong, nonatomic) IBOutlet UIScrollPlaceListView *SVListContainer;
     @property NSString *type;
     @property NSString *cateTitle;

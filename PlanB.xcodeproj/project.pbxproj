@@ -47,6 +47,9 @@
 		54265E8718653A170083D413 /* cate-gas.png in Resources */ = {isa = PBXBuildFile; fileRef = 54265E8518653A170083D413 /* cate-gas.png */; };
 		54265E8818653A170083D413 /* cate-food.png in Resources */ = {isa = PBXBuildFile; fileRef = 54265E8618653A170083D413 /* cate-food.png */; };
 		54265E8A18653BE90083D413 /* cate-rental.png in Resources */ = {isa = PBXBuildFile; fileRef = 54265E8918653BE90083D413 /* cate-rental.png */; };
+		5431908618BC86380043D061 /* iphone_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5431908518BC86380043D061 /* iphone_bg.jpg */; };
+		5431908C18BDE7E30043D061 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5431908B18BDE7E30043D061 /* libGoogleAnalyticsServices.a */; };
+		5431908E18BDE7F60043D061 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5431908D18BDE7F50043D061 /* AdSupport.framework */; };
 		5453BF2D17DD927100B811BC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453BF2C17DD927100B811BC /* QuartzCore.framework */; };
 		5453C10517DE097100B811BC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C10417DE097000B811BC /* AVFoundation.framework */; };
 		5453C10717DE097800B811BC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C10617DE097800B811BC /* CoreData.framework */; };
@@ -168,6 +171,15 @@
 		54265E8518653A170083D413 /* cate-gas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cate-gas.png"; sourceTree = "<group>"; };
 		54265E8618653A170083D413 /* cate-food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cate-food.png"; sourceTree = "<group>"; };
 		54265E8918653BE90083D413 /* cate-rental.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cate-rental.png"; sourceTree = "<group>"; };
+		5431908518BC86380043D061 /* iphone_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iphone_bg.jpg; sourceTree = "<group>"; };
+		5431908B18BDE7E30043D061 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = ../Libs/iOS/com/google/analytics/libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		5431908D18BDE7F50043D061 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		5431909118BDE9790043D061 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAI.h; path = ../../../../../../Libs/iOS/com/google/analytics/GAI.h; sourceTree = "<group>"; };
+		5431909218BDE9790043D061 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIDictionaryBuilder.h; path = ../../../../../../Libs/iOS/com/google/analytics/GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		5431909318BDE9790043D061 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIFields.h; path = ../../../../../../Libs/iOS/com/google/analytics/GAIFields.h; sourceTree = "<group>"; };
+		5431909418BDE9790043D061 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = ../../../../../../Libs/iOS/com/google/analytics/GAILogger.h; sourceTree = "<group>"; };
+		5431909518BDE9790043D061 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = ../../../../../../Libs/iOS/com/google/analytics/GAITrackedViewController.h; sourceTree = "<group>"; };
+		5431909618BDE9790043D061 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = ../../../../../../Libs/iOS/com/google/analytics/GAITracker.h; sourceTree = "<group>"; };
 		5453BF2C17DD927100B811BC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5453C10417DE097000B811BC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5453C10617DE097800B811BC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -239,6 +251,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5431908E18BDE7F60043D061 /* AdSupport.framework in Frameworks */,
+				5431908C18BDE7E30043D061 /* libGoogleAnalyticsServices.a in Frameworks */,
 				54265E821863206E0083D413 /* GoogleMaps.framework in Frameworks */,
 				5484FA4C183FA0840057510D /* libc++.dylib in Frameworks */,
 				54C2080517CD714B006E1A44 /* Foundation.framework in Frameworks */,
@@ -305,6 +319,12 @@
 		542373311824BCC000A8C656 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				5431909118BDE9790043D061 /* GAI.h */,
+				5431909218BDE9790043D061 /* GAIDictionaryBuilder.h */,
+				5431909318BDE9790043D061 /* GAIFields.h */,
+				5431909418BDE9790043D061 /* GAILogger.h */,
+				5431909518BDE9790043D061 /* GAITrackedViewController.h */,
+				5431909618BDE9790043D061 /* GAITracker.h */,
 				542373321824BCC000A8C656 /* Util.h */,
 				542373331824BCC000A8C656 /* Util.m */,
 				542373341824BCC000A8C656 /* VariableStore.h */,
@@ -393,6 +413,7 @@
 		542373631824BCCD00A8C656 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				5431908518BC86380043D061 /* iphone_bg.jpg */,
 				54265E8918653BE90083D413 /* cate-rental.png */,
 				54265E8518653A170083D413 /* cate-gas.png */,
 				54265E8618653A170083D413 /* cate-food.png */,
@@ -468,6 +489,8 @@
 		54C2080117CD714B006E1A44 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5431908D18BDE7F50043D061 /* AdSupport.framework */,
+				5431908B18BDE7E30043D061 /* libGoogleAnalyticsServices.a */,
 				54265E83186321160083D413 /* GoogleMaps.bundle */,
 				54265E811863206E0083D413 /* GoogleMaps.framework */,
 				54265E7E186320620083D413 /* PlanB.xcodeproj */,
@@ -637,6 +660,7 @@
 				5484FA3A1833BCF60057510D /* cate-rest.png in Resources */,
 				54265E84186321160083D413 /* GoogleMaps.bundle in Resources */,
 				5484FA3B1833BCF60057510D /* cate-search.png in Resources */,
+				5431908618BC86380043D061 /* iphone_bg.jpg in Resources */,
 				542373751824BCCD00A8C656 /* StarEmpty@2x.png in Resources */,
 				546E0B091832F88400E8815D /* icon-search.jpg in Resources */,
 				54C2081717CD714B006E1A44 /* Default@2x.png in Resources */,
@@ -848,6 +872,10 @@
 				GCC_PREFIX_HEADER = "PlanB/PlanB-Prefix.pch";
 				INFOPLIST_FILE = "PlanB/PlanB-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/po-hsianghunag/Project/Libs/iOS/com/google/analytics",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -879,6 +907,10 @@
 				GCC_PREFIX_HEADER = "PlanB/PlanB-Prefix.pch";
 				INFOPLIST_FILE = "PlanB/PlanB-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/po-hsianghunag/Project/Libs/iOS/com/google/analytics",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",

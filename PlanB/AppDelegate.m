@@ -13,6 +13,8 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "VariableStore.h"
 #import "Util.h"
+#import "GAI.h"
+
 @implementation AppDelegate
 @synthesize fb_session = _fb_session;
 @synthesize window = _window;
@@ -38,6 +40,10 @@ static NSString * const kClientId = @"235322884744.apps.googleusercontent.com";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [GAI sharedInstance].trackUncaughtExceptions=YES;
+    [GAI sharedInstance].dispatchInterval = 20;
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-48350612-1"];
     
     [GMSServices provideAPIKey:@"AIzaSyBQtD9EG2eOW8hJeC9idwfsD8nIU0ZEWyw"];
     _vs =[VariableStore sharedInstance];
@@ -55,21 +61,21 @@ static NSString * const kClientId = @"235322884744.apps.googleusercontent.com";
     [manager startUpdatingLocation];
     _vs.myLocation=manager.location;
     NSString *jsonCate= @"{\"cate\":[\
-        {\"name\":\"小吃\",\"keyword\":\"小吃\",\"type\":\"\",\"pic\":\"cate-food.png\",\"bg\":\"\",\"color\":\"#b7dd6cff\"},\
+        {\"name\":\"小吃\",\"keyword\":\"小吃\",\"type\":\"\",\"pic\":\"cate-food.png\",\"bg\":\"\",\"color\":\"#b7dd6cFF\"},\
         \
-        {\"name\":\"景點\",\"keyword\":\"旅遊景點\",\"type\":\"\",\"pic\":\"cate-attraction.png\",\"bg\":\"tourist-attraction-gray-640x320\",\"color\":\"#b4da5fff\"},\
+        {\"name\":\"景點\",\"keyword\":\"旅遊景點\",\"type\":\"\",\"pic\":\"cate-attraction.png\",\"bg\":\"tourist-attraction-gray-640x320\",\"color\":\"#b4da5fFF\"},\
         \
-        {\"name\":\"餐廳\",\"keyword\":\"餐廳\",\"type\":\"\",\"pic\":\"cate-rest.png\",\"bg\":\"restaurants-gray-640x320.png\",\"color\":\"#b4da5fff\"},\
+        {\"name\":\"餐廳\",\"keyword\":\"餐廳\",\"type\":\"\",\"pic\":\"cate-rest.png\",\"bg\":\"restaurants-gray-640x320.png\",\"color\":\"#b4da5fFF\"},\
         \
-        {\"name\":\"咖啡\",\"keyword\":\"咖啡|茶|簡餐\",\"type\":\"\",\"pic\":\"cate-cafe.png\",\"bg\":\"coffee-gray-640x320.png\",\"color\":\"#abd156ff\"},\
+        {\"name\":\"咖啡\",\"keyword\":\"咖啡|茶|簡餐\",\"type\":\"\",\"pic\":\"cate-cafe.png\",\"bg\":\"coffee-gray-640x320.png\",\"color\":\"#abd156FF\"},\
         \
-        {\"name\":\"ATM\",\"keyword\":\"銀行|ATM|提款機|郵局\",\"type\":\"\",\"pic\":\"cate-atm.png\",\"bg\":\"atm-gray-640x320.png\",\"color\":\"#bcda78ff\",\"other-source\":\"/controller/mobile/place.aspx?action=get-atm\"},\
+        {\"name\":\"ATM\",\"keyword\":\"銀行|ATM|提款機|郵局\",\"type\":\"\",\"pic\":\"cate-atm.png\",\"bg\":\"atm-gray-640x320.png\",\"color\":\"#bcda78FF\",\"other-source\":\"/controller/mobile/place.aspx?action=get-atm\"},\
         \
-        {\"name\":\"旅館\",\"keyword\":\"hotel\",\"type\":\"\",\"pic\":\"cate-hotel.png\",\"bg\":\"hotel-gray-640x320.png\",\"color\":\"#b9dd57ff\"},\
+        {\"name\":\"旅館\",\"keyword\":\"hotel\",\"type\":\"\",\"pic\":\"cate-hotel.png\",\"bg\":\"hotel-gray-640x320.png\",\"color\":\"#b9dd57FF\"},\
         \
-        {\"name\":\"加油站\",\"keyword\":\"\",\"type\":\"gas\",\"pic\":\"cate-gas.png\",\"bg\":\"hotel-gray-640x320.png\",\"color\":\"#b7dd6cff\",\"other-source\":\"/controller/mobile/place.aspx?action=get-gas\"},\
+        {\"name\":\"加油站\",\"keyword\":\"\",\"type\":\"gas\",\"pic\":\"cate-gas.png\",\"bg\":\"hotel-gray-640x320.png\",\"color\":\"#b7dd6cFF\",\"other-source\":\"/controller/mobile/place.aspx?action=get-gas\"},\
         \
-        {\"name\":\"租車\",\"keyword\":\"\",\"type\":\"gas\",\"pic\":\"cate-rental\",\"bg\":\"hotel-gray-640x320.png\",\"color\":\"#abd156ff\",\"other-source\":\"/controller/mobile/place.aspx?action=get-rental\"}\
+        {\"name\":\"租車\",\"keyword\":\"\",\"type\":\"gas\",\"pic\":\"cate-rental\",\"bg\":\"hotel-gray-640x320.png\",\"color\":\"#abd156FF\",\"other-source\":\"/controller/mobile/place.aspx?action=get-rental\"}\
         ]}";
     
     

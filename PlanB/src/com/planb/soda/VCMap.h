@@ -10,7 +10,9 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "UIViewController+JASidePanel.h"
 #import "VariableStore.h"
-@interface VCMap : UIViewController<GMSMapViewDelegate>
+#import "GAITrackedViewController.h"
+
+@interface VCMap : GAITrackedViewController<GMSMapViewDelegate>
 @property (nonatomic,strong) GMSMapView *mapview;
 @property int mapStatus;
 @property UIButton *btnTakeMeThere;

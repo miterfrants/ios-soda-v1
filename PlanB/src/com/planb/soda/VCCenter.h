@@ -10,7 +10,9 @@
 #import "UIViewController+JASidePanel.h"
 #import "PopupView.h"
 #import "VariableStore.h"
-@interface VCCenter : UIViewController
+#import "GAITrackedViewController.h"
+
+@interface VCCenter : GAITrackedViewController
 @property BOOL isInitial;
 @property VariableStore * vs;
 @end

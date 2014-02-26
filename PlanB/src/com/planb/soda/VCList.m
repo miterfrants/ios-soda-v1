@@ -43,6 +43,7 @@
 }
 -(void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    self.screenName = @"iPhone List Screen";
     if(!_isGenerateList){
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             [self generateList:nil isReget:NO];
@@ -194,11 +195,11 @@
     //NSLog(@"generate list start");
     VariableStore *vs=[VariableStore sharedInstance];
     VCMap *vcMap=(VCMap *)self.sidePanelController.rightPanel;
-
     float contentHeight=([[dicResult objectForKey:@"results"] count])*[vs.listHeight floatValue]+15;
     if(contentHeight < vs.screenH){
         contentHeight=vs.screenH;
     }
+
     [_SVListContainer setContentSize:CGSizeMake([vs.listWidth floatValue], contentHeight+49)];
     if(![[dicResult objectForKey:@"status"] isEqualToString:@"ZERO_RESULTS"]){
         if(((NSString *) [dicResult valueForKey:@"next_page_token"]).length>0 && ![((NSString *) [dicResult valueForKey:@"next_page_token"]) isEqualToString:_nextPageToken]){
@@ -219,31 +220,7 @@
         [vcMap clearMarker];
         return;
     }
-    /*remove and move to background thread*/
-    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-    //locationManager.delegate = self;//or whatever class you have for managing location
-    [locationManager startUpdatingLocation];
-    vs.myLocation=locationManager.location;
-    //加距離資料
-    for(int i=0;i<[[dicResult objectForKey:@"results"] count];i++){
-        NSString *lat=[[[[[dicResult objectForKey:@"results"] objectAtIndex:i] objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lat"];
-        NSString *lng=[[[[[dicResult objectForKey:@"results"] objectAtIndex:i] objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lng"];
-        NSMutableDictionary *dicDist =[Util jsonWithUrl:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/distancematrix/json?origins=%.8F,%.8F&destinations=%.8F,%.8F&mode=walk&language=zh-TW&sensor=false",vs.myLocation.coordinate.latitude,vs.myLocation.coordinate.longitude,[lat doubleValue],[lng doubleValue]]];
-        //NSLog([NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/distancematrix/json?origins=%.8F,%.8F&destinations=%.8F,%.8F&mode=walk&language=zh-TW&sensor=false",vs.myLocation.coordinate.latitude,vs.myLocation.coordinate.longitude,[lat doubleValue],[lng doubleValue]]);
-        if([(NSString * )[dicDist objectForKey:@"status"] isEqualToString:@"OK"]){
-            NSString *stringDist=[[[[[[dicDist objectForKey:@"rows"] objectAtIndex:0] objectForKey:@"elements"] objectAtIndex:0] objectForKey:@"distance"] objectForKey:@"value"];
-            NSString *address=[dicDist objectForKey:@"destination_addresses"];
-            [[[dicResult objectForKey:@"results"]objectAtIndex:i] setObject:[NSNumber numberWithFloat:[stringDist floatValue]] forKey:@"dist"];
-            [[[dicResult objectForKey:@"results"]objectAtIndex:i] setObject:address forKey:@"address"];
-        }else{
-            CLLocation *destination=[[CLLocation alloc] initWithLatitude:[lat doubleValue] longitude:[lng doubleValue]];
-            double dist=[destination distanceFromLocation:locationManager.location]* 0.000621371192*1000;
-            [[[dicResult objectForKey:@"results"]objectAtIndex:i] setObject:[NSNumber numberWithFloat:dist] forKey:@"dist"];
-        }
-    }
-    //排序
-    NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"dist" ascending:YES];
-    [[dicResult objectForKey:@"results" ] sortUsingDescriptors:[NSArray arrayWithObject:sort]];
+    [_loadingTitle setHidden:YES];
     for(int i=0;i<[[dicResult objectForKey:@"results"] count];i++){
         //NSLog(@"list 1");
         NSString *name= [[[dicResult objectForKey:@"results"] objectAtIndex:i] valueForKey:@"name"] ;
@@ -256,7 +233,7 @@
 
         //NSLog(@"list 2");
         UIPlaceItemButton *btnList=[[UIPlaceItemButton alloc]initWithFrame:CGRectMake(0, [vs.listHeight floatValue]*i,  [vs.listWidth floatValue],[vs.listHeight floatValue])];
-        double dist=[destination distanceFromLocation:locationManager.location]* 0.000621371192*1000;
+        double dist=[destination distanceFromLocation:_vs.myLocation]* 0.000621371192*1000;
         //[btnList asyncGetDistAndAddressAndChangeMarker:[NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/distancematrix/json?origins=%.8F,%.8F&destinations=%.8F,%.8F&mode=walk&language=zh-TW&sensor=false",vs.myLocation.coordinate.latitude,vs.myLocation.coordinate.longitude,destination.coordinate.latitude,destination.coordinate.longitude ] lat:destination.coordinate.latitude lng:destination.coordinate.longitude mapView:vcMap] ;
 
         NSString *stringDist=(NSString *)[[[dicResult objectForKey:@"results"]objectAtIndex:i] valueForKey:@"dist"];
@@ -317,9 +294,8 @@
         }
     }
     _loadingView.alpha=0;
-    //NSLog(@"%@",dicResult);
-    //NSLog(@"generate list finish");
 }
+
 -(void)showBtnNextPage{
     //顯示 scroll
     [UIView beginAnimations:@"" context:@"show_next_btn"];
@@ -403,7 +379,39 @@
         [_requestTimoutTimer invalidate];
         _requestTimoutTimer=nil;
         _loadingTitle.text=@"Google Place 資料讀取完成 產生列表中...";
-
+        /*remove and move to background thread*/
+        CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+        //locationManager.delegate = self;//or whatever class you have for managing location
+        [locationManager startUpdatingLocation];
+        _vs.myLocation=locationManager.location;
+        //移掉道會和教會的資料或是黨部資料
+        for(int i=[[_dicResult objectForKey:@"results"] count]-1;i>=0;i--){
+            NSString *name=(NSString *) [[[_dicResult objectForKey:@"results"] objectAtIndex:i] objectForKey:@"name"];
+            if([name rangeOfString:@"道會"].length>0 || [name rangeOfString:@"教會"].length>0 || [name rangeOfString:@"福音"].length>0 || [name rangeOfString:@"財團法人"].length>0){
+                [[_dicResult objectForKey:@"results"] removeObjectAtIndex:i];
+            }
+        }
+        
+        //加距離資料
+        for(int i=0;i<[[_dicResult objectForKey:@"results"] count];i++){
+            NSString *lat=[[[[[_dicResult objectForKey:@"results"] objectAtIndex:i] objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lat"];
+            NSString *lng=[[[[[_dicResult objectForKey:@"results"] objectAtIndex:i] objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lng"];
+            NSMutableDictionary *dicDist =[Util jsonWithUrl:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/distancematrix/json?origins=%.8F,%.8F&destinations=%.8F,%.8F&mode=walk&language=zh-TW&sensor=false",_vs.myLocation.coordinate.latitude,_vs.myLocation.coordinate.longitude,[lat doubleValue],[lng doubleValue]]];
+            //NSLog([NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/distancematrix/json?origins=%.8F,%.8F&destinations=%.8F,%.8F&mode=walk&language=zh-TW&sensor=false",vs.myLocation.coordinate.latitude,vs.myLocation.coordinate.longitude,[lat doubleValue],[lng doubleValue]]);
+            if([(NSString * )[dicDist objectForKey:@"status"] isEqualToString:@"OK"]){
+                NSString *stringDist=[[[[[[dicDist objectForKey:@"rows"] objectAtIndex:0] objectForKey:@"elements"] objectAtIndex:0] objectForKey:@"distance"] objectForKey:@"value"];
+                NSString *address=[dicDist objectForKey:@"destination_addresses"];
+                [[[_dicResult objectForKey:@"results"]objectAtIndex:i] setObject:[NSNumber numberWithFloat:[stringDist floatValue]] forKey:@"dist"];
+                [[[_dicResult objectForKey:@"results"]objectAtIndex:i] setObject:address forKey:@"address"];
+            }else{
+                CLLocation *destination=[[CLLocation alloc] initWithLatitude:[lat doubleValue] longitude:[lng doubleValue]];
+                double dist=[destination distanceFromLocation:_vs.myLocation]* 0.000621371192*1000;
+                [[[_dicResult objectForKey:@"results"]objectAtIndex:i] setObject:[NSNumber numberWithFloat:dist] forKey:@"dist"];
+            }
+        }
+        //排序
+        NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"dist" ascending:YES];
+        [[_dicResult objectForKey:@"results" ] sortUsingDescriptors:[NSArray arrayWithObject:sort]];
         [self generateListMain:_dicResult];
         
         //_currentCount 是拿來算位置的 下一頁要夾上去

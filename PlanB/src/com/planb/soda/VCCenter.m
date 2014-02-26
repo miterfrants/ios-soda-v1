@@ -39,6 +39,7 @@
 }
 -(void)viewDidAppear:(BOOL) show{
     if(!_isInitial){
+        self.screenName = @"iPhone Main Screen";
         _isInitial=YES;
         UIScrollView *sv=[[UIScrollView alloc] init];
 
