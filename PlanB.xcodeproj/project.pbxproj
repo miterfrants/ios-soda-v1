@@ -50,6 +50,14 @@
 		5431908618BC86380043D061 /* iphone_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5431908518BC86380043D061 /* iphone_bg.jpg */; };
 		5431908C18BDE7E30043D061 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5431908B18BDE7E30043D061 /* libGoogleAnalyticsServices.a */; };
 		5431908E18BDE7F60043D061 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5431908D18BDE7F50043D061 /* AdSupport.framework */; };
+		5431909F18BDF1380043D061 /* cate_button_atm_gray_640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5431909718BDF1380043D061 /* cate_button_atm_gray_640x320.png */; };
+		543190A018BDF1380043D061 /* cate_button_car_rental_gray_640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5431909818BDF1380043D061 /* cate_button_car_rental_gray_640x320.png */; };
+		543190A118BDF1380043D061 /* cate_button_coffee_gray_640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5431909918BDF1380043D061 /* cate_button_coffee_gray_640x320.png */; };
+		543190A218BDF1380043D061 /* cate_button_food_gray_640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5431909A18BDF1380043D061 /* cate_button_food_gray_640x320.png */; };
+		543190A318BDF1380043D061 /* cate_button_gas_gray_640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5431909B18BDF1380043D061 /* cate_button_gas_gray_640x320.png */; };
+		543190A418BDF1380043D061 /* cate_button_hotel_gray_640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5431909C18BDF1380043D061 /* cate_button_hotel_gray_640x320.png */; };
+		543190A518BDF1380043D061 /* cate_button_restaurants_gray_640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5431909D18BDF1380043D061 /* cate_button_restaurants_gray_640x320.png */; };
+		543190A618BDF1380043D061 /* cate_button_tourist_attraction_gray-640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5431909E18BDF1380043D061 /* cate_button_tourist_attraction_gray-640x320.png */; };
 		5453BF2D17DD927100B811BC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453BF2C17DD927100B811BC /* QuartzCore.framework */; };
 		5453C10517DE097100B811BC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C10417DE097000B811BC /* AVFoundation.framework */; };
 		5453C10717DE097800B811BC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C10617DE097800B811BC /* CoreData.framework */; };
@@ -78,11 +86,6 @@
 		5484FA4C183FA0840057510D /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C11017DE09A800B811BC /* libc++.dylib */; };
 		5484FA4F183FB9210057510D /* UIScrollPlaceListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5484FA4E183FB9210057510D /* UIScrollPlaceListView.m */; };
 		5484FA52184129810057510D /* UIAsyncLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5484FA51184129810057510D /* UIAsyncLabel.m */; };
-		5484FA5B1844D9520057510D /* tourist-attraction-gray-640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA561844D9520057510D /* tourist-attraction-gray-640x320.png */; };
-		5484FA5C1844D9520057510D /* restaurants-gray-640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA571844D9520057510D /* restaurants-gray-640x320.png */; };
-		5484FA5D1844D9520057510D /* hotel-gray-640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA581844D9520057510D /* hotel-gray-640x320.png */; };
-		5484FA5E1844D9520057510D /* coffee-gray-640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA591844D9520057510D /* coffee-gray-640x320.png */; };
-		5484FA5F1844D9520057510D /* atm-gray-640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA5A1844D9520057510D /* atm-gray-640x320.png */; };
 		54C2080317CD714B006E1A44 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C2080217CD714B006E1A44 /* UIKit.framework */; };
 		54C2080517CD714B006E1A44 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C2080417CD714B006E1A44 /* Foundation.framework */; };
 		54C2080717CD714B006E1A44 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C2080617CD714B006E1A44 /* CoreGraphics.framework */; };
@@ -180,6 +183,14 @@
 		5431909418BDE9790043D061 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = ../../../../../../Libs/iOS/com/google/analytics/GAILogger.h; sourceTree = "<group>"; };
 		5431909518BDE9790043D061 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = ../../../../../../Libs/iOS/com/google/analytics/GAITrackedViewController.h; sourceTree = "<group>"; };
 		5431909618BDE9790043D061 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = ../../../../../../Libs/iOS/com/google/analytics/GAITracker.h; sourceTree = "<group>"; };
+		5431909718BDF1380043D061 /* cate_button_atm_gray_640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cate_button_atm_gray_640x320.png; sourceTree = "<group>"; };
+		5431909818BDF1380043D061 /* cate_button_car_rental_gray_640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cate_button_car_rental_gray_640x320.png; sourceTree = "<group>"; };
+		5431909918BDF1380043D061 /* cate_button_coffee_gray_640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cate_button_coffee_gray_640x320.png; sourceTree = "<group>"; };
+		5431909A18BDF1380043D061 /* cate_button_food_gray_640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cate_button_food_gray_640x320.png; sourceTree = "<group>"; };
+		5431909B18BDF1380043D061 /* cate_button_gas_gray_640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cate_button_gas_gray_640x320.png; sourceTree = "<group>"; };
+		5431909C18BDF1380043D061 /* cate_button_hotel_gray_640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cate_button_hotel_gray_640x320.png; sourceTree = "<group>"; };
+		5431909D18BDF1380043D061 /* cate_button_restaurants_gray_640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cate_button_restaurants_gray_640x320.png; sourceTree = "<group>"; };
+		5431909E18BDF1380043D061 /* cate_button_tourist_attraction_gray-640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cate_button_tourist_attraction_gray-640x320.png"; sourceTree = "<group>"; };
 		5453BF2C17DD927100B811BC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5453C10417DE097000B811BC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5453C10617DE097800B811BC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -216,11 +227,6 @@
 		5484FA4E183FB9210057510D /* UIScrollPlaceListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIScrollPlaceListView.m; sourceTree = "<group>"; };
 		5484FA50184129810057510D /* UIAsyncLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAsyncLabel.h; sourceTree = "<group>"; };
 		5484FA51184129810057510D /* UIAsyncLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAsyncLabel.m; sourceTree = "<group>"; };
-		5484FA561844D9520057510D /* tourist-attraction-gray-640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tourist-attraction-gray-640x320.png"; sourceTree = "<group>"; };
-		5484FA571844D9520057510D /* restaurants-gray-640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "restaurants-gray-640x320.png"; sourceTree = "<group>"; };
-		5484FA581844D9520057510D /* hotel-gray-640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hotel-gray-640x320.png"; sourceTree = "<group>"; };
-		5484FA591844D9520057510D /* coffee-gray-640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coffee-gray-640x320.png"; sourceTree = "<group>"; };
-		5484FA5A1844D9520057510D /* atm-gray-640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "atm-gray-640x320.png"; sourceTree = "<group>"; };
 		54C207FF17CD714B006E1A44 /* planb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = planb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54C2080217CD714B006E1A44 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		54C2080417CD714B006E1A44 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -413,6 +419,14 @@
 		542373631824BCCD00A8C656 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				5431909718BDF1380043D061 /* cate_button_atm_gray_640x320.png */,
+				5431909818BDF1380043D061 /* cate_button_car_rental_gray_640x320.png */,
+				5431909918BDF1380043D061 /* cate_button_coffee_gray_640x320.png */,
+				5431909A18BDF1380043D061 /* cate_button_food_gray_640x320.png */,
+				5431909B18BDF1380043D061 /* cate_button_gas_gray_640x320.png */,
+				5431909C18BDF1380043D061 /* cate_button_hotel_gray_640x320.png */,
+				5431909D18BDF1380043D061 /* cate_button_restaurants_gray_640x320.png */,
+				5431909E18BDF1380043D061 /* cate_button_tourist_attraction_gray-640x320.png */,
 				5431908518BC86380043D061 /* iphone_bg.jpg */,
 				54265E8918653BE90083D413 /* cate-rental.png */,
 				54265E8518653A170083D413 /* cate-gas.png */,
@@ -420,11 +434,6 @@
 				54265E781862F68B0083D413 /* Nav-btn.png */,
 				54265E791862F68B0083D413 /* pre-btn.png */,
 				54265E7A1862F68B0083D413 /* next-btn.png */,
-				5484FA561844D9520057510D /* tourist-attraction-gray-640x320.png */,
-				5484FA571844D9520057510D /* restaurants-gray-640x320.png */,
-				5484FA581844D9520057510D /* hotel-gray-640x320.png */,
-				5484FA591844D9520057510D /* coffee-gray-640x320.png */,
-				5484FA5A1844D9520057510D /* atm-gray-640x320.png */,
 				5484FA44183E38340057510D /* arrow.png */,
 				5484FA3E183E08860057510D /* loading.gif */,
 				5484FA301833BCF60057510D /* cate-atm.png */,
@@ -652,6 +661,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				543190A418BDF1380043D061 /* cate_button_hotel_gray_640x320.png in Resources */,
 				54265E7B1862F68B0083D413 /* Nav-btn.png in Resources */,
 				5423737A1824BCCD00A8C656 /* StarFullLarge.png in Resources */,
 				5484FA371833BCF60057510D /* cate-attraction.png in Resources */,
@@ -664,9 +674,10 @@
 				542373751824BCCD00A8C656 /* StarEmpty@2x.png in Resources */,
 				546E0B091832F88400E8815D /* icon-search.jpg in Resources */,
 				54C2081717CD714B006E1A44 /* Default@2x.png in Resources */,
-				5484FA5F1844D9520057510D /* atm-gray-640x320.png in Resources */,
+				543190A618BDF1380043D061 /* cate_button_tourist_attraction_gray-640x320.png in Resources */,
 				54265E7D1862F68B0083D413 /* next-btn.png in Resources */,
 				5423737B1824BCCD00A8C656 /* StarFullLarge@2x.png in Resources */,
+				5431909F18BDF1380043D061 /* cate_button_atm_gray_640x320.png in Resources */,
 				542373701824BCCD00A8C656 /* fb-login.png in Resources */,
 				542373711824BCCD00A8C656 /* google-login.png in Resources */,
 				542373741824BCCD00A8C656 /* StarEmpty.png in Resources */,
@@ -675,6 +686,8 @@
 				5423735E1824BCC000A8C656 /* GPS.gpx in Resources */,
 				542373761824BCCD00A8C656 /* StarEmptyLarge.png in Resources */,
 				5484FA3F183E08860057510D /* loading.gif in Resources */,
+				543190A318BDF1380043D061 /* cate_button_gas_gray_640x320.png in Resources */,
+				543190A218BDF1380043D061 /* cate_button_food_gray_640x320.png in Resources */,
 				542373791824BCCD00A8C656 /* StarFull@2x.png in Resources */,
 				54C2081917CD714B006E1A44 /* Default-568h@2x.png in Resources */,
 				54265E7C1862F68B0083D413 /* pre-btn.png in Resources */,
@@ -684,17 +697,16 @@
 				54265E8818653A170083D413 /* cate-food.png in Resources */,
 				54265E8718653A170083D413 /* cate-gas.png in Resources */,
 				542373721824BCCD00A8C656 /* pin.png in Resources */,
-				5484FA5C1844D9520057510D /* restaurants-gray-640x320.png in Resources */,
-				5484FA5D1844D9520057510D /* hotel-gray-640x320.png in Resources */,
-				5484FA5E1844D9520057510D /* coffee-gray-640x320.png in Resources */,
 				5484FA381833BCF60057510D /* cate-cafe.png in Resources */,
 				542373781824BCCD00A8C656 /* StarFull.png in Resources */,
-				5484FA5B1844D9520057510D /* tourist-attraction-gray-640x320.png in Resources */,
 				5484FA361833BCF60057510D /* cate-atm.png in Resources */,
 				546E0B0B1832F8D200E8815D /* icon-rest.jpg in Resources */,
+				543190A018BDF1380043D061 /* cate_button_car_rental_gray_640x320.png in Resources */,
 				54073BCF17F16D6C0092F741 /* FBUserSettingsViewResources.bundle in Resources */,
 				54265E8A18653BE90083D413 /* cate-rental.png in Resources */,
+				543190A118BDF1380043D061 /* cate_button_coffee_gray_640x320.png in Resources */,
 				542373771824BCCD00A8C656 /* StarEmptyLarge@2x.png in Resources */,
+				543190A518BDF1380043D061 /* cate_button_restaurants_gray_640x320.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

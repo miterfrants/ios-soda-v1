@@ -42,8 +42,9 @@
     return self;
 }
 -(void) viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
     self.screenName = @"iPhone List Screen";
+    [super viewDidAppear:animated];
+
     if(!_isGenerateList){
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             [self generateList:nil isReget:NO];

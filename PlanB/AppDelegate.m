@@ -61,21 +61,21 @@ static NSString * const kClientId = @"235322884744.apps.googleusercontent.com";
     [manager startUpdatingLocation];
     _vs.myLocation=manager.location;
     NSString *jsonCate= @"{\"cate\":[\
-        {\"name\":\"小吃\",\"keyword\":\"小吃\",\"type\":\"\",\"pic\":\"cate-food.png\",\"bg\":\"\",\"color\":\"#b7dd6cFF\"},\
+        {\"name\":\"小吃\",\"keyword\":\"小吃\",\"type\":\"\",\"pic\":\"cate-food.png\",\"bg\":\"cate_button_food_gray_640x320.png\",\"color\":\"#b7dd6cFF\"},\
         \
-        {\"name\":\"景點\",\"keyword\":\"旅遊景點\",\"type\":\"\",\"pic\":\"cate-attraction.png\",\"bg\":\"tourist-attraction-gray-640x320\",\"color\":\"#b4da5fFF\"},\
+        {\"name\":\"景點\",\"keyword\":\"旅遊景點\",\"type\":\"\",\"pic\":\"cate-attraction.png\",\"bg\":\"cate_button_tourist_attraction_gray-640x32.png\",\"color\":\"#b4da5fFF\"},\
         \
-        {\"name\":\"餐廳\",\"keyword\":\"餐廳\",\"type\":\"\",\"pic\":\"cate-rest.png\",\"bg\":\"restaurants-gray-640x320.png\",\"color\":\"#b4da5fFF\"},\
+        {\"name\":\"餐廳\",\"keyword\":\"餐廳\",\"type\":\"\",\"pic\":\"cate-rest.png\",\"bg\":\"cate_button_restaurants_gray_640x320.png\",\"color\":\"#b4da5fFF\"},\
         \
-        {\"name\":\"咖啡\",\"keyword\":\"咖啡|茶|簡餐\",\"type\":\"\",\"pic\":\"cate-cafe.png\",\"bg\":\"coffee-gray-640x320.png\",\"color\":\"#abd156FF\"},\
+        {\"name\":\"咖啡\",\"keyword\":\"咖啡|茶|簡餐\",\"type\":\"\",\"pic\":\"cate-cafe.png\",\"bg\":\"cate_button_coffee_gray_640x320.png\",\"color\":\"#abd156FF\"},\
         \
-        {\"name\":\"ATM\",\"keyword\":\"銀行|ATM|提款機|郵局\",\"type\":\"\",\"pic\":\"cate-atm.png\",\"bg\":\"atm-gray-640x320.png\",\"color\":\"#bcda78FF\",\"other-source\":\"/controller/mobile/place.aspx?action=get-atm\"},\
+        {\"name\":\"ATM\",\"keyword\":\"銀行|ATM|提款機|郵局\",\"type\":\"\",\"pic\":\"cate-atm.png\",\"bg\":\"cate_button_atm_gray_640x320.png\",\"color\":\"#bcda78FF\",\"other-source\":\"/controller/mobile/place.aspx?action=get-atm\"},\
         \
-        {\"name\":\"旅館\",\"keyword\":\"hotel\",\"type\":\"\",\"pic\":\"cate-hotel.png\",\"bg\":\"hotel-gray-640x320.png\",\"color\":\"#b9dd57FF\"},\
+        {\"name\":\"旅館\",\"keyword\":\"hotel\",\"type\":\"\",\"pic\":\"cate-hotel.png\",\"bg\":\"cate_button_hotel_gray_640x320.png\",\"color\":\"#b9dd57FF\"},\
         \
-        {\"name\":\"加油站\",\"keyword\":\"\",\"type\":\"gas\",\"pic\":\"cate-gas.png\",\"bg\":\"hotel-gray-640x320.png\",\"color\":\"#b7dd6cFF\",\"other-source\":\"/controller/mobile/place.aspx?action=get-gas\"},\
+        {\"name\":\"加油站\",\"keyword\":\"\",\"type\":\"gas\",\"pic\":\"cate-gas.png\",\"bg\":\"cate_button_gas_gray_640x320.png\",\"color\":\"#b7dd6cFF\",\"other-source\":\"/controller/mobile/place.aspx?action=get-gas\"},\
         \
-        {\"name\":\"租車\",\"keyword\":\"\",\"type\":\"gas\",\"pic\":\"cate-rental\",\"bg\":\"hotel-gray-640x320.png\",\"color\":\"#abd156FF\",\"other-source\":\"/controller/mobile/place.aspx?action=get-rental\"}\
+        {\"name\":\"租車\",\"keyword\":\"\",\"type\":\"gas\",\"pic\":\"cate-rental\",\"bg\":\"cate_button_car_rental_gray_640x320.png\",\"color\":\"#abd156FF\",\"other-source\":\"/controller/mobile/place.aspx?action=get-rental\"}\
         ]}";
     
     
