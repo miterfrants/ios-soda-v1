@@ -41,17 +41,13 @@
             lblTitle.textColor = [UIColor blackColor];
             lblTitle.font = [UIFont italicSystemFontOfSize:12];
             lblTitle.numberOfLines = 5;
-            //iOS 6,7
-            //lblTitle.lineBreakMode = NSLineBreakByWordWrapping;
-            lblTitle.lineBreakMode= UILineBreakModeWordWrap;
+            lblTitle.lineBreakMode = NSLineBreakByWordWrapping;
             
             UILabel *lblNum= [[UILabel alloc] init];
             lblNum.textColor = [UIColor redColor];
             lblNum.font = [UIFont italicSystemFontOfSize:12];
             lblNum.numberOfLines = 5;
-            //iOS 6,7
-            //lblNum.lineBreakMode = NSLineBreakByWordWrapping;
-            lblNum.lineBreakMode=UILineBreakModeWordWrap;
+            lblNum.lineBreakMode = NSLineBreakByWordWrapping;
             
             lblNum.text=[[[dic_goods objectForKey:@"goods"] objectAtIndex:i] objectForKey:@"qty"];
 

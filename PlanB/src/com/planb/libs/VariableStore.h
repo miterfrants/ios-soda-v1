@@ -26,6 +26,7 @@
 @property NSDate *appLaunchDate;
 @property NSDate *appExitDate;
 @property BOOL isChangeMarkerIndex;
+@property float intTopBarHeight;
 // message from which our instance is obtained
 + (VariableStore *)sharedInstance;
 @end

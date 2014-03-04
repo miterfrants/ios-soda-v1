@@ -7,6 +7,7 @@
 //
 
 #import "SingleStartView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation SingleStartView
 @synthesize imgEmpty,imgEmptyName,imgEmptyView,imgFull,imgFullName,imgFullView ;

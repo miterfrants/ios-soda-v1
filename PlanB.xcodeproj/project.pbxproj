@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		54073BCF17F16D6C0092F741 /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 54073BCE17F16D6C0092F741 /* FBUserSettingsViewResources.bundle */; };
 		54073DE717F182E40092F741 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54073DE617F182E40092F741 /* FacebookSDK.framework */; };
+		54099EEC18C5625600675951 /* backbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 54099EEB18C5625600675951 /* backbutton.png */; };
 		5423730B1822A7E900A8C656 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5423730A1822A7E900A8C656 /* Images.xcassets */; };
 		542373531824BCC000A8C656 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 542373331824BCC000A8C656 /* Util.m */; };
 		542373541824BCC000A8C656 /* VariableStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 542373351824BCC000A8C656 /* VariableStore.m */; };
@@ -49,7 +50,6 @@
 		54265E8A18653BE90083D413 /* cate-rental.png in Resources */ = {isa = PBXBuildFile; fileRef = 54265E8918653BE90083D413 /* cate-rental.png */; };
 		5431908618BC86380043D061 /* iphone_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5431908518BC86380043D061 /* iphone_bg.jpg */; };
 		5431908C18BDE7E30043D061 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5431908B18BDE7E30043D061 /* libGoogleAnalyticsServices.a */; };
-		5431908E18BDE7F60043D061 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5431908D18BDE7F50043D061 /* AdSupport.framework */; };
 		5431909F18BDF1380043D061 /* cate_button_atm_gray_640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5431909718BDF1380043D061 /* cate_button_atm_gray_640x320.png */; };
 		543190A018BDF1380043D061 /* cate_button_car_rental_gray_640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5431909818BDF1380043D061 /* cate_button_car_rental_gray_640x320.png */; };
 		543190A118BDF1380043D061 /* cate_button_coffee_gray_640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5431909918BDF1380043D061 /* cate_button_coffee_gray_640x320.png */; };
@@ -58,6 +58,9 @@
 		543190A418BDF1380043D061 /* cate_button_hotel_gray_640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5431909C18BDF1380043D061 /* cate_button_hotel_gray_640x320.png */; };
 		543190A518BDF1380043D061 /* cate_button_restaurants_gray_640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5431909D18BDF1380043D061 /* cate_button_restaurants_gray_640x320.png */; };
 		543190A618BDF1380043D061 /* cate_button_tourist_attraction_gray-640x320.png in Resources */ = {isa = PBXBuildFile; fileRef = 5431909E18BDF1380043D061 /* cate_button_tourist_attraction_gray-640x320.png */; };
+		54330F6A18C43940008BD3ED /* CKParagraphStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 54330F6418C43940008BD3ED /* CKParagraphStyle.m */; };
+		54330F6B18C43940008BD3ED /* CKRefreshArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54330F6618C43940008BD3ED /* CKRefreshArrowView.m */; };
+		54330F6C18C43940008BD3ED /* CKRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 54330F6918C43940008BD3ED /* CKRefreshControl.m */; };
 		5453BF2D17DD927100B811BC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453BF2C17DD927100B811BC /* QuartzCore.framework */; };
 		5453C10517DE097100B811BC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C10417DE097000B811BC /* AVFoundation.framework */; };
 		5453C10717DE097800B811BC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453C10617DE097800B811BC /* CoreData.framework */; };
@@ -72,6 +75,10 @@
 		546E0B071831A8B400E8815D /* UIPlaceItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 546E0B061831A8B400E8815D /* UIPlaceItemButton.m */; };
 		546E0B091832F88400E8815D /* icon-search.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 546E0B081832F88400E8815D /* icon-search.jpg */; };
 		546E0B0B1832F8D200E8815D /* icon-rest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 546E0B0A1832F8D200E8815D /* icon-rest.jpg */; };
+		547AD3BD18BE20F000C7522C /* soda_icon_120X120.png in Resources */ = {isa = PBXBuildFile; fileRef = 547AD3BC18BE20F000C7522C /* soda_icon_120X120.png */; };
+		547AD3BF18BE211700C7522C /* soda_icon_80X80.png in Resources */ = {isa = PBXBuildFile; fileRef = 547AD3BE18BE211700C7522C /* soda_icon_80X80.png */; };
+		547AD3C118BE213900C7522C /* soda_icon_58X58.png in Resources */ = {isa = PBXBuildFile; fileRef = 547AD3C018BE213900C7522C /* soda_icon_58X58.png */; };
+		547AD3C318C42BFD00C7522C /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547AD3C218C42BFD00C7522C /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		547F9662182FC7800065B51E /* SingleStartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 547F9661182FC7800065B51E /* SingleStartView.m */; };
 		5484FA2F1833B9D40057510D /* PlaceCategoryButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5484FA2E1833B9D40057510D /* PlaceCategoryButton.m */; };
 		5484FA361833BCF60057510D /* cate-atm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5484FA301833BCF60057510D /* cate-atm.png */; };
@@ -119,6 +126,7 @@
 /* Begin PBXFileReference section */
 		54073BCE17F16D6C0092F741 /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../Framework/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
 		54073DE617F182E40092F741 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../Framework/FacebookSDK.framework; sourceTree = "<group>"; };
+		54099EEB18C5625600675951 /* backbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backbutton.png; sourceTree = "<group>"; };
 		5423730A1822A7E900A8C656 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = PlanB/Images.xcassets; sourceTree = "<group>"; };
 		542373321824BCC000A8C656 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		542373331824BCC000A8C656 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
@@ -191,6 +199,13 @@
 		5431909C18BDF1380043D061 /* cate_button_hotel_gray_640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cate_button_hotel_gray_640x320.png; sourceTree = "<group>"; };
 		5431909D18BDF1380043D061 /* cate_button_restaurants_gray_640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cate_button_restaurants_gray_640x320.png; sourceTree = "<group>"; };
 		5431909E18BDF1380043D061 /* cate_button_tourist_attraction_gray-640x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cate_button_tourist_attraction_gray-640x320.png"; sourceTree = "<group>"; };
+		54330F6318C43940008BD3ED /* CKParagraphStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKParagraphStyle.h; sourceTree = "<group>"; };
+		54330F6418C43940008BD3ED /* CKParagraphStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKParagraphStyle.m; sourceTree = "<group>"; };
+		54330F6518C43940008BD3ED /* CKRefreshArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKRefreshArrowView.h; sourceTree = "<group>"; };
+		54330F6618C43940008BD3ED /* CKRefreshArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKRefreshArrowView.m; sourceTree = "<group>"; };
+		54330F6718C43940008BD3ED /* CKRefreshControl-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKRefreshControl-Prefix.pch"; sourceTree = "<group>"; };
+		54330F6818C43940008BD3ED /* CKRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKRefreshControl.h; sourceTree = "<group>"; };
+		54330F6918C43940008BD3ED /* CKRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKRefreshControl.m; sourceTree = "<group>"; };
 		5453BF2C17DD927100B811BC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5453C10417DE097000B811BC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5453C10617DE097800B811BC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -209,6 +224,10 @@
 		546E0B061831A8B400E8815D /* UIPlaceItemButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceItemButton.m; sourceTree = "<group>"; };
 		546E0B081832F88400E8815D /* icon-search.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "icon-search.jpg"; sourceTree = "<group>"; };
 		546E0B0A1832F8D200E8815D /* icon-rest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "icon-rest.jpg"; sourceTree = "<group>"; };
+		547AD3BC18BE20F000C7522C /* soda_icon_120X120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soda_icon_120X120.png; sourceTree = "<group>"; };
+		547AD3BE18BE211700C7522C /* soda_icon_80X80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soda_icon_80X80.png; sourceTree = "<group>"; };
+		547AD3C018BE213900C7522C /* soda_icon_58X58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soda_icon_58X58.png; sourceTree = "<group>"; };
+		547AD3C218C42BFD00C7522C /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/Accounts.framework; sourceTree = DEVELOPER_DIR; };
 		547F9660182FC7800065B51E /* SingleStartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleStartView.h; sourceTree = "<group>"; };
 		547F9661182FC7800065B51E /* SingleStartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleStartView.m; sourceTree = "<group>"; };
 		5484FA2D1833B9D40057510D /* PlaceCategoryButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceCategoryButton.h; sourceTree = "<group>"; };
@@ -257,7 +276,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5431908E18BDE7F60043D061 /* AdSupport.framework in Frameworks */,
+				547AD3C318C42BFD00C7522C /* Accounts.framework in Frameworks */,
 				5431908C18BDE7E30043D061 /* libGoogleAnalyticsServices.a in Frameworks */,
 				54265E821863206E0083D413 /* GoogleMaps.framework in Frameworks */,
 				5484FA4C183FA0840057510D /* libc++.dylib in Frameworks */,
@@ -381,6 +400,7 @@
 		5423734A1824BCC000A8C656 /* idv */ = {
 			isa = PBXGroup;
 			children = (
+				54330F6118C43940008BD3ED /* instructure */,
 				5484FA48183E599B0057510D /* arturogutierrez */,
 				5423734B1824BCC000A8C656 /* dyang */,
 				5423734E1824BCC000A8C656 /* gotosleep */,
@@ -419,6 +439,10 @@
 		542373631824BCCD00A8C656 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				54099EEB18C5625600675951 /* backbutton.png */,
+				547AD3C018BE213900C7522C /* soda_icon_58X58.png */,
+				547AD3BE18BE211700C7522C /* soda_icon_80X80.png */,
+				547AD3BC18BE20F000C7522C /* soda_icon_120X120.png */,
 				5431909718BDF1380043D061 /* cate_button_atm_gray_640x320.png */,
 				5431909818BDF1380043D061 /* cate_button_car_rental_gray_640x320.png */,
 				5431909918BDF1380043D061 /* cate_button_coffee_gray_640x320.png */,
@@ -465,6 +489,28 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		54330F6118C43940008BD3ED /* instructure */ = {
+			isa = PBXGroup;
+			children = (
+				54330F6218C43940008BD3ED /* CKRefreshControl */,
+			);
+			path = instructure;
+			sourceTree = "<group>";
+		};
+		54330F6218C43940008BD3ED /* CKRefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				54330F6318C43940008BD3ED /* CKParagraphStyle.h */,
+				54330F6418C43940008BD3ED /* CKParagraphStyle.m */,
+				54330F6518C43940008BD3ED /* CKRefreshArrowView.h */,
+				54330F6618C43940008BD3ED /* CKRefreshArrowView.m */,
+				54330F6718C43940008BD3ED /* CKRefreshControl-Prefix.pch */,
+				54330F6818C43940008BD3ED /* CKRefreshControl.h */,
+				54330F6918C43940008BD3ED /* CKRefreshControl.m */,
+			);
+			path = CKRefreshControl;
+			sourceTree = "<group>";
+		};
 		5484FA48183E599B0057510D /* arturogutierrez */ = {
 			isa = PBXGroup;
 			children = (
@@ -498,6 +544,7 @@
 		54C2080117CD714B006E1A44 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				547AD3C218C42BFD00C7522C /* Accounts.framework */,
 				5431908D18BDE7F50043D061 /* AdSupport.framework */,
 				5431908B18BDE7E30043D061 /* libGoogleAnalyticsServices.a */,
 				54265E83186321160083D413 /* GoogleMaps.bundle */,
@@ -671,6 +718,7 @@
 				54265E84186321160083D413 /* GoogleMaps.bundle in Resources */,
 				5484FA3B1833BCF60057510D /* cate-search.png in Resources */,
 				5431908618BC86380043D061 /* iphone_bg.jpg in Resources */,
+				54099EEC18C5625600675951 /* backbutton.png in Resources */,
 				542373751824BCCD00A8C656 /* StarEmpty@2x.png in Resources */,
 				546E0B091832F88400E8815D /* icon-search.jpg in Resources */,
 				54C2081717CD714B006E1A44 /* Default@2x.png in Resources */,
@@ -684,6 +732,7 @@
 				5484FA45183E38340057510D /* arrow.png in Resources */,
 				542373731824BCCD00A8C656 /* soda.png in Resources */,
 				5423735E1824BCC000A8C656 /* GPS.gpx in Resources */,
+				547AD3BD18BE20F000C7522C /* soda_icon_120X120.png in Resources */,
 				542373761824BCCD00A8C656 /* StarEmptyLarge.png in Resources */,
 				5484FA3F183E08860057510D /* loading.gif in Resources */,
 				543190A318BDF1380043D061 /* cate_button_gas_gray_640x320.png in Resources */,
@@ -704,6 +753,8 @@
 				543190A018BDF1380043D061 /* cate_button_car_rental_gray_640x320.png in Resources */,
 				54073BCF17F16D6C0092F741 /* FBUserSettingsViewResources.bundle in Resources */,
 				54265E8A18653BE90083D413 /* cate-rental.png in Resources */,
+				547AD3C118BE213900C7522C /* soda_icon_58X58.png in Resources */,
+				547AD3BF18BE211700C7522C /* soda_icon_80X80.png in Resources */,
 				543190A118BDF1380043D061 /* cate_button_coffee_gray_640x320.png in Resources */,
 				542373771824BCCD00A8C656 /* StarEmptyLarge@2x.png in Resources */,
 				543190A518BDF1380043D061 /* cate_button_restaurants_gray_640x320.png in Resources */,
@@ -743,6 +794,7 @@
 			files = (
 				546E0B071831A8B400E8815D /* UIPlaceItemButton.m in Sources */,
 				5423735C1824BCC000A8C656 /* VCRoot.m in Sources */,
+				54330F6B18C43940008BD3ED /* CKRefreshArrowView.m in Sources */,
 				542373611824BCC000A8C656 /* UIViewController+JASidePanel.m in Sources */,
 				542373571824BCC000A8C656 /* VCCenter.m in Sources */,
 				542373591824BCC000A8C656 /* VCGoodsList.m in Sources */,
@@ -750,11 +802,13 @@
 				542373551824BCC000A8C656 /* UIDefaultTextField.m in Sources */,
 				5484FA2F1833B9D40057510D /* PlaceCategoryButton.m in Sources */,
 				5423735D1824BCC000A8C656 /* VCMap.m in Sources */,
+				54330F6C18C43940008BD3ED /* CKRefreshControl.m in Sources */,
 				5484FA4B183E599B0057510D /* AnimatedGif.m in Sources */,
 				5484FA4F183FB9210057510D /* UIScrollPlaceListView.m in Sources */,
 				5423735A1824BCC000A8C656 /* VCList.m in Sources */,
 				542373561824BCC000A8C656 /* UIPlaceButton.m in Sources */,
 				5484FA52184129810057510D /* UIAsyncLabel.m in Sources */,
+				54330F6A18C43940008BD3ED /* CKParagraphStyle.m in Sources */,
 				54C2080F17CD714B006E1A44 /* main.m in Sources */,
 				542373541824BCC000A8C656 /* VariableStore.m in Sources */,
 				542373841826338E00A8C656 /* AsyncImgView.m in Sources */,
@@ -871,7 +925,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -883,7 +937,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlanB/PlanB-Prefix.pch";
 				INFOPLIST_FILE = "PlanB/PlanB-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/po-hsianghunag/Project/Libs/iOS/com/google/analytics",
@@ -895,6 +949,7 @@
 				);
 				PRODUCT_NAME = planb;
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos6.1;
 				SEPARATE_STRIP = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
@@ -906,7 +961,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -918,7 +973,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlanB/PlanB-Prefix.pch";
 				INFOPLIST_FILE = "PlanB/PlanB-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/po-hsianghunag/Project/Libs/iOS/com/google/analytics",
@@ -930,6 +985,7 @@
 				);
 				PRODUCT_NAME = planb;
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos6.1;
 				SEPARATE_STRIP = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";

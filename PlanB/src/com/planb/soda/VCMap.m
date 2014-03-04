@@ -43,7 +43,7 @@
         _btnPrevious.hidden=YES;
     }
     if([VariableStore sharedInstance].arrMarker.count>0){
-        [mapview setSelectedMarker:(GMSMarker *) [VariableStore sharedInstance].arrMarker[(int)_currIndex]];
+        [mapview setSelectedMarker:(GMSMarker *) [[VariableStore sharedInstance].arrMarker objectAtIndex:_currIndex]];
     }
 	// Do any additional setup after loading the view.
 }
@@ -128,7 +128,12 @@
     mapview.delegate=self;
     _vs= [VariableStore sharedInstance];
     _btnTakeMeThere=[UIButton buttonWithType:UIButtonTypeCustom];
-    _btnTakeMeThere.frame=CGRectMake(138,_vs.screenH-65,162,48);
+    NSArray *vComp = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
+    if ([[vComp objectAtIndex:0] intValue] >= 7) {
+        _btnTakeMeThere.frame=CGRectMake(138,_vs.screenH-65,162,48);
+    } else {
+        _btnTakeMeThere.frame=CGRectMake(138,_vs.screenH-85,162,48);
+    }
     //[_btnTakeMeThere setBackgroundColor:[UIColor colorWithRed:0.3 green:0.6 blue:0.8 alpha:1]];
     _btnTakeMeThere.titleLabel.textColor=[UIColor blackColor];
     UIImageView *imgViewTakemethere=[[UIImageView alloc] init];
@@ -142,8 +147,8 @@
     lblDirection.font = [UIFont fontWithName:@"黑體-繁" size:24.f];
     lblDirection.numberOfLines = 1;
     lblDirection.lineBreakMode = NSLineBreakByWordWrapping;
-    lblDirection.textAlignment=NSTextAlignmentLeft;
-
+    lblDirection.textAlignment=  NSTextAlignmentLeft;
+    [lblDirection setBackgroundColor:[Util colorWithHexString:@"FFFFFF00"]];
     
     [_btnTakeMeThere addSubview:imgViewTakemethere];
     [_btnTakeMeThere addTarget:self  action:@selector(takeMeThere:) forControlEvents:UIControlEventTouchUpInside];
@@ -175,7 +180,7 @@
     [mapview addSubview:_btnPrevious];
 
     for(int i=0;i< _arrMarker.count;i++){
-        GMSMarker * marker=(GMSMarker *) _arrMarker[i];
+        GMSMarker * marker=(GMSMarker *) [_arrMarker objectAtIndex:i];
         marker.map=mapview;
     }
     mapview.padding= UIEdgeInsetsMake(0, 72, 0, 0);
@@ -210,7 +215,7 @@
                                                         zoom:15]];
     UINavigationController * center=(UINavigationController *) self.sidePanelController.centerPanel;
     VCList *vclist= (VCList *) [[center childViewControllers] objectAtIndex:[[center childViewControllers] count]-1];
-    int scrollY=(int) _currIndex*160-64;
+    int scrollY=(int) _currIndex*160-_vs.intTopBarHeight;
     if(scrollY<0){
         scrollY=0;
     }else if(scrollY> [[vclist SVListContainer] contentSize].height- [[vclist SVListContainer] frame].size.height){
@@ -234,7 +239,7 @@
                                                         zoom:15]];
     UINavigationController * center=(UINavigationController *) self.sidePanelController.centerPanel;
     VCList *vclist= (VCList *) [[center childViewControllers] objectAtIndex:[[center childViewControllers] count]-1];
-    int scrollY=(int) _currIndex*160-64;
+    int scrollY=(int) _currIndex*160-_vs.intTopBarHeight;
     if(scrollY<0){
         scrollY=0;
     }else if(scrollY> [[vclist SVListContainer] contentSize].height- [[vclist SVListContainer] frame].size.height){

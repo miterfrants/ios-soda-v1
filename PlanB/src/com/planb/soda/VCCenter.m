@@ -36,13 +36,27 @@
 {
     [super viewDidLoad];
     _vs= [VariableStore sharedInstance];
+
+    NSArray *vComp = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
+    if ([[vComp objectAtIndex:0] intValue] >= 7) {
+        _vs.intTopBarHeight= self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
+    } else {
+        _vs.intTopBarHeight=0;
+        [self.navigationController.navigationBar setTintColor:[Util colorWithHexString:@"FFFFFFFF"]];
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[Util colorWithHexString:@"00000000"], UITextAttributeTextShadowColor:[Util colorWithHexString:@"00000000" ], UITextAttributeTextShadowOffset:[NSValue valueWithUIOffset:UIOffsetMake(0, 0)], UITextAttributeTextColor:[Util colorWithHexString:@"333333FF"]}];
+        self.navigationController.navigationBar.shadowImage=nil;
+        self.navigationController.navigationBar.clipsToBounds=YES;
+        [self.navigationController.navigationBar.layer setMasksToBounds:YES]; 
+    }
+
+
+
 }
 -(void)viewDidAppear:(BOOL) show{
     if(!_isInitial){
         self.screenName = @"iPhone Main Screen";
         _isInitial=YES;
         UIScrollView *sv=[[UIScrollView alloc] init];
-
         [self.view addSubview:sv];
         float recWidth=self.view.frame.size.width/2;
         for(int i =0 ; i<[[_vs.dicPlaceCate objectForKey:@"cate"] count]; i++){
@@ -63,7 +77,13 @@
             [pcButton addTarget:self action:@selector(gotoList:) forControlEvents:UIControlEventTouchUpInside];
             [sv addSubview:pcButton];
         }
-        [sv setFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
+        NSArray *vComp = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
+        if ([[vComp objectAtIndex:0] intValue] >= 7) {
+            [sv setFrame:CGRectMake(0, (float) _vs.intTopBarHeight, self.view.frame.size.width, self.view.frame.size.height-(int)_vs.intTopBarHeight)];
+        } else {
+            [sv setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        }
+
         [self.view addSubview:sv];
         [sv setContentSize:CGSizeMake(self.view.frame.size.width, ceil((float)[[_vs.dicPlaceCate objectForKey:@"cate"] count]/2)*recWidth)];
     }

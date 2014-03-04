@@ -33,12 +33,9 @@
     _lblName.textColor = [UIColor blackColor];
     _lblName.font = [UIFont fontWithName:@"黑體-繁" size:18];
     _lblName.numberOfLines = 1;
-    //iOS 6,7
-    //_lblName.lineBreakMode = NSLineBreakByWordWrapping;
-    //_lblName.textAlignment=NSTextAlignmentRight;
-    _lblName.lineBreakMode=UILineBreakModeWordWrap;
-    _lblName.textAlignment=UITextAlignmentRight;
-
+    _lblName.lineBreakMode = NSLineBreakByWordWrapping;
+    _lblName.textAlignment=NSTextAlignmentRight;
+    [_lblName setBackgroundColor:[Util colorWithHexString:@"FF000000"]];
     
     [_lblName setFrame:CGRectMake([vs.listWidth floatValue]-200-5, 0, 200, 30)];
     [_viewTitle addSubview:_lblName];
@@ -48,12 +45,9 @@
     _lblDist.textColor = [UIColor blackColor];
     _lblDist.font = [UIFont fontWithName:@"黑體-繁" size:15];
     _lblDist.numberOfLines = 1;
-
-    //iOS 6,7
-    //_lblDist.lineBreakMode = NSLineBreakByWordWrapping;
-    //_lblDist.textAlignment=NSTextAlignmentLeft;
-    _lblDist.lineBreakMode = UILineBreakModeWordWrap;
-    _lblDist.textAlignment=UITextAlignmentLeft;
+    [_lblDist setBackgroundColor:[Util colorWithHexString:@"FF000000"]];
+    _lblDist.lineBreakMode = NSLineBreakByWordWrapping;
+    _lblDist.textAlignment=NSTextAlignmentLeft;
     
     [_lblDist setFrame:CGRectMake(30, 6, 90, 22.5)];
     [self.viewTitle addSubview:_lblDist];
@@ -73,11 +67,9 @@
     _lblRating.textColor = [UIColor whiteColor];
     _lblRating.font = [UIFont fontWithName:@"Arial-BoldMT" size:22.f];
     _lblRating.numberOfLines = 1;
-    //iOS 6,7
-    //_lblRating.lineBreakMode = NSLineBreakByWordWrapping;
-    //_lblRating.textAlignment=NSTextAlignmentRight;
-    _lblRating.lineBreakMode = UILineBreakModeWordWrap;
-    _lblRating.textAlignment=UITextAlignmentRight;
+    [_lblRating setBackgroundColor:[Util colorWithHexString:@"FFFFFF00"]];
+    _lblRating.lineBreakMode = NSLineBreakByWordWrapping;
+    _lblRating.textAlignment=NSTextAlignmentRight;
     
     [_lblRating setFrame:CGRectMake(4, 0, 60, 30)];
     [_bgRating addSubview:_lblRating];

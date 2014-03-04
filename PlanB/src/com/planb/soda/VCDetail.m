@@ -127,9 +127,7 @@
         lblTitle.textColor = [UIColor blackColor];
         lblTitle.font =font;
         lblTitle.numberOfLines = 50;
-        //iOS 6,7
-        //lblTitle.lineBreakMode = NSLineBreakByCharWrapping;
-        lblTitle.lineBreakMode = UILineBreakModeWordWrap;
+        lblTitle.lineBreakMode = NSLineBreakByCharWrapping;
         [lblTitle setFrame:CGRectMake(0, 0, 100, 20)];
 
         if(arrPhotos !=nil){
@@ -216,9 +214,7 @@
         lblComment.textColor = [UIColor whiteColor];
         lblComment.font =font;
         lblComment.numberOfLines = 50;
-        //iOS 6,7
-        //lblComment.lineBreakMode = NSLineBreakByCharWrapping;
-        lblComment.lineBreakMode =UILineBreakModeWordWrap;
+        lblComment.lineBreakMode = NSLineBreakByCharWrapping;
         
         NSString *comment=[NSString stringWithFormat:@"%@:%@", [[dic objectAtIndex:i] valueForKey:@"author_name"], [[dic objectAtIndex:i] valueForKey:@"text"]];
         lblComment.text=comment;

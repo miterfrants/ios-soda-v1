@@ -10,6 +10,7 @@
 #import "Util.h"
 #import "VCCenter.h"
 #import "AppDelegate.h"
+#import <QuartzCore/QuartzCore.h>
 // use stringAsyncWithUrl
 
 @implementation AsyncImgView
@@ -46,6 +47,8 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
         dispatch_async(dispatch_get_main_queue(), ^{
+
+            
             CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
             CGRect maskRect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
             CGPathRef path = CGPathCreateWithRect(maskRect, NULL);

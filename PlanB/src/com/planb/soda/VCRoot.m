@@ -23,6 +23,7 @@
     if (self) {
         // Custom initialization
     }
+
     return self;
 }
 
@@ -69,17 +70,13 @@
     _viewPopup.lblMessage .textColor = [UIColor blackColor];
     _viewPopup.lblMessage .font = [UIFont italicSystemFontOfSize:12];
     _viewPopup.lblMessage .numberOfLines = 5;
-    //iOS 6,7
-    //_viewPopup.lblMessage .lineBreakMode = NSLineBreakByWordWrapping;
-    _viewPopup.lblMessage .lineBreakMode = UILineBreakModeWordWrap;
+    _viewPopup.lblMessage .lineBreakMode = NSLineBreakByWordWrapping;
     
     [_viewPopup.lblTitle setFrame:CGRectMake(5, 5, 300,15)];
     _viewPopup.lblTitle .textColor = [UIColor blackColor];
     _viewPopup.lblTitle .font = [UIFont italicSystemFontOfSize:15];
     _viewPopup.lblTitle .numberOfLines = 1;
-    //iOS 6,7
-    //_viewPopup.lblTitle .lineBreakMode = NSLineBreakByWordWrapping;
-    _viewPopup.lblTitle .lineBreakMode = UILineBreakModeWordWrap;
+    _viewPopup.lblTitle .lineBreakMode = NSLineBreakByWordWrapping;
     
 }
 
@@ -99,7 +96,9 @@
 }
 
 -(void) didOpened{
+
     UINavigationController * center=(UINavigationController *) [self centerPanel];
+    
     VariableStore *_vs= [VariableStore sharedInstance];
     for(int i=0;i<[center childViewControllers].count;i++){
         NSString *className=NSStringFromClass([[[center childViewControllers] objectAtIndex:i] class]);

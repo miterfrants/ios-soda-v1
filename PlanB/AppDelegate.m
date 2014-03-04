@@ -15,6 +15,7 @@
 #import "Util.h"
 #import "GAI.h"
 
+
 @implementation AppDelegate
 @synthesize fb_session = _fb_session;
 @synthesize window = _window;
@@ -37,14 +38,13 @@ static NSString * const kClientId = @"235322884744.apps.googleusercontent.com";
     }
 }
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [GAI sharedInstance].trackUncaughtExceptions=YES;
     [GAI sharedInstance].dispatchInterval = 20;
     [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
     id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-48350612-1"];
-    
+
     [GMSServices provideAPIKey:@"AIzaSyBQtD9EG2eOW8hJeC9idwfsD8nIU0ZEWyw"];
     _vs =[VariableStore sharedInstance];
     //_vs.googleWebKey=@"AIzaSyCmua4N_rbg1YbNkFpGAVEO3hm_biGo3rY";
@@ -88,6 +88,7 @@ static NSString * const kClientId = @"235322884744.apps.googleusercontent.com";
 }
 - (void)applicationWillResignActive:(UIApplication *)application
 {
+        [[UINavigationBar appearance]setShadowImage:[[UIImage alloc] init]];
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
